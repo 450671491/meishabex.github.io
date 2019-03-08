@@ -7,19 +7,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://bex.meishakeji.com">
-  <title>Tag: C++ | Meisha Bex</title>
+  <title>php_performance_optimization | Meisha Bex</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本博客代码及内容由深圳梅沙科技后端团队维护">
-<meta name="keywords" content="梅沙科技&#x2F;后端&#x2F;PHP&#x2F;Laravel">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Meisha Bex">
-<meta property="og:url" content="https://bex.meishakeji.com/tags/C/index.html">
+  <meta name="description" content="针对下午php后端性能优化学习交流，汇总下列日常开发优化点，便于以后回顾或速查。 代码优化 多用php内置变量、常量、内置函数。数据量大，尤其存在较多逻辑操作时，服务器并发度和响应速度差距明显。 用内置函数实现前，可以通过简单压测，判断不同内置函数实现同个功能的性能，从而选择更有效的方案 规避魔法函数使用，其底层实现复杂，影响性能，十万级别调用次数下，影响明显 unset及时释放多余内存，垃圾回收">
+<meta name="keywords" content="php,优化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="php_performance_optimization">
+<meta property="og:url" content="https://bex.meishakeji.com/2019/03/08/php-performance-optimization/index.html">
 <meta property="og:site_name" content="Meisha Bex">
-<meta property="og:description" content="本博客代码及内容由深圳梅沙科技后端团队维护">
+<meta property="og:description" content="针对下午php后端性能优化学习交流，汇总下列日常开发优化点，便于以后回顾或速查。 代码优化 多用php内置变量、常量、内置函数。数据量大，尤其存在较多逻辑操作时，服务器并发度和响应速度差距明显。 用内置函数实现前，可以通过简单压测，判断不同内置函数实现同个功能的性能，从而选择更有效的方案 规避魔法函数使用，其底层实现复杂，影响性能，十万级别调用次数下，影响明显 unset及时释放多余内存，垃圾回收">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-08T02:47:51.371Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Meisha Bex">
-<meta name="twitter:description" content="本博客代码及内容由深圳梅沙科技后端团队维护">
+<meta name="twitter:title" content="php_performance_optimization">
+<meta name="twitter:description" content="针对下午php后端性能优化学习交流，汇总下列日常开发优化点，便于以后回顾或速查。 代码优化 多用php内置变量、常量、内置函数。数据量大，尤其存在较多逻辑操作时，服务器并发度和响应速度差距明显。 用内置函数实现前，可以通过简单压测，判断不同内置函数实现同个功能的性能，从而选择更有效的方案 规避魔法函数使用，其底层实现复杂，影响性能，十万级别调用次数下，影响明显 unset及时释放多余内存，垃圾回收">
   
     <link rel="alternative" href="/atom.xml" title="Meisha Bex" type="application/atom+xml">
   
@@ -154,128 +155,183 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-php-performance-optimization" class="article article-type-post " itemscope="" itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/04/SmallEdit/" class="archive-article-date">
-  	<time datetime="2019-03-04T01:44:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-04</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/04/SmallEdit/">最小编辑距离</a>
+    <h1 class="article-title" itemprop="name">
+      php_performance_optimization
     </h1>
   
 
 <br><small>by: funco</small>
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/03/08/php-performance-optimization/" class="archive-article-date">
+  	<time datetime="2019-03-08T02:46:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      <p><em><small>保护私人版权，尊重他人版权。转载请注明出处并附带页面链接</small></em></p>
+      
+        <p>针对下午php后端性能优化学习交流，汇总下列日常开发优化点，便于以后回顾或速查。</p>
+<h1 id="代码优化"><a href="#代码优化" class="headerlink" title="代码优化"></a>代码优化</h1><ol>
+<li>多用php内置变量、常量、内置函数。数据量大，尤其存在较多逻辑操作时，服务器并发度和响应速度差距明显。</li>
+<li>用内置函数实现前，可以通过简单压测，判断不同内置函数实现同个功能的性能，从而选择更有效的方案</li>
+<li>规避魔法函数使用，其底层实现复杂，影响性能，十万级别调用次数下，影响明显</li>
+<li>unset及时释放多余内存，垃圾回收机制在缓存池满时才执行，且要注意循环引用问题</li>
+<li>少使用正则</li>
+<li>循环条件中的算式会被重复计算</li>
+<li>php不适应密集型运算，大数据量运算。适合处理轻量业务功能，及作为后端接口层。</li>
+<li>尽量使用单引号字符串常量进行索引</li>
+<li>多次请求，重复一致的输出，加缓存</li>
+<li>多个逻辑模块执行，可以考虑将相关性不大的逻辑模块并行执行</li>
+<li>性能分析工具xhprof（但有点老，可以支持php7，但需要额外配置）</li>
+<li>尽量少的外部请求</li>
+</ol>
+<h1 id="其他优化"><a href="#其他优化" class="headerlink" title="其他优化"></a>其他优化</h1><ol>
+<li>操作系统</li>
+<li>硬盘</li>
+<li>数据库优化</li>
+<li>各类缓存。如内存扩容或提速；Redis配置优化；memcache配置优化。</li>
+</ol>
+<p>欢迎开发者下方评论区补充或直接提交更新至github仓库~~~</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              Sub
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>扫码关注微信公众号，随时随地，掌握最新技术资讯<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wechat_qrcode.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">php</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">动态规划</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">最小编辑距离</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">优化</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/02/24/countSmaller-md/" class="archive-article-date">
-  	<time datetime="2019-02-24T10:08:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-24</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/03/04/SmallEdit/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">最小编辑距离</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/02/24/countSmaller-md/">困难-线段树-计算右侧小于当前元素的个数</a>
-    </h1>
-  
-
-<br><small>by: funco</small>
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">线段树</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#代码优化"><span class="toc-number">1.</span> <span class="toc-text">代码优化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#其他优化"><span class="toc-number">2.</span> <span class="toc-text">其他优化</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
+        
+    </div>
+</aside>
+
+
+
   
 
-    
+  
+
+  
+
+  
+
+  
+  <div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+
+    if(true){
+        var gitalk = new Gitalk({
+            clientID: '9cab3da944be2a1aefac',
+            clientSecret: '14f99d0f02aa648d17a952a4ded0a262efecb054',
+            repo: 'meishabex.github.io',
+            owner: 'meishabex',
+            admin: ['meishabex'],
+            id: 'Fri Mar 08 2019 10:46:03 GMT+0800',
+            distractionFreeMode: 'false'
+        })
+        gitalk.render('gitalk-container')
+    }
+</script>
+  
+
+  
 
 
           </div>
@@ -314,9 +370,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
