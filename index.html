@@ -189,27 +189,27 @@
 <p>strace 指令的使用，这里就不多解释了。</p>
 <h3 id="模拟多次读写文件"><a href="#模拟多次读写文件" class="headerlink" title="模拟多次读写文件"></a>模拟多次读写文件</h3><p>代码</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> ($i= <span class="number">0</span> ; $i &lt; <span class="number">50000</span>; $i ++) &#123;</span><br><span class="line">    $filename=<span class="string">"./logs/text.txt"</span>;</span><br><span class="line">    $handle=fopen($filename,<span class="string">"a+"</span>);</span><br><span class="line">    fwrite($handle,<span class="string">"test\n"</span>);</span><br><span class="line">    fclose($handle);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如下，cpu使用率一下就上来了。<br><img src="/2019/03/11/分析php的系统调用/./分析php的系统调用/image-20190310184848503.png" alt="image-20190310184848503"></p>
+<p>如下，cpu使用率一下就上来了。<br><img src="/2019/03/11/分析php的系统调用/image-20190310184848503.png" alt="image-20190310184848503"></p>
 <p>使用 strace -c -p <strong>25792</strong>（此数字为跑上面代码的脚本的pid），结果如下：</p>
-<p><img src="/2019/03/11/分析php的系统调用/./分析php的系统调用/image-20190310180701827.png" alt="image-20190310180701827"></p>
+<p><img src="/2019/03/11/分析php的系统调用/image-20190310180701827.png" alt="image-20190310180701827"></p>
 <p>可以看得出有大量的 lseek、open、write、close等的系统调用。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">lseek：lseek函数可以改变文件的cfo。所有打开的文件都有一个当前文件偏移量（current file offset），简称为 	cfo。读写操作通常开始于 cfo，并且使 cfo增大，增量为读写的字节数。</span><br><span class="line">open：打开文件</span><br><span class="line">write：写文件</span><br><span class="line">close：关闭文件</span><br><span class="line">fstat：获取文件状态信息</span><br><span class="line">getcwd：获取文件目录</span><br><span class="line">munmap：去除内存页映射</span><br></pre></td></tr></table></figure>
 <p>可能使用以下命令，获取更详细的结果：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strace -o /tmp/strace_output.log -T -tt -F -e trace=all -p 25792</span><br></pre></td></tr></table></figure>
 <p>结果如下：</p>
-<p><img src="/2019/03/11/分析php的系统调用/./分析php的系统调用/image-20190310182431546.png" alt="image-20190310182431546"></p>
+<p><img src="/2019/03/11/分析php的系统调用/image-20190310182431546.png" alt="image-20190310182431546"></p>
 <p>↑↑↑↑↑ 会发现上图大量这样的重复的日志，因为上面的测试的代码就是不断这样的读写，以及关闭文件。</p>
-<p><img src="/2019/03/11/分析php的系统调用/./分析php的系统调用/image-20190310182859640.png" alt="image-20190310182859640"></p>
+<p><img src="/2019/03/11/分析php的系统调用/image-20190310182859640.png" alt="image-20190310182859640"></p>
 <p>↑↑↑↑↑ 到最后，会有释放内存映射这样的操作，从上图开始到下图的结束，总共耗时了30s多。</p>
 <p><strong>总结</strong>：尽量少进行文件操作，以及注意文件的打开和关闭。</p>
 <h3 id="模拟多次连接数据库并读取"><a href="#模拟多次连接数据库并读取" class="headerlink" title="模拟多次连接数据库并读取"></a>模拟多次连接数据库并读取</h3><p>代码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">for ($i= 0 ; $i &lt; 5000; $i ++) &#123;</span><br><span class="line">	$conn = new mysqli($servername, $username, $password, $dbname);</span><br><span class="line">	$sql = &quot;SELECT * FROM tb_test where id = &apos;***&apos;&quot;;</span><br><span class="line">	$result = $conn-&gt;query($sql);</span><br><span class="line"></span><br><span class="line">	if ($result-&gt;num_rows &gt; 0) &#123;</span><br><span class="line">    	// 输出数据</span><br><span class="line">    	while($row = $result-&gt;fetch_assoc()) &#123;</span><br><span class="line">    		echo &quot;id: &quot; . $row[&quot;id&quot;]. &quot;\n&quot;;</span><br><span class="line">		&#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">   	 	echo &quot;0 结果&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">	$conn-&gt;close();	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="/2019/03/11/分析php的系统调用/./分析php的系统调用/image-20190310184822781.png" alt="image-20190310184822781"></p>
+<p><img src="/2019/03/11/分析php的系统调用/image-20190310184822781.png" alt="image-20190310184822781"></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">recvfrom：接受信息</span><br><span class="line">sendto：发送信息</span><br><span class="line">connect：连接远程主机</span><br><span class="line">setsockopt：设置端口参数</span><br><span class="line">socket：建立socket</span><br><span class="line">getsockopt：获取端口设置</span><br><span class="line">gettimeofday：获取时间和时区</span><br><span class="line">fcntl：文件控制</span><br></pre></td></tr></table></figure>
 <p>从上图可以看出，有大量的连接和关闭的操作，这也是很消耗系统资源的。</p>
 <p>部分详细结果如下：</p>
-<p><img src="/2019/03/11/分析php的系统调用/./分析php的系统调用/image-20190310190409623.png" alt="image-20190310190409623"></p>
-<p><img src="/2019/03/11/分析php的系统调用/./分析php的系统调用/image-20190310190515800.png" alt="image-20190310190515800"></p>
+<p><img src="/2019/03/11/分析php的系统调用/image-20190310190409623.png" alt="image-20190310190409623"></p>
+<p><img src="/2019/03/11/分析php的系统调用/image-20190310190515800.png" alt="image-20190310190515800"></p>
 <p>↑↑↑↑↑ 会发现上图大量不断的连接、发送、接收、关闭等的操作，相当消耗系统资源。</p>
 <p><strong>总结</strong>：像上面这样的操作是相当消耗资源，而且还会影响到数据库机器的性能。比如要注意，数据库实例使用单例，不要不断建立连接，关闭连接。也可以使用一些数据库的中间件，减少与数据库机器的连接。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
