@@ -7,20 +7,28 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://bex.meishakeji.com">
-  <title>最小编辑距离 | Meisha Bex</title>
+  <title>分析php的系统调用 | Meisha Bex</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言全日制有一个规划中的小游戏，其最优解与最小编辑距离问题类似，所以把这个题翻了出来，炒炒冷饭。 题目来源 编辑距离 https://leetcode-cn.com/problems/edit-distance/  算法描述两种办法，dp和动态规划。但是，如果不出意外，dp会很慢，因为他测试样例有几个字符串长度几百的，最长的500。 假设有两个字符串A和B，如果A通过多次执行删除/替换/插入一个字">
-<meta name="keywords" content="leetcode,C++,算法,动态规划,最小编辑距离">
+  <meta name="description" content="分析php的系统调用前言某一天，突然发现cpu占用特别高，top了一下发现是php导致的。那应该怎么去处理呢？ 尝试去解决 查看日志，日志也没报错。  只能把php-fpm重启了，cpu早降下来了。可是才一阵子，cpu又飙上来了。   使用strace去跟踪php的调用starce的安装1yum install strace strace 指令的使用，这里就不多解释了。 模拟多次读写文件代码 12">
+<meta name="keywords" content="php,优化">
 <meta property="og:type" content="article">
-<meta property="og:title" content="最小编辑距离">
-<meta property="og:url" content="https://bex.meishakeji.com/2019/03/04/SmallEdit/index.html">
+<meta property="og:title" content="分析php的系统调用">
+<meta property="og:url" content="https://bex.meishakeji.com/2019/03/11/分析php的系统调用/index.html">
 <meta property="og:site_name" content="Meisha Bex">
-<meta property="og:description" content="前言全日制有一个规划中的小游戏，其最优解与最小编辑距离问题类似，所以把这个题翻了出来，炒炒冷饭。 题目来源 编辑距离 https://leetcode-cn.com/problems/edit-distance/  算法描述两种办法，dp和动态规划。但是，如果不出意外，dp会很慢，因为他测试样例有几个字符串长度几百的，最长的500。 假设有两个字符串A和B，如果A通过多次执行删除/替换/插入一个字">
+<meta property="og:description" content="分析php的系统调用前言某一天，突然发现cpu占用特别高，top了一下发现是php导致的。那应该怎么去处理呢？ 尝试去解决 查看日志，日志也没报错。  只能把php-fpm重启了，cpu早降下来了。可是才一阵子，cpu又飙上来了。   使用strace去跟踪php的调用starce的安装1yum install strace strace 指令的使用，这里就不多解释了。 模拟多次读写文件代码 12">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-04T01:51:21.585Z">
+<meta property="og:image" content="https://bex.meishakeji.com/2019/03/11/分析php的系统调用/分析php的系统调用/image-20190310184848503.png">
+<meta property="og:image" content="https://bex.meishakeji.com/2019/03/11/分析php的系统调用/分析php的系统调用/image-20190310180701827.png">
+<meta property="og:image" content="https://bex.meishakeji.com/2019/03/11/分析php的系统调用/分析php的系统调用/image-20190310182431546.png">
+<meta property="og:image" content="https://bex.meishakeji.com/2019/03/11/分析php的系统调用/分析php的系统调用/image-20190310182859640.png">
+<meta property="og:image" content="https://bex.meishakeji.com/2019/03/11/分析php的系统调用/分析php的系统调用/image-20190310184822781.png">
+<meta property="og:image" content="https://bex.meishakeji.com/2019/03/11/分析php的系统调用/分析php的系统调用/image-20190310190409623.png">
+<meta property="og:image" content="https://bex.meishakeji.com/2019/03/11/分析php的系统调用/分析php的系统调用/image-20190310190515800.png">
+<meta property="og:updated_time" content="2019-03-11T00:34:51.319Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="最小编辑距离">
-<meta name="twitter:description" content="前言全日制有一个规划中的小游戏，其最优解与最小编辑距离问题类似，所以把这个题翻了出来，炒炒冷饭。 题目来源 编辑距离 https://leetcode-cn.com/problems/edit-distance/  算法描述两种办法，dp和动态规划。但是，如果不出意外，dp会很慢，因为他测试样例有几个字符串长度几百的，最长的500。 假设有两个字符串A和B，如果A通过多次执行删除/替换/插入一个字">
+<meta name="twitter:title" content="分析php的系统调用">
+<meta name="twitter:description" content="分析php的系统调用前言某一天，突然发现cpu占用特别高，top了一下发现是php导致的。那应该怎么去处理呢？ 尝试去解决 查看日志，日志也没报错。  只能把php-fpm重启了，cpu早降下来了。可是才一阵子，cpu又飙上来了。   使用strace去跟踪php的调用starce的安装1yum install strace strace 指令的使用，这里就不多解释了。 模拟多次读写文件代码 12">
+<meta name="twitter:image" content="https://bex.meishakeji.com/2019/03/11/分析php的系统调用/分析php的系统调用/image-20190310184848503.png">
   
     <link rel="alternative" href="/atom.xml" title="Meisha Bex" type="application/atom+xml">
   
@@ -155,21 +163,21 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-SmallEdit" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-分析php的系统调用" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      最小编辑距离
+      分析php的系统调用
     </h1>
   
 
-<br><small>by: funco</small>
+<br><small>by: vito</small>
         
-        <a href="/2019/03/04/SmallEdit/" class="archive-article-date">
-  	<time datetime="2019-03-04T01:44:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-04</time>
+        <a href="/2019/03/11/分析php的系统调用/" class="archive-article-date">
+  	<time datetime="2019-03-11T00:32:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-11</time>
 </a>
         
       </header>
@@ -177,96 +185,45 @@
     <div class="article-entry" itemprop="articleBody">
       <p><em><small>保护私人版权，尊重他人版权。转载请注明出处并附带页面链接</small></em></p>
       
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>全日制有一个规划中的小游戏，其最优解与最小编辑距离问题类似，所以把这个题翻了出来，炒炒冷饭。</p>
-<h3 id="题目来源"><a href="#题目来源" class="headerlink" title="题目来源"></a>题目来源</h3><ol start="72">
-<li>编辑距离 <a href="https://leetcode-cn.com/problems/edit-distance/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/edit-distance/</a></li>
-</ol>
-<h3 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h3><p>两种办法，dp和动态规划。但是，如果不出意外，dp会很慢，因为他测试样例有几个字符串长度几百的，最长的500。</p>
-<p>假设有两个字符串A和B，如果A通过多次执行删除/替换/插入一个字符，最终可以变换为字符串B，则执行的次数就是编辑距离。</p>
-<p>比如，存在字符串horse和ros</p>
-<ol>
-<li>替换r-&gt;h，ros-&gt;hos</li>
-<li>插入r，hos-&gt;hors</li>
-<li>插入e，horse</li>
-</ol>
-<p>这样，我们就可以得知，horse最少需要通过3次操作才能变为ros。</p>
-<p>我们如果希望用动态规划的办法去求解，则首先需要有一个初始状态和一个变化过程，并有一张表去记录这个初始状态和变化过程。</p>
-<p>假设，有字符串str1和str2，长度分别为len1，和len2，则可以设置表distance[len1+1][len2+1]。用distance[i][j]表示截取str1长度i的子串与截取str2的长度为j的子串的匹配。这时，我们就可以轻易确定初始状态，distance[i][0]表示str1各个子串与str2的空子串编辑距离，distance[0][j]表示str2各个子串与str1的空子串编辑距离。初始状态如下表。</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-<th>r</th>
-<th>o</th>
-<th>s</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td>0</td>
-<td>1</td>
-<td>2</td>
-<td>3</td>
-</tr>
-<tr>
-<td>h</td>
-<td>1</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>o</td>
-<td>2</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>r</td>
-<td>3</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>s</td>
-<td>4</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>e</td>
-<td>5</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>得到初始状态之后，就是确定变化过程了。题目已经明确要求，只允许三种操作。</p>
-<ol>
-<li>插入一个字符</li>
-<li>删除一个字符</li>
-<li>替换一个字符</li>
-</ol>
-<p>假设当前步骤，我们执行上面任意一个步骤，就可以得到当前最小编辑距离，那么有以下三种情况。</p>
-<ol>
-<li><p>假设<code>str1[0:i-1]</code>通过插入一个字符可以与<code>str2[0:j]</code>匹配，则<code>distance[i][j] = distance[i-1][j] +1</code></p>
+        <h1 id="分析php的系统调用"><a href="#分析php的系统调用" class="headerlink" title="分析php的系统调用"></a>分析php的系统调用</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>某一天，突然发现cpu占用特别高，top了一下发现是php导致的。那应该怎么去处理呢？</p>
+<h2 id="尝试去解决"><a href="#尝试去解决" class="headerlink" title="尝试去解决"></a>尝试去解决</h2><ol>
+<li><p>查看日志，日志也没报错。</p>
 </li>
-<li><p>假设<code>str1[0:i]</code>通过删除一个字符可以与<code>str2[i:j-1]</code>匹配，则<code>distance[i][j] = distance[i][j-1] +1</code></p>
-</li>
-<li><p>假设<code>str1[i]!=str2[j]</code>，则<code>str1[0:i]</code>通过替换一个字符可以与<code>str2[0:j]</code>匹配，则<code>distance[i][j] = distance[i-1][j-1] +1</code></p>
+<li><p>只能把php-fpm重启了，cpu早降下来了。可是才一阵子，cpu又飙上来了。</p>
 </li>
 </ol>
-<p>但是，要知道我们要求的是最小编辑距离。以上三种操作都能让我们得到<code>distance[i][j]</code>的值，但不一定是<code>distance[i][j]</code>的最小值，因此我们要取以上三种情况的最小值作为<code>distance[i][j]</code>的最小值。</p>
-<p>按照这个步骤，从distance[1][1]一直遍历到distance[len1][len2]就能得到最终结果了。</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>我直接按照上面的思路写的代码，有优化空间，百度很多，这里我不搬砖，但是按照我的了解，思路都是一样的，仅初始化过程不同的代码有明显差别。distance的取值过程是一样的。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minDistance</span><span class="params">(<span class="built_in">string</span> word1, <span class="built_in">string</span> word2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len1 = word1.length(), len2 = word2.length(), i = <span class="number">0</span>, j = <span class="number">0</span>, up = <span class="number">0</span>, left = <span class="number">0</span>, upLeft = <span class="number">0</span>;</span><br><span class="line">		<span class="comment">// 编辑距离表</span></span><br><span class="line">		<span class="keyword">int</span> distance[<span class="number">501</span>][<span class="number">501</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">		<span class="comment">// 初始化</span></span><br><span class="line">		<span class="keyword">for</span> (i = <span class="number">0</span>; i&lt;= len1; i++) &#123;</span><br><span class="line">			<span class="keyword">for</span> (j = <span class="number">0</span>; j &lt;= len2; j++) &#123;</span><br><span class="line">				<span class="keyword">if</span> (i == <span class="number">0</span>) &#123;</span><br><span class="line">					distance[i][j] = j;</span><br><span class="line">				&#125; <span class="keyword">else</span> <span class="keyword">if</span> (j == <span class="number">0</span>) &#123;</span><br><span class="line">					distance[i][j] = i;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 计算</span></span><br><span class="line">		<span class="keyword">for</span> (i = <span class="number">1</span>; i&lt;= len1; i++) &#123;</span><br><span class="line">			<span class="keyword">for</span> (j = <span class="number">1</span>; j &lt;= len2; j++) &#123;</span><br><span class="line">				up = distance[i<span class="number">-1</span>][j] + <span class="number">1</span>;</span><br><span class="line">				left = distance[i][j<span class="number">-1</span>] + <span class="number">1</span>;</span><br><span class="line">				upLeft = distance[i<span class="number">-1</span>][j<span class="number">-1</span>] + (word1[i<span class="number">-1</span>] == word2[j<span class="number">-1</span>] ? <span class="number">0</span> : <span class="number">1</span>);</span><br><span class="line">				distance[i][j] = up &gt; left ? (left &gt; upLeft ? upLeft : left) : (up &gt; upLeft ? upLeft : up);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> distance[len1][len2];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="算法应用"><a href="#算法应用" class="headerlink" title="算法应用"></a>算法应用</h3><p>编辑距离实际上可以反应两个字符串的相似程度，类似的还有一个汉明距，他们在信息纠错、图像识别等多个领域都有应用，可以参考pHash算法（图像感知算法）， 这里面就用到了编辑距或汉明距判断图像相似度。<br>此外，有一点想法不知是否正确，如果这样求出来的是最小编辑距离，那么用较长的一个字符串其长度值减去这个最小编辑距离是否就是『最大匹配距离』，这个想法简单验证了几个字符串，似乎是合理的，但是样例不够全面，因此不敢定论。<br>更多扩展应用可以自行百度，欢迎交流。</p>
+<h2 id="使用strace去跟踪php的调用"><a href="#使用strace去跟踪php的调用" class="headerlink" title="使用strace去跟踪php的调用"></a>使用strace去跟踪php的调用</h2><h3 id="starce的安装"><a href="#starce的安装" class="headerlink" title="starce的安装"></a>starce的安装</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install strace</span><br></pre></td></tr></table></figure>
+<p>strace 指令的使用，这里就不多解释了。</p>
+<h3 id="模拟多次读写文件"><a href="#模拟多次读写文件" class="headerlink" title="模拟多次读写文件"></a>模拟多次读写文件</h3><p>代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> ($i= <span class="number">0</span> ; $i &lt; <span class="number">50000</span>; $i ++) &#123;</span><br><span class="line">    $filename=<span class="string">"./logs/text.txt"</span>;</span><br><span class="line">    $handle=fopen($filename,<span class="string">"a+"</span>);</span><br><span class="line">    fwrite($handle,<span class="string">"test\n"</span>);</span><br><span class="line">    fclose($handle);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如下，cpu使用率一下就上来了。<br><img src="/2019/03/11/分析php的系统调用/./分析php的系统调用/image-20190310184848503.png" alt="image-20190310184848503"></p>
+<p>使用 strace -c -p <strong>25792</strong>（此数字为跑上面代码的脚本的pid），结果如下：</p>
+<p><img src="/2019/03/11/分析php的系统调用/./分析php的系统调用/image-20190310180701827.png" alt="image-20190310180701827"></p>
+<p>可以看得出有大量的 lseek、open、write、close等的系统调用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">lseek：lseek函数可以改变文件的cfo。所有打开的文件都有一个当前文件偏移量（current file offset），简称为 	cfo。读写操作通常开始于 cfo，并且使 cfo增大，增量为读写的字节数。</span><br><span class="line">open：打开文件</span><br><span class="line">write：写文件</span><br><span class="line">close：关闭文件</span><br><span class="line">fstat：获取文件状态信息</span><br><span class="line">getcwd：获取文件目录</span><br><span class="line">munmap：去除内存页映射</span><br></pre></td></tr></table></figure>
+<p>可能使用以下命令，获取更详细的结果：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strace -o /tmp/strace_output.log -T -tt -F -e trace=all -p 25792</span><br></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<p><img src="/2019/03/11/分析php的系统调用/./分析php的系统调用/image-20190310182431546.png" alt="image-20190310182431546"></p>
+<p>↑↑↑↑↑ 会发现上图大量这样的重复的日志，因为上面的测试的代码就是不断这样的读写，以及关闭文件。</p>
+<p><img src="/2019/03/11/分析php的系统调用/./分析php的系统调用/image-20190310182859640.png" alt="image-20190310182859640"></p>
+<p>↑↑↑↑↑ 到最后，会有释放内存映射这样的操作，从上图开始到下图的结束，总共耗时了30s多。</p>
+<p><strong>总结</strong>：尽量少进行文件操作，以及注意文件的打开和关闭。</p>
+<h3 id="模拟多次连接数据库并读取"><a href="#模拟多次连接数据库并读取" class="headerlink" title="模拟多次连接数据库并读取"></a>模拟多次连接数据库并读取</h3><p>代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">for ($i= 0 ; $i &lt; 5000; $i ++) &#123;</span><br><span class="line">	$conn = new mysqli($servername, $username, $password, $dbname);</span><br><span class="line">	$sql = &quot;SELECT * FROM tb_test where id = &apos;***&apos;&quot;;</span><br><span class="line">	$result = $conn-&gt;query($sql);</span><br><span class="line"></span><br><span class="line">	if ($result-&gt;num_rows &gt; 0) &#123;</span><br><span class="line">    	// 输出数据</span><br><span class="line">    	while($row = $result-&gt;fetch_assoc()) &#123;</span><br><span class="line">    		echo &quot;id: &quot; . $row[&quot;id&quot;]. &quot;\n&quot;;</span><br><span class="line">		&#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">   	 	echo &quot;0 结果&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">	$conn-&gt;close();	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/03/11/分析php的系统调用/./分析php的系统调用/image-20190310184822781.png" alt="image-20190310184822781"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">recvfrom：接受信息</span><br><span class="line">sendto：发送信息</span><br><span class="line">connect：连接远程主机</span><br><span class="line">setsockopt：设置端口参数</span><br><span class="line">socket：建立socket</span><br><span class="line">getsockopt：获取端口设置</span><br><span class="line">gettimeofday：获取时间和时区</span><br><span class="line">fcntl：文件控制</span><br></pre></td></tr></table></figure>
+<p>从上图可以看出，有大量的连接和关闭的操作，这也是很消耗系统资源的。</p>
+<p>部分详细结果如下：</p>
+<p><img src="/2019/03/11/分析php的系统调用/./分析php的系统调用/image-20190310190409623.png" alt="image-20190310190409623"></p>
+<p><img src="/2019/03/11/分析php的系统调用/./分析php的系统调用/image-20190310190515800.png" alt="image-20190310190515800"></p>
+<p>↑↑↑↑↑ 会发现上图大量不断的连接、发送、接收、关闭等的操作，相当消耗系统资源。</p>
+<p><strong>总结</strong>：像上面这样的操作是相当消耗资源，而且还会影响到数据库机器的性能。比如要注意，数据库实例使用单例，不要不断建立连接，关闭连接。也可以使用一些数据库的中间件，减少与数据库机器的连接。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
+<li>在实际中，不仅仅是php，其他的进程也可以使用strace查看系统调用，而进行优化。</li>
+<li>代码该做的优化还是得做，如读写文件，数据库的操作。</li>
+<li>当遇上性能问题时，排查日志无法解决时，可以查看整个详细结果，可以查看一整段时间消耗在哪里。</li>
+</ol>
 
       
 
@@ -306,23 +263,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">php</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">动态规划</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">最小编辑距离</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">优化</a>
         		</li>
       		
 		</ul>
@@ -341,18 +286,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/03/08/php-performance-optimization/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          php_performance_optimization
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/02/24/go反射机制初探-md/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">go反射机制初探.md</div>
+    <a href="/2019/03/08/php-performance-optimization/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">php_performance_optimization</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -379,7 +315,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目来源"><span class="toc-number">2.</span> <span class="toc-text">题目来源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法描述"><span class="toc-number">3.</span> <span class="toc-text">算法描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码"><span class="toc-number">4.</span> <span class="toc-text">代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法应用"><span class="toc-number">5.</span> <span class="toc-text">算法应用</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#分析php的系统调用"><span class="toc-number">1.</span> <span class="toc-text">分析php的系统调用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#尝试去解决"><span class="toc-number">1.2.</span> <span class="toc-text">尝试去解决</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用strace去跟踪php的调用"><span class="toc-number">1.3.</span> <span class="toc-text">使用strace去跟踪php的调用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#starce的安装"><span class="toc-number">1.3.1.</span> <span class="toc-text">starce的安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模拟多次读写文件"><span class="toc-number">1.3.2.</span> <span class="toc-text">模拟多次读写文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模拟多次连接数据库并读取"><span class="toc-number">1.3.3.</span> <span class="toc-text">模拟多次连接数据库并读取</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">1.4.</span> <span class="toc-text">总结</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -412,7 +348,7 @@
             repo: 'meishabex.github.io',
             owner: 'meishabex',
             admin: ['meishabex'],
-            id: 'Mon Mar 04 2019 09:44:08 GMT+0800',
+            id: 'Mon Mar 11 2019 08:32:57 GMT+0800',
             distractionFreeMode: 'false'
         })
         gitalk.render('gitalk-container')
