@@ -177,7 +177,9 @@
     <div class="article-entry" itemprop="articleBody">
       <p><em><small>保护私人版权，尊重他人版权。转载请注明出处并附带页面链接</small></em></p>
       
-        <h2 id="docker简介"><a href="#docker简介" class="headerlink" title="docker简介"></a>docker简介</h2><p>Docker 使用 Google 公司推出的 Go 语言 进行开发实现，基于 Linux 内核的 cgroup，namespace，以及 AUFS 类的 Union FS 等技术，对进程进行封装隔离，属于操作系统层面的虚拟化技术。由于隔离的进程独立于宿主和其它的隔离的进程，因此也称其为容 器。</p>
+          
+          
+            <h2 id="docker简介"><a href="#docker简介" class="headerlink" title="docker简介"></a>docker简介</h2><p>Docker 使用 Google 公司推出的 Go 语言 进行开发实现，基于 Linux 内核的 cgroup，namespace，以及 AUFS 类的 Union FS 等技术，对进程进行封装隔离，属于操作系统层面的虚拟化技术。由于隔离的进程独立于宿主和其它的隔离的进程，因此也称其为容 器。</p>
 <p>Docker 和传统虚拟化方式的不同之处在于传统虚拟机技术是虚拟出一套硬件 后，在其上运行一个完整操作系统，在该系统上再运行所需应用进程；而容器内的应用进程 直接运行于宿主的内核，容器内没有自己的内核，而且也没有进行硬件虚拟。因此容器要比 传统虚拟机更为轻便。</p>
 <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>Docker 包括三个基本概念</p>
 <ul>
@@ -216,6 +218,7 @@
 <p>$ docker container rm<br>trusting_newton<br>trusting_newton<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">如果要删除一个运行中的容器，可以添加-f参数。Docker 会发送SIGKILL信号给容器。</span><br><span class="line"></span><br><span class="line">### 清理所有处于终止状态的容器</span><br><span class="line">用**docker container ls** -a命令可以查看所有已经创建的包括终止状态的容器，如果数量太 多要一个个删除可能会很麻烦，用下面的命令可以清理掉所有处于终止状态的容器。</span><br></pre></td></tr></table></figure></p>
 <p>$ docker container prune<br><code>`</code></p>
 
+          
       
 
       

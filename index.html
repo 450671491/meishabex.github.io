@@ -178,15 +178,10 @@
     <div class="article-entry" itemprop="articleBody">
       <p><em><small>保护私人版权，尊重他人版权。转载请注明出处并附带页面链接</small></em></p>
       
-        <h1 id="问题来源"><a href="#问题来源" class="headerlink" title="问题来源"></a>问题来源</h1><p>全日制steam小游戏『24点』实现过程中遇到的问题，现在，通过某种方法，后端能得到一个字符串表达式，含有四则运算和括号。要求结算该表达式得到结果。对于计算结果，若为整数，直接以整数结果表示；若为分数则以分数结果表示，不能转成浮点数。</p>
-<h1 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h1><h2 id="分解问题"><a href="#分解问题" class="headerlink" title="分解问题"></a>分解问题</h2><p>其实是一个经典的算法问题以及一个分数运算问题：</p>
-<ol>
-<li>解析字符串表达式，表达式中含有+、-、*、/、( 和 )</li>
-<li>将一般的数值运算转为分数运算，其中，值得注意的是<strong> 分数的约分 </strong>逻辑</li>
-</ol>
-<h2 id="解析字符串表达式"><a href="#解析字符串表达式" class="headerlink" title="解析字符串表达式"></a>解析字符串表达式</h2>
-        
-          <a class="article-more-a" href="/2019/03/17/带分数运算的24点算法-md/#more">more >></a>
+          
+          
+            <h1 id="问题来源"><a href="#问题来源" class="headerlink" title="问题来源"></a>问题来源</h1><p>全日制steam小游戏『24点』实现过程中遇到的问题，现在，通过某种方法，后端能得到一个字符串表达式，含有四则运算和括号。要求结算该表达式得到结果。对于计算结果，若为整数，直接以整数结果表示；若为分数则以分数结果表示，不能转成浮点数。</p>
+            
         
       
 
@@ -274,45 +269,11 @@
     <div class="article-entry" itemprop="articleBody">
       <p><em><small>保护私人版权，尊重他人版权。转载请注明出处并附带页面链接</small></em></p>
       
-        <h2 id="docker简介"><a href="#docker简介" class="headerlink" title="docker简介"></a>docker简介</h2><p>Docker 使用 Google 公司推出的 Go 语言 进行开发实现，基于 Linux 内核的 cgroup，namespace，以及 AUFS 类的 Union FS 等技术，对进程进行封装隔离，属于操作系统层面的虚拟化技术。由于隔离的进程独立于宿主和其它的隔离的进程，因此也称其为容 器。</p>
-<p>Docker 和传统虚拟化方式的不同之处在于传统虚拟机技术是虚拟出一套硬件 后，在其上运行一个完整操作系统，在该系统上再运行所需应用进程；而容器内的应用进程 直接运行于宿主的内核，容器内没有自己的内核，而且也没有进行硬件虚拟。因此容器要比 传统虚拟机更为轻便。</p>
-<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>Docker 包括三个基本概念</p>
-<ul>
-<li>镜像（Image）</li>
-<li>容器（Container）</li>
-<li>仓库（Repository）</li>
-</ul>
-<h3 id="Docker-镜像"><a href="#Docker-镜像" class="headerlink" title="Docker 镜像"></a>Docker 镜像</h3><p>对Linux 而言，内核启动后，会挂载 root 文件系统为其提供用户空间支持。而 Docker 镜像（Image），就相当于是一个 root 文件系 统。<br>Docker 镜像是一个特殊的文件系统，除了提供容器运行时所需的程序、库、资源、配置等文 件外，还包含了一些为运行时准备的一些配置参数（如匿名卷、环境变量、用户等）。镜像 不包含任何动态数据，其内容在构建之后也不会被改变。</p>
-<h3 id="Docker-容器"><a href="#Docker-容器" class="headerlink" title="Docker 容器"></a>Docker 容器</h3><p>镜像（ Image ）和容器（Container）的关系，就像是面向对象程序设计中的类和实例一样，镜像是静态的定义，容器是镜像运行时的实体。容器可以被创建、启动、停止、删除、暂停等。<br>容器的实质是进程，但与直接在宿主执行的进程不同，容器进程运行于属于自己的独立的命名空间。容器内的进程是运行在一个隔离的环境里，使用起来，就好像是在一个独立于宿主的系统下操作一样。这种特性使得容器封装的应用比直接在宿主运行更加安 全。</p>
-<h3 id="Docker-仓库"><a href="#Docker-仓库" class="headerlink" title="Docker 仓库"></a>Docker 仓库</h3><p>镜像构建完成后，可以很容易的在当前宿主机上运行，但是，如果需要在其它服务器上使用这个镜像，我们就需要一个集中的存储、分发镜像的服务，Docker仓库就是这样的服 务。<br>一个 Docker Registry 中可以包含多个仓库（ （ Tag ）；每个标签对应一个镜像。<br>以 Ubuntu 镜像为例，ubuntu是仓库的名字，其内包含有不同的版本标签，如， 14.04,16.04。我们可以通过ubuntu:14.04 ，或者 ubuntu:16.04来具体指定所需哪个版本的镜像。如果忽略了标签，比如ubuntu，那将视为ubuntu:latest 。</p>
-<h2 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker"></a>安装docker</h2><h3 id="Contos"><a href="#Contos" class="headerlink" title="Contos"></a>Contos</h3><p>Docker官方为了简化安装流程，提供了一套便捷的安装脚本，Ubuntu 系统上可以使用这套脚本安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ curl -fsSL get.docker.com -o get-docker.sh</span><br><span class="line">$ sudo sh get-docker.sh --mirror Aliyun</span><br></pre></td></tr></table></figure></p>
-<h4 id="启动-Docker-CE"><a href="#启动-Docker-CE" class="headerlink" title="启动 Docker CE"></a>启动 Docker CE</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl enable docker</span><br><span class="line">$ sudo systemctl start docker</span><br></pre></td></tr></table></figure>
-<h3 id="Mac"><a href="#Mac" class="headerlink" title="Mac"></a>Mac</h3><h4 id="使用-Homebrew-安装"><a href="#使用-Homebrew-安装" class="headerlink" title="使用 Homebrew 安装"></a>使用 Homebrew 安装</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew cask install docker</span><br></pre></td></tr></table></figure>
-<h4 id="手动下载安装"><a href="#手动下载安装" class="headerlink" title="手动下载安装"></a>手动下载安装</h4><p>Stable版：<a href="https://download.docker.com/mac/stable/Docker.dmg" target="_blank" rel="noopener">https://download.docker.com/mac/stable/Docker.dmg</a></p>
-<h2 id="使用镜像"><a href="#使用镜像" class="headerlink" title="使用镜像"></a>使用镜像</h2><p>从 Docker 镜像仓库获取镜像的命令是docker pull。其命令格式为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull [选项] [DockerRegistry地址[:端口号]/]仓库名[:标签]</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>Docker 镜像仓库地址：地址的格式一般是&lt;域名/IP&gt;[:端口号] 。默认地址是 DockerHub。</li>
-<li>仓库名：如之前所说，这里的仓库名是两段式名称，即 &lt;用户名&gt;/&lt;软件名&gt; Hub，如果不给出用户名，则默认为 library ，也就是官方镜像  </li>
-</ul>
-<p>例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull ubuntu:16.04</span><br></pre></td></tr></table></figure></p>
-<p>上面的命令中没有给出 Docker 镜像仓库地址，因此将会从 Docker Hub 获取镜像。而镜像名 称是 ubuntu:16.04 ，因此将会获取官方镜像 library/ubuntu 仓库中标签为 16.04 的镜像。</p>
-<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><p>有了镜像后，我们就能够以这个镜像为基础启动并运行一个容器。以上面的 ubuntu:16.04例，如果我们打算启动里面的 bash 并且进行交互式操作的话，可以执行下面的命令。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -it --rm ubuntu:16.04 bash</span><br></pre></td></tr></table></figure></p>
-<p>docker run 就是运行容器的命令</p>
-<ul>
-<li>-it：这是两个参数，一个是 -i ：交互式操作，一个是 -t 终端</li>
-<li>–rm：这个参数是说容器退出后随之将其删除</li>
-<li>bash ：放在镜像名后的是命令，这里我们希望有个交互式 Shell，  </li>
-</ul>
-<p>进入容器后，我们可以在Shell下操作，执行任何所需的命令。我们可以通过exit退出这个容器。</p>
-<h4 id="列出镜像"><a href="#列出镜像" class="headerlink" title="列出镜像"></a>列出镜像</h4><p>要想列出已经下载下来的镜像，可以使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker image ls</span><br></pre></td></tr></table></figure></p>
-<h4 id="删除本地镜像"><a href="#删除本地镜像" class="headerlink" title="删除本地镜像"></a>删除本地镜像</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker image rm [选项] &lt;镜像1&gt; [&lt;镜像2&gt; ...]</span><br></pre></td></tr></table></figure>
-<p>例如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">docker image rm 501ad78535f015 //通过镜像id删除</span><br><span class="line">docker image rm centos //通过镜像名称删除</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">## 操作 Docker 容器</span><br><span class="line">容器是 Docker 又一核心概念。容器是独立运行的一个或一组应用，以及它们的运行态环境。对应的，虚拟机可 以理解为模拟运行的一整套操作系统（提供了运行态环境和其他系统环境）和跑在上面的应用。  </span><br><span class="line">#### 启动容器</span><br><span class="line">启动容器有两种方式，一种是基于镜像新建一个容器并启动，另外一个是将在终止状态 （ stopped ）的容器重新启动。  </span><br><span class="line">因为 Docker 的容器实在太轻量级了，很多时候用户都是随时删除和新创建容器。</span><br><span class="line">#### 新建并启动</span><br><span class="line">命令主要为 **docker run**  </span><br><span class="line">下面的命令输出一个 “Hello World”，之后终止容器。</span><br></pre></td></tr></table></figure></p>
-<p>$ docker run ubuntu:14.04 /bin/echo ‘Hello world’<br>Hello world<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">下面的命令则启动一个 bash 终端，允许用户进行交互</span><br></pre></td></tr></table></figure></p>
-<p>$ docker run -t -i ubuntu:14.04 /bin/bash</p>
-<p>root@af8bae53bdd3:/#<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">其中， -t 选项让Docker分配一个伪终端（pseudo-tty）并绑定到容器的标准输入上，-i则让容器的标准输入保持打开。</span><br><span class="line"></span><br><span class="line">当利用**docker  run**来创建容器时，Docker在后台运行的标准操作包括：</span><br><span class="line"></span><br><span class="line">- 检查本地是否存在指定的镜像，不存在就从公有仓库下载</span><br><span class="line">- </span><br><span class="line">- 利用镜像创建并启动一个容器 </span><br><span class="line">- 分配一个文件系统，并在只读的镜像层外面挂载一层可读写层</span><br><span class="line">- 从宿主主机配置的网桥接口中桥接一个虚拟接口到容器中去</span><br><span class="line">- 从地址池配置一个 ip 地址给容器 </span><br><span class="line">- 执行用户指定的应用程序 </span><br><span class="line">- 执行完毕后容器被终止</span><br><span class="line"> </span><br><span class="line">#### 启动已终止容器</span><br><span class="line">可以利用**docker container start** 命令，直接将一个已经终止的容器启动运行。</span><br><span class="line"></span><br><span class="line">#### 后台运行</span><br><span class="line">通过添加 -d 参数来实现。  </span><br><span class="line">容器是否会长久运行，是和 docker run 指定的命令有关，和 -d 参数无关。</span><br><span class="line">#### 终止容器</span><br><span class="line">可以使用 **docker container stop**来终止一个运行中的容器。</span><br><span class="line"></span><br><span class="line">#### 进入容器</span><br><span class="line">在使用 参数时，容器启动后会进入后台。</span><br><span class="line">进入容器进行操作使用 **docker exec**命令  </span><br><span class="line">**docker exec**后边可以跟多个参数</span><br><span class="line">只用 -i 参数时，由于没有分配伪终端，界面没有我们熟悉的 Linux 命令提示符，但命令执行结果仍然可以返回。 当 -i -t 参数一起使用时，则可以看到我们熟悉的 Linux命令提示符</span><br><span class="line">#### 删除容器</span><br><span class="line">可以使用 **docker container rm** 来删除一个处于终止状态的容器。例如</span><br></pre></td></tr></table></figure></p>
-<p>$ docker container rm<br>trusting_newton<br>trusting_newton<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">如果要删除一个运行中的容器，可以添加-f参数。Docker 会发送SIGKILL信号给容器。</span><br><span class="line"></span><br><span class="line">### 清理所有处于终止状态的容器</span><br><span class="line">用**docker container ls** -a命令可以查看所有已经创建的包括终止状态的容器，如果数量太 多要一个个删除可能会很麻烦，用下面的命令可以清理掉所有处于终止状态的容器。</span><br></pre></td></tr></table></figure></p>
-<p>$ docker container prune<br><code>`</code></p>
-
+          
+          
+            <h2 id="docker简介"><a href="#docker简介" class="headerlink" title="docker简介"></a>docker简介</h2><p>Docker 使用 Google 公司推出的 Go 语言 进行开发实现，基于 Linux 内核的 cgroup，namespace，以及 AUFS 类的 Union FS 等技术，对进程进行封装隔离，属于操作系统层面的虚拟化技术。由于隔离的进程独立于宿主和其它的隔离的进程，因此也称其为容 器。</p>
+            
+        
       
 
       
@@ -391,46 +352,11 @@
     <div class="article-entry" itemprop="articleBody">
       <p><em><small>保护私人版权，尊重他人版权。转载请注明出处并附带页面链接</small></em></p>
       
-        <h1 id="分析php的系统调用"><a href="#分析php的系统调用" class="headerlink" title="分析php的系统调用"></a>分析php的系统调用</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>某一天，突然发现cpu占用特别高，top了一下发现是php导致的。那应该怎么去处理呢？</p>
-<h2 id="尝试去解决"><a href="#尝试去解决" class="headerlink" title="尝试去解决"></a>尝试去解决</h2><ol>
-<li><p>查看日志，日志也没报错。</p>
-</li>
-<li><p>只能把php-fpm重启了，cpu早降下来了。可是才一阵子，cpu又飙上来了。</p>
-</li>
-</ol>
-<h2 id="使用strace去跟踪php的调用"><a href="#使用strace去跟踪php的调用" class="headerlink" title="使用strace去跟踪php的调用"></a>使用strace去跟踪php的调用</h2><h3 id="starce的安装"><a href="#starce的安装" class="headerlink" title="starce的安装"></a>starce的安装</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install strace</span><br></pre></td></tr></table></figure>
-<p>strace 指令的使用，这里就不多解释了。</p>
-<h3 id="模拟多次读写文件"><a href="#模拟多次读写文件" class="headerlink" title="模拟多次读写文件"></a>模拟多次读写文件</h3><p>代码</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> ($i= <span class="number">0</span> ; $i &lt; <span class="number">50000</span>; $i ++) &#123;</span><br><span class="line">    $filename=<span class="string">"./logs/text.txt"</span>;</span><br><span class="line">    $handle=fopen($filename,<span class="string">"a+"</span>);</span><br><span class="line">    fwrite($handle,<span class="string">"test\n"</span>);</span><br><span class="line">    fclose($handle);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如下，cpu使用率一下就上来了。<br><img src="/2019/03/11/分析php的系统调用/image-20190310184848503.png" alt="image-20190310184848503"></p>
-<p>使用 strace -c -p <strong>25792</strong>（此数字为跑上面代码的脚本的pid），结果如下：</p>
-<p><img src="/2019/03/11/分析php的系统调用/image-20190310180701827.png" alt="image-20190310180701827"></p>
-<p>可以看得出有大量的 lseek、open、write、close等的系统调用。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">lseek：lseek函数可以改变文件的cfo。所有打开的文件都有一个当前文件偏移量（current file offset），简称为 	cfo。读写操作通常开始于 cfo，并且使 cfo增大，增量为读写的字节数。</span><br><span class="line">open：打开文件</span><br><span class="line">write：写文件</span><br><span class="line">close：关闭文件</span><br><span class="line">fstat：获取文件状态信息</span><br><span class="line">getcwd：获取文件目录</span><br><span class="line">munmap：去除内存页映射</span><br></pre></td></tr></table></figure>
-<p>可能使用以下命令，获取更详细的结果：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strace -o /tmp/strace_output.log -T -tt -F -e trace=all -p 25792</span><br></pre></td></tr></table></figure>
-<p>结果如下：</p>
-<p><img src="/2019/03/11/分析php的系统调用/image-20190310182431546.png" alt="image-20190310182431546"></p>
-<p>↑↑↑↑↑ 会发现上图大量这样的重复的日志，因为上面的测试的代码就是不断这样的读写，以及关闭文件。</p>
-<p><img src="/2019/03/11/分析php的系统调用/image-20190310182859640.png" alt="image-20190310182859640"></p>
-<p>↑↑↑↑↑ 到最后，会有释放内存映射这样的操作，从上图开始到下图的结束，总共耗时了30s多。</p>
-<p><strong>总结</strong>：尽量少进行文件操作，以及注意文件的打开和关闭。</p>
-<h3 id="模拟多次连接数据库并读取"><a href="#模拟多次连接数据库并读取" class="headerlink" title="模拟多次连接数据库并读取"></a>模拟多次连接数据库并读取</h3><p>代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">for ($i= 0 ; $i &lt; 5000; $i ++) &#123;</span><br><span class="line">	$conn = new mysqli($servername, $username, $password, $dbname);</span><br><span class="line">	$sql = &quot;SELECT * FROM tb_test where id = &apos;***&apos;&quot;;</span><br><span class="line">	$result = $conn-&gt;query($sql);</span><br><span class="line"></span><br><span class="line">	if ($result-&gt;num_rows &gt; 0) &#123;</span><br><span class="line">    	// 输出数据</span><br><span class="line">    	while($row = $result-&gt;fetch_assoc()) &#123;</span><br><span class="line">    		echo &quot;id: &quot; . $row[&quot;id&quot;]. &quot;\n&quot;;</span><br><span class="line">		&#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">   	 	echo &quot;0 结果&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">	$conn-&gt;close();	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="/2019/03/11/分析php的系统调用/image-20190310184822781.png" alt="image-20190310184822781"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">recvfrom：接受信息</span><br><span class="line">sendto：发送信息</span><br><span class="line">connect：连接远程主机</span><br><span class="line">setsockopt：设置端口参数</span><br><span class="line">socket：建立socket</span><br><span class="line">getsockopt：获取端口设置</span><br><span class="line">gettimeofday：获取时间和时区</span><br><span class="line">fcntl：文件控制</span><br></pre></td></tr></table></figure>
-<p>从上图可以看出，有大量的连接和关闭的操作，这也是很消耗系统资源的。</p>
-<p>部分详细结果如下：</p>
-<p><img src="/2019/03/11/分析php的系统调用/image-20190310190409623.png" alt="image-20190310190409623"></p>
-<p><img src="/2019/03/11/分析php的系统调用/image-20190310190515800.png" alt="image-20190310190515800"></p>
-<p>↑↑↑↑↑ 会发现上图大量不断的连接、发送、接收、关闭等的操作，相当消耗系统资源。</p>
-<p><strong>总结</strong>：像上面这样的操作是相当消耗资源，而且还会影响到数据库机器的性能。比如要注意，数据库实例使用单例，不要不断建立连接，关闭连接。也可以使用一些数据库的中间件，减少与数据库机器的连接。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
-<li>在实际中，不仅仅是php，其他的进程也可以使用strace查看系统调用，而进行优化。</li>
-<li>代码该做的优化还是得做，如读写文件，数据库的操作。</li>
-<li>当遇上性能问题时，排查日志无法解决时，可以查看整个详细结果，可以查看一整段时间消耗在哪里。</li>
-</ol>
-
+          
+          
+            <h1 id="分析php的系统调用"><a href="#分析php的系统调用" class="headerlink" title="分析php的系统调用"></a>分析php的系统调用</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>某一天，突然发现cpu占用特别高，top了一下发现是php导致的。那应该怎么去处理呢？</p>
+            
+        
       
 
       
@@ -509,29 +435,11 @@
     <div class="article-entry" itemprop="articleBody">
       <p><em><small>保护私人版权，尊重他人版权。转载请注明出处并附带页面链接</small></em></p>
       
-        <p>针对下午php后端性能优化学习交流，汇总下列日常开发优化点，便于以后回顾或速查。</p>
-<h1 id="代码优化"><a href="#代码优化" class="headerlink" title="代码优化"></a>代码优化</h1><ol>
-<li>多用php内置变量、常量、内置函数。数据量大，尤其存在较多逻辑操作时，服务器并发度和响应速度差距明显。</li>
-<li>用内置函数实现前，可以通过简单压测，判断不同内置函数实现同个功能的性能，从而选择更有效的方案</li>
-<li>规避魔法函数使用，其底层实现复杂，影响性能，十万级别调用次数下，影响明显</li>
-<li>unset及时释放多余内存，垃圾回收机制在缓存池满时才执行，且要注意循环引用问题</li>
-<li>少使用正则</li>
-<li>循环条件中的算式会被重复计算</li>
-<li>php不适应密集型运算，大数据量运算。适合处理轻量业务功能，及作为后端接口层。</li>
-<li>尽量使用单引号字符串常量进行索引</li>
-<li>多次请求，重复一致的输出，加缓存</li>
-<li>多个逻辑模块执行，可以考虑将相关性不大的逻辑模块并行执行</li>
-<li>性能分析工具xhprof（但有点老，可以支持php7，但需要额外配置）</li>
-<li>尽量少的外部请求</li>
-</ol>
-<h1 id="其他优化"><a href="#其他优化" class="headerlink" title="其他优化"></a>其他优化</h1><ol>
-<li>操作系统</li>
-<li>硬盘</li>
-<li>数据库优化</li>
-<li>各类缓存。如内存扩容或提速；Redis配置优化；memcache配置优化。</li>
-</ol>
-<p>欢迎开发者下方评论区补充或直接提交更新至github仓库~~~</p>
-
+          
+          
+            <p>针对下午php后端性能优化学习交流，汇总下列日常开发优化点，便于以后回顾或速查。</p>
+            
+        
       
 
       
@@ -610,97 +518,11 @@
     <div class="article-entry" itemprop="articleBody">
       <p><em><small>保护私人版权，尊重他人版权。转载请注明出处并附带页面链接</small></em></p>
       
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>全日制有一个规划中的小游戏，其最优解与最小编辑距离问题类似，所以把这个题翻了出来，炒炒冷饭。</p>
-<h3 id="题目来源"><a href="#题目来源" class="headerlink" title="题目来源"></a>题目来源</h3><ol start="72">
-<li>编辑距离 <a href="https://leetcode-cn.com/problems/edit-distance/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/edit-distance/</a></li>
-</ol>
-<h3 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h3><p>两种办法，dp和动态规划。但是，如果不出意外，dp会很慢，因为他测试样例有几个字符串长度几百的，最长的500。</p>
-<p>假设有两个字符串A和B，如果A通过多次执行删除/替换/插入一个字符，最终可以变换为字符串B，则执行的次数就是编辑距离。</p>
-<p>比如，存在字符串horse和ros</p>
-<ol>
-<li>替换r-&gt;h，ros-&gt;hos</li>
-<li>插入r，hos-&gt;hors</li>
-<li>插入e，horse</li>
-</ol>
-<p>这样，我们就可以得知，horse最少需要通过3次操作才能变为ros。</p>
-<p>我们如果希望用动态规划的办法去求解，则首先需要有一个初始状态和一个变化过程，并有一张表去记录这个初始状态和变化过程。</p>
-<p>假设，有字符串str1和str2，长度分别为len1，和len2，则可以设置表distance[len1+1][len2+1]。用distance[i][j]表示截取str1长度i的子串与截取str2的长度为j的子串的匹配。这时，我们就可以轻易确定初始状态，distance[i][0]表示str1各个子串与str2的空子串编辑距离，distance[0][j]表示str2各个子串与str1的空子串编辑距离。初始状态如下表。</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-<th>r</th>
-<th>o</th>
-<th>s</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td>0</td>
-<td>1</td>
-<td>2</td>
-<td>3</td>
-</tr>
-<tr>
-<td>h</td>
-<td>1</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>o</td>
-<td>2</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>r</td>
-<td>3</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>s</td>
-<td>4</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>e</td>
-<td>5</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>得到初始状态之后，就是确定变化过程了。题目已经明确要求，只允许三种操作。</p>
-<ol>
-<li>插入一个字符</li>
-<li>删除一个字符</li>
-<li>替换一个字符</li>
-</ol>
-<p>假设当前步骤，我们执行上面任意一个步骤，就可以得到当前最小编辑距离，那么有以下三种情况。</p>
-<ol>
-<li><p>假设<code>str1[0:i-1]</code>通过插入一个字符可以与<code>str2[0:j]</code>匹配，则<code>distance[i][j] = distance[i-1][j] +1</code></p>
-</li>
-<li><p>假设<code>str1[0:i]</code>通过删除一个字符可以与<code>str2[i:j-1]</code>匹配，则<code>distance[i][j] = distance[i][j-1] +1</code></p>
-</li>
-<li><p>假设<code>str1[i]!=str2[j]</code>，则<code>str1[0:i]</code>通过替换一个字符可以与<code>str2[0:j]</code>匹配，则<code>distance[i][j] = distance[i-1][j-1] +1</code></p>
-</li>
-</ol>
-<p>但是，要知道我们要求的是最小编辑距离。以上三种操作都能让我们得到<code>distance[i][j]</code>的值，但不一定是<code>distance[i][j]</code>的最小值，因此我们要取以上三种情况的最小值作为<code>distance[i][j]</code>的最小值。</p>
-<p>按照这个步骤，从distance[1][1]一直遍历到distance[len1][len2]就能得到最终结果了。</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>我直接按照上面的思路写的代码，有优化空间，百度很多，这里我不搬砖，但是按照我的了解，思路都是一样的，仅初始化过程不同的代码有明显差别。distance的取值过程是一样的。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minDistance</span><span class="params">(<span class="built_in">string</span> word1, <span class="built_in">string</span> word2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len1 = word1.length(), len2 = word2.length(), i = <span class="number">0</span>, j = <span class="number">0</span>, up = <span class="number">0</span>, left = <span class="number">0</span>, upLeft = <span class="number">0</span>;</span><br><span class="line">		<span class="comment">// 编辑距离表</span></span><br><span class="line">		<span class="keyword">int</span> distance[<span class="number">501</span>][<span class="number">501</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">		<span class="comment">// 初始化</span></span><br><span class="line">		<span class="keyword">for</span> (i = <span class="number">0</span>; i&lt;= len1; i++) &#123;</span><br><span class="line">			<span class="keyword">for</span> (j = <span class="number">0</span>; j &lt;= len2; j++) &#123;</span><br><span class="line">				<span class="keyword">if</span> (i == <span class="number">0</span>) &#123;</span><br><span class="line">					distance[i][j] = j;</span><br><span class="line">				&#125; <span class="keyword">else</span> <span class="keyword">if</span> (j == <span class="number">0</span>) &#123;</span><br><span class="line">					distance[i][j] = i;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 计算</span></span><br><span class="line">		<span class="keyword">for</span> (i = <span class="number">1</span>; i&lt;= len1; i++) &#123;</span><br><span class="line">			<span class="keyword">for</span> (j = <span class="number">1</span>; j &lt;= len2; j++) &#123;</span><br><span class="line">				up = distance[i<span class="number">-1</span>][j] + <span class="number">1</span>;</span><br><span class="line">				left = distance[i][j<span class="number">-1</span>] + <span class="number">1</span>;</span><br><span class="line">				upLeft = distance[i<span class="number">-1</span>][j<span class="number">-1</span>] + (word1[i<span class="number">-1</span>] == word2[j<span class="number">-1</span>] ? <span class="number">0</span> : <span class="number">1</span>);</span><br><span class="line">				distance[i][j] = up &gt; left ? (left &gt; upLeft ? upLeft : left) : (up &gt; upLeft ? upLeft : up);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> distance[len1][len2];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="算法应用"><a href="#算法应用" class="headerlink" title="算法应用"></a>算法应用</h3><p>编辑距离实际上可以反应两个字符串的相似程度，类似的还有一个汉明距，他们在信息纠错、图像识别等多个领域都有应用，可以参考pHash算法（图像感知算法）， 这里面就用到了编辑距或汉明距判断图像相似度。<br>此外，有一点想法不知是否正确，如果这样求出来的是最小编辑距离，那么用较长的一个字符串其长度值减去这个最小编辑距离是否就是『最大匹配距离』，这个想法简单验证了几个字符串，似乎是合理的，但是样例不够全面，因此不敢定论。<br>更多扩展应用可以自行百度，欢迎交流。</p>
-
+          
+          
+            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>全日制有一个规划中的小游戏，其最优解与最小编辑距离问题类似，所以把这个题翻了出来，炒炒冷饭。</p>
+            
+        
       
 
       
@@ -791,49 +613,11 @@
     <div class="article-entry" itemprop="articleBody">
       <p><em><small>保护私人版权，尊重他人版权。转载请注明出处并附带页面链接</small></em></p>
       
-        <p>能够在运行时更新变量和检查它们的值、调用它们的方法和它们支持的内在操作，而不需要在编译时就知道这些变量的具体类型，这种机制被称为反射。go语言中对于反射的定义与java中并无太大差别，基本核心都是在运行时更新变量调用方法之类的。<br>换句话说就是反射允许在编译期间不知道变量或者接口的名称，字段、方法，值的情况下在运行时检查类、接口字段和方法以及他们的值。</p>
-<h2 id="go中的反射"><a href="#go中的反射" class="headerlink" title="go中的反射"></a>go中的反射</h2><p>go中的反射主要由reflect包来提供。其定义两个比较重要的类型，Type与Value，一个type表示一个go类型。<br>其拥有一个函数typeof,该函数接受任意的interface{}类型，并以reflect.Type形式返回动态类型：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">t := reflext.Typeof(3)</span><br></pre></td></tr></table></figure></p>
-<p>在调用typeof函数的过程中，其会将一个具体的值转换为接口类型，并且拥有一个隐式的接口转换操作，创建包含两个信息的接口值：操作数的动态类型和其动态值。<br>em…还有一个比较重要的类型是刚才说到的Value，函数reflect.ValueOf接受任意的interface{}类型，并返回一个装载着其动态值的reflexct.Value和reflect.TypeOf类似，reflect。.ValueOf返回的结构也是具体的类型，但是reflect.Value也可以持有一个接口值.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">v := reflect.ValueOf(3)</span><br></pre></td></tr></table></figure></p>
-<h2 id="go反射原理"><a href="#go反射原理" class="headerlink" title="go反射原理"></a>go反射原理</h2><p>无意中在网上好多blog看到一个概念，go语言的三大反射定律，查了半天也没找到出处，但是总结的还是可以的，了解后对于go的反射机制应该说可以有一个总的了解，使用起来也简单很多。</p>
-<ul>
-<li>Reflection goes from interface value to reflection object（从接口值映射到反射对象）<ul>
-<li>这一点感觉很好理解：<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a:=<span class="number">5</span></span><br><span class="line">b:=reflect.ValueOf(a)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<pre><code>调用valueOf方法时，go语言这里会对a进行一个隐式的接口转换操作，�且创建一个包含两个信息的接口值：操作数的动态类型(int)和其动态的值（这里是5）。随后其会返回一个value的对象。
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">// ValueOf returns a new Value initialized to the concrete value</span></span><br><span class="line"><span class="comment">// stored in the interface i. ValueOf(nil) returns the zero Value.</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">ValueOf</span><span class="params">(i <span class="keyword">interface</span>&#123;&#125;)</span> <span class="title">Value</span></span> &#123;</span><br><span class="line">	<span class="keyword">if</span> i == <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> Value&#123;&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// <span class="doctag">TODO:</span> Maybe allow contents of a Value to live on the stack.</span></span><br><span class="line">	<span class="comment">// For now we make the contents always escape to the heap. It</span></span><br><span class="line">	<span class="comment">// makes life easier in a few places (see chanrecv/mapassign</span></span><br><span class="line">	<span class="comment">// comment below).</span></span><br><span class="line">	escapes(i)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> unpackEface(i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-在value对象中包含了该变量的动态类型描述信息，指向其值的指针类型，以及一个检测值是否支持某些操作的flag。
-利用value对象，valueOf的调用者，即可进行进一步操作，获取值，类型信息，修改变量值等等。这个value就是第一反射定律里指的`reflection object`,typeOf()方法同理。
-</code></pre><hr>
-<ul>
-<li><p>Reflection goes from reflection object to interface value( 从反射对象映射到接口值)</p>
-<ul>
-<li><p>这句话顾名思义，是前一个定律的逆</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c := b.Interface()</span><br></pre></td></tr></table></figure>
-<p>调用之前的b这个Value对象的Interface方法，其内部执行过程如下：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">// Interface returns v's current value as an interface&#123;&#125;.</span></span><br><span class="line"><span class="comment">// It is equivalent to:</span></span><br><span class="line"><span class="comment">//	var i interface&#123;&#125; = (v's underlying value)</span></span><br><span class="line"><span class="comment">// It panics if the Value was obtained by accessing</span></span><br><span class="line"><span class="comment">// unexported struct fields.</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(v Value)</span> <span class="title">Interface</span><span class="params">()</span> <span class="params">(i <span class="keyword">interface</span>&#123;&#125;)</span></span> &#123;</span><br><span class="line">	<span class="keyword">return</span> valueInterface(v, <span class="literal">true</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<p>可以看到其将value又转换回接受任意的interface{}类型，打印一下其结果为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">   a := 5</span><br><span class="line">b := reflect.ValueOf(a)</span><br><span class="line">c := b.Interface()</span><br><span class="line">fmt.Println(c)</span><br><span class="line">//5</span><br></pre></td></tr></table></figure></p>
-<p>综上来看，Interface方法就是Valueof方法的逆，返回值是interface{}，网上看到这样一句话：反射就是从接口值到反射对象，然后再反射回来。</p>
-<hr>
-<ul>
-<li>To modify a reflection object, the value must be settable（为了修改一个反射对象，修改的值必须是settable）</li>
-</ul>
-<p>有时候会需要修改反射对象的值，但是直接reflect.ValueOf出来的是不可取地址的，可以被修改的变量称为settable，即可取地址。如果需要从变量中取到可取地址的value需要这么做：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">x := 2</span><br><span class="line">d := reflect.ValueOf(&amp;x).Elem()   // d refers to the variable x</span><br><span class="line">px := d.Addr().Interface().(*int) // px := &amp;x</span><br><span class="line">*px = 3                           // x = 3</span><br><span class="line">fmt.Println(x)   </span><br><span class="line">//另一种做法是</span><br><span class="line">d.Set(reflect.ValueOf(8))</span><br></pre></td></tr></table></figure></p>
-<p>之所以不可以直接修改反射对象的值，是因为直接reflect.Valueof的值仅仅只是变量的一个副本，对其进行操作是无法修改变量本身的。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>对于go中的反射，这里探讨的还是比较基础的，但是整体用法无外乎这些，剩下的就是具体对于调用方法与函数，map以及slices等的使用，本质上的结构还是不会有太大变化的，比如结构体使用实际上就是用同样的方法去访问其中的每个域。最后对于反射这一特性，《go程序设计语言》在反射一章的最后认为应该被谨慎小心的使用，原因主要有以下三点：</p>
-<ol>
-<li>基于反射的代码是比较脆弱的。如果误用，编译器不会马上报错，在运行阶段造成的错误很可能是比较致命的。</li>
-<li>反射的操作由于无法做静态类型检查，大量的反射代码难以理解。</li>
-<li>反射代码比正常代码运行速度慢。</li>
-</ol>
-
+          
+          
+            <p>能够在运行时更新变量和检查它们的值、调用它们的方法和它们支持的内在操作，而不需要在编译时就知道这些变量的具体类型，这种机制被称为反射。go语言中对于反射的定义与java中并无太大差别，基本核心都是在运行时更新变量调用方法之类的。<br>换句话说就是反射允许在编译期间不知道变量或者接口的名称，字段、方法，值的情况下在运行时检查类、接口字段和方法以及他们的值。</p>
+            
+        
       
 
       
@@ -912,51 +696,11 @@
     <div class="article-entry" itemprop="articleBody">
       <p><em><small>保护私人版权，尊重他人版权。转载请注明出处并附带页面链接</small></em></p>
       
-        <h1 id="问题来源"><a href="#问题来源" class="headerlink" title="问题来源"></a>问题来源</h1><p><a href="https://leetcode-cn.com/problems/count-of-smaller-numbers-after-self/submissions/" target="_blank" rel="noopener">leetcode 315. 计算右侧小于当前元素的个数</a></p>
-<h1 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h1><p>首先说明一下，这道题的解法有很多，<br>包括时间复杂度为O(n^2)的暴力破解，以及归并排序、二叉搜索树（二分查找）、二分查找。<br>这里主要对二叉搜索树方法进行介绍。</p>
-<h2 id="二叉搜索树（线段树思想）"><a href="#二叉搜索树（线段树思想）" class="headerlink" title="二叉搜索树（线段树思想）"></a>二叉搜索树（线段树思想）</h2><p>假设每个元素的值作为节点的关键字，从列表头部开始遍历，构建二叉树。<br>第一个元素作为根节点，后续节点插入从根节点开始遍历树，小于当前元素值则进入左子树，大于当前元素值则进入右子树。<br>直到遍历至叶子节点时，相应作为当前叶子节点的左节点或右节点。</p>
-<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><p>以下序列为例</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3, 76, 99, 51, 9, 21, 84, 66, 65, 36, 100, 41</span><br></pre></td></tr></table></figure>
-<p>此时，定一个二叉树节点，具有一下属性</p>
-<table>
-<thead>
-<tr>
-<th>字段</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>value</td>
-<td>当前节点对应元素值</td>
-</tr>
-<tr>
-<td>smaller</td>
-<td>比当前节点value值小的数量</td>
-</tr>
-<tr>
-<td>dup</td>
-<td>重复数量，取默认值为1</td>
-</tr>
-<tr>
-<td>left</td>
-<td>指向左子树根节点</td>
-</tr>
-<tr>
-<td>right</td>
-<td>指向右子树根节点</td>
-</tr>
-</tbody>
-</table>
-<p>上述序列从后向前遍历，此时，最后一个节点为根节点，每获取前一个元素，就新增一个节点<code>*new</code>。<br>新节点new从根节点开始遍历比较，比当前节点<code>cur-&gt;value</code>小，则进入左子树，并在当前节点中记录<code>cur-&gt;smaller++</code>，<br>大于当前节点，则进入右子树且记录count数组<code>count[NEW_FIX] += cur-&gt;smaller + cur-&gt;dup</code>，<br>等于当前节点则记录<code>cur-&gt;dup++</code>。</p>
-<p>遍历至叶子节点后，记录新节点new为当前节点cur的左节点或右节点。<br>当前元素插入二叉树后，将当前节点cur-&gt;smaller插入count数组。<br>遍历完成后，count数组即为最终结果。</p>
-<h4 id="遍历至元素36时，得到树结构和统计数组如下。"><a href="#遍历至元素36时，得到树结构和统计数组如下。" class="headerlink" title="遍历至元素36时，得到树结构和统计数组如下。"></a>遍历至元素36时，得到树结构和统计数组如下。</h4><p><img src="/2019/02/24/countSmaller-md/1dd3c56a-3811-11e9-a8e4-525400b4d70f.png" alt="图片" title="图片"></p>
-<h4 id="遍历完成后，得到的树结构和统计数组如下"><a href="#遍历完成后，得到的树结构和统计数组如下" class="headerlink" title="遍历完成后，得到的树结构和统计数组如下"></a>遍历完成后，得到的树结构和统计数组如下</h4><p><img src="/2019/02/24/countSmaller-md/d4a0a75e-3811-11e9-8f65-525400a20cd4.png" alt="图片" title="图片"></p>
-<p>分析上述构建过程和最后的计算过程可知，二叉树的构建和数组统计同步进行，因此时间复杂度取决于元素数量n，以及搜索过程中经过的节点数量（最坏情况为n，最好情况为logn）。因此，时间复杂度为O(nlogn)。</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>惯例，上代码</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> val = <span class="number">0</span>;<span class="comment">// 当前值</span></span><br><span class="line">	<span class="keyword">int</span> smallCount = <span class="number">0</span>;<span class="comment">// 比当前值小的数量</span></span><br><span class="line">	<span class="keyword">int</span> dupCount = <span class="number">1</span>;<span class="comment">// 重复数量</span></span><br><span class="line"></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">Node</span>* <span class="title">left</span> = <span class="title">NULL</span>,*<span class="title">right</span> = <span class="title">NULL</span>;</span></span><br><span class="line">&#125;Node;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; countSmaller(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</span><br><span class="line">		<span class="keyword">int</span> num = <span class="number">0</span>, fix = nums.size() - <span class="number">1</span>;</span><br><span class="line">		<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; counts(nums.size(), <span class="number">0</span>);<span class="comment">// 初始化结果数组</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">// 没有元素或只有一个元素时无需统计直接返回</span></span><br><span class="line">		<span class="keyword">if</span> (fix &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> counts;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		Node last;</span><br><span class="line">	    last.val = nums[fix--];</span><br><span class="line">		Node *root = &amp;last;</span><br><span class="line">		Node *cur = <span class="literal">NULL</span>;<span class="comment">// 遍历节点指针</span></span><br><span class="line">		Node *newNode = <span class="literal">NULL</span>;<span class="comment">// 新节点指针</span></span><br><span class="line"></span><br><span class="line">		<span class="keyword">while</span> (fix &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">			newNode = <span class="keyword">new</span> Node;<span class="comment">// 初始化新节点</span></span><br><span class="line">			newNode-&gt;val = nums[fix];</span><br><span class="line"></span><br><span class="line">			<span class="comment">// 搜索</span></span><br><span class="line">			cur = root;<span class="comment">// 从根节点开始</span></span><br><span class="line">			<span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">				<span class="keyword">if</span> (cur-&gt;val &gt;= newNode-&gt;val) &#123;</span><br><span class="line">					cur-&gt;smallCount++;</span><br><span class="line">					<span class="keyword">if</span> (cur-&gt;left) &#123;</span><br><span class="line">						cur = cur-&gt;left;</span><br><span class="line">					&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">						cur-&gt;left = newNode;</span><br><span class="line">						<span class="keyword">break</span>;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">					counts[fix] += cur-&gt;smallCount + cur-&gt;dupCount;</span><br><span class="line">					<span class="keyword">if</span> (cur-&gt;right) &#123;</span><br><span class="line">						cur = cur-&gt;right;</span><br><span class="line">					&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">						cur-&gt;right = newNode;</span><br><span class="line">						<span class="keyword">break</span>;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			fix--;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> counts;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="难点与小结"><a href="#难点与小结" class="headerlink" title="难点与小结"></a>难点与小结</h2><p>求区间关系，首先想到线段树和树状数组两种方法，不管用哪种方法，首先需要的是理清过程变化以及如何记录结果值的问题。<br>以此题为例，个人认为该题难点主要在于如何更新新节点的smallCount，我一开始思路受限于搜索过程中就更新smallCount，<br>导致每次遍历仅有前三个节点统计正确，之后的数就全乱了，原因是每次搜索的时候右子树上一节点的smallCount与当前节点的<br>smallCount 统计存在交叉的地方。理了好久，突然想到，smallCount仅作为其左子树节点的数量，实际统计值直接放在结果数组中，<br>然后如上处理，即可保证统计结果正确。</p>
-
+          
+          
+            <h1 id="问题来源"><a href="#问题来源" class="headerlink" title="问题来源"></a>问题来源</h1><p><a href="https://leetcode-cn.com/problems/count-of-smaller-numbers-after-self/submissions/" target="_blank" rel="noopener">leetcode 315. 计算右侧小于当前元素的个数</a></p>
+            
+        
       
 
       
@@ -1043,65 +787,11 @@
     <div class="article-entry" itemprop="articleBody">
       <p><em><small>保护私人版权，尊重他人版权。转载请注明出处并附带页面链接</small></em></p>
       
-        <p>本博客代码及内容由梅沙科技后端团队维护并保留一切权利</p>
-<p>网站访问：<a href="bex.meishakeji.com">MeishaBex</a></p>
-<h1 id="Caption"><a href="#Caption" class="headerlink" title="Caption"></a>Caption</h1><p>博客框架基于hexo搭建，主题使用 <a href="https://github.com/litten/hexo-theme-yilia.git" target="_blank" rel="noopener">theme-yilia</a> ，并有少量改动，如有侵权请及时联系</p>
-<h1 id="Guide"><a href="#Guide" class="headerlink" title="Guide"></a>Guide</h1><h2 id="本地初始化项目"><a href="#本地初始化项目" class="headerlink" title="本地初始化项目"></a>本地初始化项目</h2><h3 id="搭建hexo环境"><a href="#搭建hexo环境" class="headerlink" title="搭建hexo环境"></a>搭建hexo环境</h3><ol>
-<li><p>确保电脑已安装git</p>
-<ul>
-<li>mac: 命令行 <code>brew install git</code></li>
-<li>windows: 下载并安装 <a href="https://git-scm.com/download/win" target="_blank" rel="noopener">git</a></li>
-<li>Linux (Ubuntu, Debian)：<code>sudo apt-get install git-core</code></li>
-<li>Linux (Fedora, Red Hat, CentOS)：<code>sudo yum install git-core</code></li>
-</ul>
-</li>
-<li><p>确保电脑已安装Node.js</p>
-<p> curl或wget从 <code>https://raw.github.com/creationix/nvm/v0.33.11/install.sh</code> 拉取安装文件，并使用 <code>sh</code> 命令执行</p>
-<p> 安装完成后，重启终端并执行下列命令即可安装Node.js</p>
-<p> <code>nvm install stable</code></p>
-</li>
-<li><p>执行下述命令，全局下载hexo</p>
- <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<pre><code>_mac用户若编译遇到问题，请先从AppStore安装Xcode_
-_完成后启动并进入 `Preferences -&gt; Download -&gt; Command Line Tools -&gt; Install` 安装命令行工具。_
-</code></pre><h3 id="拉取项目"><a href="#拉取项目" class="headerlink" title="拉取项目"></a>拉取项目</h3><p>从git拉取项目到本地</p>
-<p>https: <code>https://github.com/meishabex/blog-src.git</code></p>
-<p>ssh: <a href="mailto:`git@github.com" target="_blank" rel="noopener">`git@github.com</a>:meishabex/blog-src.git`</p>
-<p><strong>注意：</strong>出于安全考虑，该项目被设为私有项目，如需参与，请联系管理员并提供github账号   </p>
-<h3 id="下载依赖"><a href="#下载依赖" class="headerlink" title="下载依赖"></a>下载依赖</h3><p>下载hexo发布工具</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-<p>下载gitalk<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i --save gitalk</span><br></pre></td></tr></table></figure></p>
-<h2 id="日常维护"><a href="#日常维护" class="headerlink" title="日常维护"></a>日常维护</h2><p><strong>注意：</strong>相关配置已完善，请不要随意修改配置，相关环境搭建好后直接可用</p>
-<h3 id="发布文章"><a href="#发布文章" class="headerlink" title="发布文章"></a>发布文章</h3><ol>
-<li><p>执行命令新建</p>
- <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new HelloWorld</span><br></pre></td></tr></table></figure>
-<p> 执行成功后会在目录 <code>./source/_posts/</code> 下生成 <code>HelloWorld.md</code></p>
-</li>
-<li><p>编写markdown</p>
-<p> 正常编写文件即可，但是为了文章索引方便，建议在文章头部打上tags标签</p>
-<p> 语法参考：(简明语法手册)[<a href="https://hyxxsfwy.github.io/2016/01/15/Hexo-Markdown-%E7%AE%80%E6%98%8E%E8%AF%AD%E6%B3%95%E6%89%8B%E5%86%8C/]" target="_blank" rel="noopener">https://hyxxsfwy.github.io/2016/01/15/Hexo-Markdown-%E7%AE%80%E6%98%8E%E8%AF%AD%E6%B3%95%E6%89%8B%E5%86%8C/]</a></p>
-</li>
-<li><p>生成静态文件并发布</p>
-<p> 根目录下直接执行下述命令</p>
- <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g -d</span><br></pre></td></tr></table></figure>
-<p> <strong>注意：</strong>严禁执行<code>hexo clean</code>这会导致所有静态文件被清除，此后再执行生成静态文件命令，会导致重新生成所有文件，<br> 部分文章的发布时间也会被更新为当前时间，且可能导致其他不确定的意外情况。</p>
-</li>
-</ol>
-<h2 id="可能的问题"><a href="#可能的问题" class="headerlink" title="可能的问题"></a>可能的问题</h2><ol>
-<li><p>私人域名失效</p>
-<p> 如，博客设置域名<code>bex.meishakeji.com</code>后，可以正常访问。过了一段时间，再访问该域名，弹出了github的404页面。<br> 说明域名在github处失效。此时，请确认项目下CNAME文件是否被意外删除</p>
-</li>
-<li><p>gitalk失效<br> gitalk需要 OAuth application，如果github的user接口提示401，应确认是否OAuth失效，<a href="https://github.com/settings/applications/new" target="_blank" rel="noopener">点击这里重新申请</a></p>
-</li>
-</ol>
-<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ol>
-<li><a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">Hexo</a></li>
-<li><a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="noopener">yilia</a></li>
-<li><a href="https://github.com/gitalk/gitalk/blob/master/readme-cn.md" target="_blank" rel="noopener">gitalk中文说明</a></li>
-</ol>
-
+          
+          
+            <p>本博客代码及内容由梅沙科技后端团队维护并保留一切权利</p>
+            
+        
       
 
       
@@ -1184,16 +874,11 @@ _完成后启动并进入 `Preferences -&gt; Download -&gt; Command Line Tools -
     <div class="article-entry" itemprop="articleBody">
       <p><em><small>保护私人版权，尊重他人版权。转载请注明出处并附带页面链接</small></em></p>
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
+          
+          
+            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+            
+        
       
 
       
