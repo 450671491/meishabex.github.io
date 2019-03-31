@@ -7,19 +7,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://bex.meishakeji.com">
-  <title>Tag: 内部手册 | Meisha Bex</title>
+  <title>PHP源码学习——变量与引用 | Meisha Bex</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本博客代码及内容由深圳梅沙科技后端团队维护">
-<meta name="keywords" content="梅沙科技&#x2F;后端&#x2F;PHP&#x2F;Laravel">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Meisha Bex">
-<meta property="og:url" content="https://bex.meishakeji.com/tags/内部手册/index.html">
+  <meta name="description" content="前言&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;《PHP7底层设计与源码实现》一书，内容不多也不少。看完后，对开发中的优化思路有不少启发，其中最多的，便是有关变量方面的认识，也是我个人认为，在日常开发中，最值得多注意多思考的方面。 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 在此，个人结合github中最新的php-src，整理">
+<meta name="keywords" content="php,变量,底层,优化,引用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP源码学习——变量与引用">
+<meta property="og:url" content="https://bex.meishakeji.com/2019/03/30/PHP变量关键点总结与实际应用分析/index.html">
 <meta property="og:site_name" content="Meisha Bex">
-<meta property="og:description" content="本博客代码及内容由深圳梅沙科技后端团队维护">
+<meta property="og:description" content="前言&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;《PHP7底层设计与源码实现》一书，内容不多也不少。看完后，对开发中的优化思路有不少启发，其中最多的，便是有关变量方面的认识，也是我个人认为，在日常开发中，最值得多注意多思考的方面。 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 在此，个人结合github中最新的php-src，整理">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.plantuml.com/plantuml/svg/gofBp56mKgXApKk91p9BKnN095T-KbPgSeb28eoH16DafERav7CbAkZfrTWfL04LSoKXiP7CiL98paWi0XaNRHWBrc07rPo4n0QJK0FWUW40">
+<meta property="og:image" content="http://www.plantuml.com/plantuml/svg/gofBp56mKgXApKk91p9BKnN095T-KbPgSeb28eoH16DafERav1kYy8ou4XNqz6hi5Ag0UhcIaDX8nbef96Sa5e5CZpQC1MkmWvcLXE0OSK74e6R0jKE4ZT250G00">
+<meta property="og:image" content="http://www.plantuml.com/plantuml/svg/gofBp56mKgXApKk91p9BKnN091UIW9L2SaPY4KWysZ0M8b6KcfPQb9gN39Ai0afmvITbfIQNA2J264am1b0bZ9cHcfEJpvMeeATNOmVHbOJ41Yg4yb0i0Akt0nkJ16T1rDf1JGIJI7h1hWO0">
+<meta property="og:updated_time" content="2019-03-31T15:15:10.047Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Meisha Bex">
-<meta name="twitter:description" content="本博客代码及内容由深圳梅沙科技后端团队维护">
+<meta name="twitter:title" content="PHP源码学习——变量与引用">
+<meta name="twitter:description" content="前言&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;《PHP7底层设计与源码实现》一书，内容不多也不少。看完后，对开发中的优化思路有不少启发，其中最多的，便是有关变量方面的认识，也是我个人认为，在日常开发中，最值得多注意多思考的方面。 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 在此，个人结合github中最新的php-src，整理">
+<meta name="twitter:image" content="http://www.plantuml.com/plantuml/svg/gofBp56mKgXApKk91p9BKnN095T-KbPgSeb28eoH16DafERav7CbAkZfrTWfL04LSoKXiP7CiL98paWi0XaNRHWBrc07rPo4n0QJK0FWUW40">
   
     <link rel="alternative" href="/atom.xml" title="Meisha Bex" type="application/atom+xml">
   
@@ -154,69 +159,272 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-PHP变量关键点总结与实际应用分析" class="article article-type-post " itemscope="" itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/01/24/博客维护手册/" class="archive-article-date">
-  	<time datetime="2019-01-24T03:04:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-24</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/01/24/博客维护手册/">博客维护手册</a>
+    <h1 class="article-title" itemprop="name">
+      PHP源码学习——变量与引用
     </h1>
   
 
 <br><small>by: funco 林鸿钊</small>
-        <div class="article-info info-on-right">
+        
+        <a href="/2019/03/30/PHP变量关键点总结与实际应用分析/" class="archive-article-date">
+  	<time datetime="2019-03-30T05:26:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      <p><em><small>保护私人版权，尊重他人版权。转载请注明出处并附带页面链接</small></em></p>
+      
           
+          
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;《PHP7底层设计与源码实现》一书，内容不多也不少。看完后，对开发中的优化思路有不少启发，其中最多的，便是有关变量方面的认识，也是我个人认为，在日常开发中，最值得多注意多思考的方面。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 在此，个人结合github中最新的php-src，整理一些个人认为应该注意的点以及想法出来，与大家交流。同时，我会对其中的关键结构体在github上php-src源码中的定义的位置标注出来（截止发文时的最新版本）。这一点，是原书中没有标注的，在这里给出，更易于必要时查阅。</p>
+<h2 id="请确保具备以下知识基础"><a href="#请确保具备以下知识基础" class="headerlink" title="请确保具备以下知识基础"></a>请确保具备以下知识基础</h2><ol>
+<li>有C/C++基础</li>
+<li>确保了解结构体struct和联合体union的定义和使用（特别是联合体的）</li>
+<li>确保了解C/C++的取地址符&amp;</li>
+</ol>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;很多同学应该都晓得php的写时拷贝这个点，但是我还是选择对这方面深入探讨，是因为我发现日常工作中，还是个人与其他同学理依然容易混淆php7与php5的拷贝机制，且网上大多数文章脱离了php源码仅对结论做列举和验证。因此，在这里，我结合github中的源码对该部分做知识梳理。</p>
+<h2 id="一个问题"><a href="#一个问题" class="headerlink" title="一个问题"></a>一个问题</h2><p>我们先来做个赋值，并获取赋值前后的内存占用，以此抛出我们后续要讨论的问题。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$a = str_repeat(<span class="string">'hello'</span>, <span class="number">1</span>);</span><br><span class="line">$before = memory_get_usage();</span><br><span class="line"></span><br><span class="line">$b = $a;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'after: '</span> . (memory_get_usage() - $before); <span class="comment">// 输出 after: 0</span></span><br></pre></td></tr></table></figure>
+<p>接下来，仅在第三行增加引用符号</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$a = str_repeat(<span class="string">'hello'</span>, <span class="number">1</span>);</span><br><span class="line">$before = memory_get_usage();</span><br><span class="line"></span><br><span class="line">$b = &amp;$a; <span class="comment">// 仅在这里增加取引用符</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">'after: '</span> . (memory_get_usage() - $before); <span class="comment">// 输出 after: 24</span></span><br></pre></td></tr></table></figure>
+<p>由此，我们可以得到一个简单的结论：取引用符不能帮助我们节省内存空间，反而会增加内存空间使用。学过C\C++的同学，可能会对此比较懵逼（实际上，我并不止一次听到用同学认为『&amp;』与C/C++中的取地址符等效）</p>
+<p>接下来，我们带着这点疑问，继续深入探讨，自然就明白了。</p>
+<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><p>先来看一段代码和原理图。</p>
+<p><strong>示例代码与原理图</strong><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$a = <span class="number">10</span>;</span><br><span class="line">$b = $a;</span><br></pre></td></tr></table></figure></p>
+<img src="http://www.plantuml.com/plantuml/svg/gofBp56mKgXApKk91p9BKnN095T-KbPgSeb28eoH16DafERav7CbAkZfrTWfL04LSoKXiP7CiL98paWi0XaNRHWBrc07rPo4n0QJK0FWUW40">
+<p>实际上，在php7的底层中，存在一个zval结构体，任何的变量底层都是该结构体，且该结构体不存储真实value，其结构体中存在一个value字段，指向真正的存储值的结构体（在这里指向zend_string）。</p>
+<p>因此，我们可以看到，php7底层已经做了优化。在赋值后，只会创建表示变量的zval结构体实例，不会创建新的zend_value结构体实例。</p>
+<p>那么，什么时候会创建新的zend_value呢？这就是接下来要讲的写时拷贝。</p>
+<blockquote>
+<p>简单的扩展：</p>
+<ul>
+<li>memory_get_usage()仅跟踪底层中emalloc()分配的内存。</li>
+<li>所有底层定义，我们都可以很方便的在php的github中的源码查阅，具体路径为php-src/Zend/zend_types.h。</li>
+<li>变量的结构体是zval，实际上他是_zend_struct的宏定义（typedef）。</li>
+<li>zval中，实际存储值的是结构体成员zend_value value（line 197 from zend_types.h），而zend_value是_zend_value的宏定义。</li>
+<li>zend_value通过联合体实现支持存储多种类型的(line 176 from zend_types.h)，其中实际存储字符串的是联合体成员zend_string。</li>
+<li>zend_string是结构体_zend_string的宏定义，实际的字符串首地址即为_zend_string.val指向的首地址</li>
+</ul>
+</blockquote>
+<h2 id="写时拷贝"><a href="#写时拷贝" class="headerlink" title="写时拷贝"></a>写时拷贝</h2><p>我们再来看一段代码与原理图</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$a = str_repeat(<span class="string">'hello1'</span>, <span class="number">1</span>);</span><br><span class="line">$before = memory_get_usage();</span><br><span class="line"></span><br><span class="line">$b = $a;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'after: '</span> . (memory_get_usage() - $before) . PHP_EOL; <span class="comment">// after: 0</span></span><br><span class="line"></span><br><span class="line">$before = memory_get_usage();</span><br><span class="line">$b = str_repeat(<span class="string">'hello2'</span>, <span class="number">1</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'write after: '</span> . (memory_get_usage() - $before) . PHP_EOL; <span class="comment">// write after: 40</span></span><br></pre></td></tr></table></figure>
+<img src="http://www.plantuml.com/plantuml/svg/gofBp56mKgXApKk91p9BKnN095T-KbPgSeb28eoH16DafERav1kYy8ou4XNqz6hi5Ag0UhcIaDX8nbef96Sa5e5CZpQC1MkmWvcLXE0OSK74e6R0jKE4ZT250G00">
+<p>通过对比上方两次赋值后的内存使用，可以看到，在第二次的时候，内存使用差值不再是0，因为，在执行<code>$b = str_repeat(&#39;hello2&#39;, 1);</code> 后，产生了一个新的zend_value，这就是所谓的写时拷贝——<strong>仅在变量值被执行写操作时，才拷贝新的zend_value空间，并对该新的zend_value执行相关修改操作</strong>。</p>
+<p>这样的设计同时满足了两点需求（也是php7较php5的优点）：</p>
+<ol>
+<li>节省空间</li>
+<li>避免对变量的其中一个引用做修改时，影响了另一变量的值，因为对其中一个变量做修改时，会拷贝新的空间。</li>
+</ol>
+<blockquote>
+<ul>
+<li>需要注意的是，不仅对变量执行对某个新的动态值执行<code>=</code>赋值操作，<code>-=</code>、<code>+=</code>、<code>*=</code>等变量的写操作都会触发『写时拷贝』</li>
+</ul>
+</blockquote>
+<h2 id="取引用赋值"><a href="#取引用赋值" class="headerlink" title="取引用赋值"></a>取引用赋值</h2><p>我们回顾一下，开篇的两段示例代码。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$a = str_repeat(<span class="string">'hello'</span>, <span class="number">1</span>);</span><br><span class="line">$before = memory_get_usage();</span><br><span class="line"></span><br><span class="line">$b = $a;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'after: '</span> . (memory_get_usage() - $before); <span class="comment">// 输出 after: 0</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$a = str_repeat(<span class="string">'hello'</span>, <span class="number">1</span>);</span><br><span class="line">$before = memory_get_usage();</span><br><span class="line"></span><br><span class="line">$b = &amp;$a; <span class="comment">// 仅在这里增加取引用符</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">'after: '</span> . (memory_get_usage() - $before); <span class="comment">// 输出 after: 24</span></span><br></pre></td></tr></table></figure>
+<p>对于第二段代码，执行后实际上会产生如下效果。</p>
+<img src="http://www.plantuml.com/plantuml/svg/gofBp56mKgXApKk91p9BKnN091UIW9L2SaPY4KWysZ0M8b6KcfPQb9gN39Ai0afmvITbfIQNA2J264am1b0bZ9cHcfEJpvMeeATNOmVHbOJ41Yg4yb0i0Akt0nkJ16T1rDf1JGIJI7h1hWO0">
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;也就是说，产生了一个新的结构体zend_reference实例，那么，我们应该就能明白了，引用赋值后，多出来的空间就是来自这里的。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当执行了引用赋值后，我们<strong>不应该将其理解为C/C++中的指向同一地址</strong>，而是二者会<strong>指向同一引用</strong>，而该引用的zval字段的value字段才指向了真正的值存储空间。在引用赋值后，之所以实现了修改其中一个变量，会影响到另一变量的效果，是因为当zend发现当前zval变量的类型zval.u1.type_flag是引用类型IS_REFERENCE时，就知道zval.value是引用类型，此时会继续搜索zval.value.zval，并对该zval类型字段执行相应修改。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>再简单点说</strong>就是，引用赋值后，通过将两个zval指向同一zend_reference实例，实现与真正的zend_value实例隔离，从而避免了写时拷贝带来的影响。</p>
+<blockquote>
+<ul>
+<li>zend_reference是_zend_reference的宏定义（line 94 from zend_types.h）。</li>
+<li>_zend_reference里面也有一个zval，此时，zend_reference.zval.value才存储了真正的值。</li>
+<li>查看联合体_zend_value，我们可以发现，其中存在字段zend_reference *ref，这也是为什么变量底层的zval.value能存储zend_reference的原因。</li>
+<li>到这里可能有点绕，建议浏览zend_types.h中，<code>_zval_struct</code>、<code>_zend_value</code>、<code>_zend_reference</code>三者的定义和结构，再结合上下文，应该就很好理解了。</li>
+</ul>
+</blockquote>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现在，我们可以回到一开始的问题了：在函数传参或赋值过程中，使用取引用符号<code>&amp;</code>，能减少内存空间占用吗？</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这是我在之前重构项目的过程中，为了功能模块解耦，出现同一数据，向下传递多层嵌套函数参数时，想到的一个问题，为了避免数据重复copy，考虑到这样是否能够减少运行时间和内存占用。然而，<strong>目前的情况来看，是不行的</strong>。取引用符号<code>&amp;</code>，与C/C++中的取地址符含义不一样，并且，对于只读不写的参数，使用引用传递，反而更浪费内存。</p>
+<h2 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;又一个绕不开的，在这里，期望与最简单的描述，理清垃圾回收机制，而与童鞋们交流。在上文中，我们知道，当执行<code>$b = $a</code>时，不会创建新的的zend_value的存储空间，那么此时，除了会为$b创建一个zval，并将zval.value指向$a的zval.value以外，还会对zval.value共同指向的zend_string.gc执行增加计数操作（gc实际上是一个结构体，其中有一个字段用于计数）。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;需要注意的是，php的整形和浮点型都直接存储在_zend_value中，并不会使用指针指向额外的空间，因此他们的引用计数由_zend_value.counted决定，它是zend_refcounted类型的指针，<br>而zend_refcounted其实是只有一个zend_refcounted_h类型字段gc的结构体。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由此，我们可以知道，任何类型的变量都存在zend_refcounted_h类型的引用计数器，垃圾回收本质也正是对引用计数为0的zend_value执行回收。但是，它又不会马上回收，而是会先标记，当空间池满时，才会释放被标记的zend_value。</p>
+<blockquote>
+<ul>
+<li>实际上，除了zend_string存在zend_refcounted_h类型的引用计数字段gc以外，_zend_array、_zend_object、_zend_resource等结构体都有（建议在zend_types.h文件中自行搜索关键字zend_refcounted_h）。</li>
+</ul>
+</blockquote>
+<h2 id="隐式的类型转换"><a href="#隐式的类型转换" class="headerlink" title="隐式的类型转换"></a>隐式的类型转换</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这点和前文所述内容关系不大，但是一个我认为非常重要的点，当整形数超出了最大值PHP_INT_MAX时，不会产生任何错误，而会自动转化为浮点型。</p>
+<p><strong>示例</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$num = <span class="number">0</span>;</span><br><span class="line">var_dump($num);		<span class="comment">// 输出int(0)</span></span><br><span class="line"></span><br><span class="line">$num = PHP_INT_MAX;</span><br><span class="line">var_dump($num);		<span class="comment">// 输出int(9223372036854775807)</span></span><br><span class="line"></span><br><span class="line">$num++;</span><br><span class="line">var_dump($num);		<span class="comment">// 输出float(9.2233720368548E+18)</span></span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;然而，如果对float继续增加，会导致float不会有任何变化，进一步的，如果对变量赋值<code>2*PHP_FLOAT_MAX</code>，会导致变量溢出，但此时变量依然不会报错，而是会自动转化为INF（无穷大），同时，INF可比较，这一点可能会导致php在处理大量数据的时候，产生预料意外的情况。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$num = PHP_FLOAT_MAX;</span><br><span class="line">var_dump($num);		<span class="comment">// 输出float(1.7976931348623E+308)</span></span><br><span class="line"></span><br><span class="line">$num = PHP_FLOAT_MAX + PHP_FLOAT_MAX / pow(<span class="number">2</span>, <span class="number">512</span>);</span><br><span class="line">var_dump($num);		<span class="comment">// 输出float(1.7976931348623E+308)</span></span><br><span class="line"></span><br><span class="line">$num = <span class="number">2</span> * PHP_FLOAT_MAX;</span><br><span class="line">var_dump($num);		<span class="comment">// 输出float(INF)</span></span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这个点，严格来讲，书中没有提及，是我在阅览过程中，无意中发现的一个点，我认为我们可能应该意识到并注意，避免可能对我们的程序产生意外的影响。当然，我们有时候也可以此来实现某些超出整形，但不超过浮点型的运算。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关于浮点数运算，还有很多验证性实验可做，由于实际应用很难遇到，这里不一一列举，有兴趣的同学可以对PHP_FLOAT_MAX进行各种运算尝试。</p>
+<blockquote>
+<ul>
+<li>在PHP的底层中，数值类型的存储只有<code>zend_long</code>和<code>double</code>两种形式。</li>
+<li>zend_long的定义在<code>php-src/Zend/zend_long.h</code>中（line 31），它实际上是int64_t的类型宏定义<code>typedef int64_t zend_long;</code>。</li>
+</ul>
+</blockquote>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>这里我们对上方描述的做个小总结。</p>
+<ul>
+<li>函数参数传递过程中，使用『&amp;』<strong>取引用赋值</strong>，在该<strong>参数永远不会被改变值</strong>的情况下，并<strong>不会减少内存空间</strong>的使用，反而会增加内存空间(zend_reference结构体)。</li>
+<li>不能相信php的垃圾收机制，且要注意buffer不满时，垃圾回收机制不会立即释放空间。</li>
+<li>循环引用不能被回收的原因，正是因为出现了自己对自己的引用，导致<strong>引用计数始终不为0</strong>，因此<strong>垃圾回收机制便始终不生效</strong>。</li>
+<li>数值越界时，存在隐式的类型转换，<strong>int -&gt; float -&gt; INF</strong>，且INF减去任意值依然是INF，INF大于任何值，我们使用php做大数运算时必须注意这一点（比如他可能造成循环逻辑的死循环）。</li>
+</ul>
+<p>下面的列表是我在对变量部分深入学习过程中的其他较重要的收获，在此也简单列举。</p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ul>
+<li>[1]  陈雷. PHP7底层设计与源码实现[M]. 机械工业出版社, 2018.</li>
+<li>[2]  <a href="https://github.com/php/php-src/" target="_blank" rel="noopener">php-src in github</a></li>
+</ul>
+<blockquote>
+<p>最后，再讲一下我写这一篇分享的小感受吧。可能是我理解不够透彻的原因，我在看完这本书之后，我又去github看了一下最新版的源码，并尽可能简单的描述它，但最后我发现我讲的还是有点乱了。<br>因此，如果同学们有任何不懂的或者认为我说的不正确的地方，都欢迎交流指教。</p>
+</blockquote>
+
+          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              Sub
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>扫码关注微信公众号，随时随地，掌握最新技术资讯<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wechat_qrcode.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">使用手册</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">php</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">内部手册</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">变量</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">博客维护</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">底层</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">优化</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">引用</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/03/24/容器深入/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java容器深入</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#请确保具备以下知识基础"><span class="toc-number">1.1.</span> <span class="toc-text">请确保具备以下知识基础</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#正文"><span class="toc-number">2.</span> <span class="toc-text">正文</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一个问题"><span class="toc-number">2.1.</span> <span class="toc-text">一个问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#引用"><span class="toc-number">2.2.</span> <span class="toc-text">引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#写时拷贝"><span class="toc-number">2.3.</span> <span class="toc-text">写时拷贝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#取引用赋值"><span class="toc-number">2.4.</span> <span class="toc-text">取引用赋值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#小结"><span class="toc-number">2.4.1.</span> <span class="toc-text">小结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#垃圾回收"><span class="toc-number">2.5.</span> <span class="toc-text">垃圾回收</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#隐式的类型转换"><span class="toc-number">2.6.</span> <span class="toc-text">隐式的类型转换</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考文献"><span class="toc-number">4.</span> <span class="toc-text">参考文献</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
   
 
-    
+  
+
+  
+
+  
+
+  
+  <div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+
+    if(true){
+        var gitalk = new Gitalk({
+            clientID: '9cab3da944be2a1aefac',
+            clientSecret: '14f99d0f02aa648d17a952a4ded0a262efecb054',
+            repo: 'meishabex.github.io',
+            owner: 'meishabex',
+            admin: ['meishabex'],
+            id: 'Sat Mar 30 2019 13:26:54 GMT+0800',
+            distractionFreeMode: 'false'
+        })
+        gitalk.render('gitalk-container')
+    }
+</script>
+  
+
+  
 
 
           </div>
@@ -255,9 +463,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
