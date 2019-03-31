@@ -20,7 +20,7 @@
 <meta property="og:image" content="http://www.plantuml.com/plantuml/svg/gofBp56mKgXApKk91p9BKnN095T-KbPgSeb28eoH16DafERav7CbAkZfrTWfL04LSoKXiP7CiL98paWi0XaNRHWBrc07rPo4n0QJK0FWUW40">
 <meta property="og:image" content="http://www.plantuml.com/plantuml/svg/gofBp56mKgXApKk91p9BKnN095T-KbPgSeb28eoH16DafERav1kYy8ou4XNqz6hi5Ag0UhcIaDX8nbef96Sa5e5CZpQC1MkmWvcLXE0OSK74e6R0jKE4ZT250G00">
 <meta property="og:image" content="http://www.plantuml.com/plantuml/svg/gofBp56mKgXApKk91p9BKnN091UIW9L2SaPY4KWysZ0M8b6KcfPQb9gN39Ai0afmvITbfIQNA2J264am1b0bZ9cHcfEJpvMeeATNOmVHbOJ41Yg4yb0i0Akt0nkJ16T1rDf1JGIJI7h1hWO0">
-<meta property="og:updated_time" content="2019-03-31T15:15:10.047Z">
+<meta property="og:updated_time" content="2019-03-31T15:43:24.562Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP源码学习——变量与引用">
 <meta name="twitter:description" content="前言&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;《PHP7底层设计与源码实现》一书，内容不多也不少。看完后，对开发中的优化思路有不少启发，其中最多的，便是有关变量方面的认识，也是我个人认为，在日常开发中，最值得多注意多思考的方面。 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 在此，个人结合github中最新的php-src，整理">
@@ -271,7 +271,6 @@
 <li>循环引用不能被回收的原因，正是因为出现了自己对自己的引用，导致<strong>引用计数始终不为0</strong>，因此<strong>垃圾回收机制便始终不生效</strong>。</li>
 <li>数值越界时，存在隐式的类型转换，<strong>int -&gt; float -&gt; INF</strong>，且INF减去任意值依然是INF，INF大于任何值，我们使用php做大数运算时必须注意这一点（比如他可能造成循环逻辑的死循环）。</li>
 </ul>
-<p>下面的列表是我在对变量部分深入学习过程中的其他较重要的收获，在此也简单列举。</p>
 <h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ul>
 <li>[1]  陈雷. PHP7底层设计与源码实现[M]. 机械工业出版社, 2018.</li>
 <li>[2]  <a href="https://github.com/php/php-src/" target="_blank" rel="noopener">php-src in github</a></li>
