@@ -21,7 +21,7 @@
 <meta property="og:image" content="https://hadoop.apache.org/docs/r1.0.4/cn/images/hdfsdatanodes.gif">
 <meta property="og:image" content="https://cdn.sinaimg.cn.52ecy.cn/large/005BYqpgly1g2zzesaridj30z40u0ayh.jpg">
 <meta property="og:image" content="https://cdn.sinaimg.cn.52ecy.cn/large/005BYqpgly1g2zzieyoqgj31sq0u0doa.jpg">
-<meta property="og:updated_time" content="2019-05-14T10:13:04.149Z">
+<meta property="og:updated_time" content="2019-05-23T01:56:29.080Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="大数据从懵逼到入门">
 <meta name="twitter:description" content="《大数据从懵逼到入门》主要是对大数据相关技术进行介绍，并且完全基于大数据开发规范和工具完成一个简单的Demo，一起从懵逼到入门。 什么是大数据从字面意思上大数据是指海量数据，无法在一定时间内用常规软件工具对其内容进行抓取、管理和处理的数据集合。 其实大数据是一个概念也是一门技术，它包括了以Hadoop和Spark为代表的基础大数据框架，还包括MapReduce编程模型，离线数据处理；数据分析，数据">
@@ -234,7 +234,7 @@
 <p><strong>查看文件系统内容</strong></p>
 <p><img src="https://cdn.sinaimg.cn.52ecy.cn/large/005BYqpgly1g2zzieyoqgj31sq0u0doa.jpg" alt="浏览文件系统"></p>
 <h4 id="Shell命令"><a href="#Shell命令" class="headerlink" title="Shell命令"></a>Shell命令</h4><p>HDFS的Shell命令使用起来跟linux文件系统命令基本上一致，多了HDFS独有的put和get命令，put是从本地文件系统上传文件到HDFS，get与put相反。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">查看目录内容</span><br><span class="line">hdfs dfs -ls</span><br><span class="line">Found 2 items</span><br><span class="line">-rw-r--r--   1 hadoop supergroup  345625475 2019-05-13 17:59 hadoop-3.2.0.tar.gz</span><br><span class="line">drwxr-xr-x   - hadoop supergroup          0 2019-05-13 17:45 input</span><br><span class="line"></span><br><span class="line">创建目录</span><br><span class="line">hdfs dfs -mkdir output/</span><br><span class="line"></span><br><span class="line">读取HDFS中文件内容</span><br><span class="line">hdfs dfs -cat input/LICENSE.txt</span><br><span class="line">Apache License</span><br><span class="line">Version 2.0, January 2004</span><br><span class="line">http://www.apache.org/licenses/</span><br><span class="line"></span><br><span class="line">其他命令使用方式也一样，hdfs dfs [generic options]</span><br><span class="line"></span><br><span class="line">注意：hdfs dfs &lt;=&gt; hadoop fs 等价</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">查看目录内容</span><br><span class="line">hdfs dfs -ls</span><br><span class="line">Found 2 items</span><br><span class="line">-rw-r--r--   1 hadoop supergroup  345625475 2019-05-13 17:59 hadoop-3.2.0.tar.gz</span><br><span class="line">drwxr-xr-x   - hadoop supergroup          0 2019-05-13 17:45 input</span><br><span class="line"></span><br><span class="line">创建目录</span><br><span class="line">hdfs dfs -mkdir output/</span><br><span class="line"></span><br><span class="line">读取HDFS中文件内容</span><br><span class="line">hdfs dfs -cat input/LICENSE.txt</span><br><span class="line">Apache License</span><br><span class="line">Version 2.0, January 2004</span><br><span class="line">http://www.apache.org/licenses/</span><br><span class="line"></span><br><span class="line">其他命令使用方式也一样，hdfs dfs [generic options]</span><br><span class="line"></span><br><span class="line">注意：hdfs dfs &lt;=&gt; hadoop dfs 等价</span><br></pre></td></tr></table></figure>
 <h4 id="验证一下数据块"><a href="#验证一下数据块" class="headerlink" title="验证一下数据块"></a>验证一下数据块</h4><p>我使用put命令向HDFS中上传了<code>hadoop-3.2.0.tar.gz</code>大小是330MB，现在进入到Datanode的数据目录中看一下存储情况。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">我先前配置hdfs时指定了Datanode目录在/home/hadoop/dfs/data/</span><br><span class="line">$ <span class="built_in">cd</span> /home/hadoop/dfs/data/current/BP-1700441595-127.0.0.1-1557740453273/current/finalized/subdir0/subdir0</span><br><span class="line">$ ll -lh</span><br><span class="line"></span><br><span class="line">total 333M</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop 1.4K May 13 17:45 blk_1073741825</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop   19 May 13 17:45 blk_1073741825_1001.meta</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop 148K May 13 17:45 blk_1073741826</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop 1.2K May 13 17:45 blk_1073741826_1002.meta</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop  22K May 13 17:45 blk_1073741827</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop  183 May 13 17:45 blk_1073741827_1003.meta</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop 128M May 13 17:59 blk_1073741828</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop 1.1M May 13 17:59 blk_1073741828_1004.meta</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop 128M May 13 17:59 blk_1073741829</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop 1.1M May 13 17:59 blk_1073741829_1005.meta</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop  74M May 13 17:59 blk_1073741830</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop 589K May 13 17:59 blk_1073741830_1006.meta</span><br></pre></td></tr></table></figure>
 <p>可以看到我刚才上传的<code>hadoop-3.2.0.tar.gz</code>已经变成了三块数据<code>blk_1073741828、blk_1073741829、blk_1073741830</code>分别是两个128M，一个74M，检查一下hdfs的默认块大小</p>
@@ -559,19 +559,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">go</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">反射</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">hello</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">world</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">go</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">反射</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -615,34 +615,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">lumen</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">laravel</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">底层分析</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">容器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">分数运算</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">基本计算器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">大数据</a>
               </li>
              
@@ -668,6 +640,34 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HDFS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">容器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">lumen</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">laravel</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">底层分析</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">分数运算</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">基本计算器</a>
               </li>
             
             <div class="clearfix"></div>
