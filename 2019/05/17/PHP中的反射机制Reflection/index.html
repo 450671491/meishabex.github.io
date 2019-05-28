@@ -7,25 +7,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://bex.meishakeji.com">
-  <title>大数据从懵逼到入门 | Meisha Bex</title>
+  <title>PHP中的反射机制 | Meisha Bex</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="《大数据从懵逼到入门》主要是对大数据相关技术进行介绍，并且完全基于大数据开发规范和工具完成一个简单的Demo，一起从懵逼到入门。 什么是大数据从字面意思上大数据是指海量数据，无法在一定时间内用常规软件工具对其内容进行抓取、管理和处理的数据集合。 其实大数据是一个概念也是一门技术，它包括了以Hadoop和Spark为代表的基础大数据框架，还包括MapReduce编程模型，离线数据处理；数据分析，数据">
-<meta name="keywords" content="大数据,大数据入门,分布式,MapReduce,Hadoop,Spark,HDFS">
+  <meta name="description" content="反射机制简介在面向对象编程中，对象被系统赋予了自省的能力，而实现这个自省的过程就是反射。 ​反射，简单理解就是根据目标物，得到目标物所携带的属性、技能等。在PHP中，我们可以通过反射对象，提取关于类、方法、属性、参数、注释等的详细信息。这种动态获取信息以及动态调用对象方法的功能称为反射API。 反射是操纵面向对象范型中元模型的API，其功能十分强大，可帮助我们构建复杂，可扩展的应用。比如：自动加载">
+<meta name="keywords" content="反射,php,底层,reflection">
 <meta property="og:type" content="article">
-<meta property="og:title" content="大数据从懵逼到入门">
-<meta property="og:url" content="https://bex.meishakeji.com/2019/05/13/大数据从懵逼到入门-HDFS/index.html">
+<meta property="og:title" content="PHP中的反射机制">
+<meta property="og:url" content="https://bex.meishakeji.com/2019/05/17/PHP中的反射机制Reflection/index.html">
 <meta property="og:site_name" content="Meisha Bex">
-<meta property="og:description" content="《大数据从懵逼到入门》主要是对大数据相关技术进行介绍，并且完全基于大数据开发规范和工具完成一个简单的Demo，一起从懵逼到入门。 什么是大数据从字面意思上大数据是指海量数据，无法在一定时间内用常规软件工具对其内容进行抓取、管理和处理的数据集合。 其实大数据是一个概念也是一门技术，它包括了以Hadoop和Spark为代表的基础大数据框架，还包括MapReduce编程模型，离线数据处理；数据分析，数据">
+<meta property="og:description" content="反射机制简介在面向对象编程中，对象被系统赋予了自省的能力，而实现这个自省的过程就是反射。 ​反射，简单理解就是根据目标物，得到目标物所携带的属性、技能等。在PHP中，我们可以通过反射对象，提取关于类、方法、属性、参数、注释等的详细信息。这种动态获取信息以及动态调用对象方法的功能称为反射API。 反射是操纵面向对象范型中元模型的API，其功能十分强大，可帮助我们构建复杂，可扩展的应用。比如：自动加载">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://hadoop.apache.org/docs/r1.0.4/cn/images/hdfsarchitecture.gif">
-<meta property="og:image" content="https://hadoop.apache.org/docs/r1.0.4/cn/images/hdfsdatanodes.gif">
-<meta property="og:image" content="https://cdn.sinaimg.cn.52ecy.cn/large/005BYqpgly1g2zzesaridj30z40u0ayh.jpg">
-<meta property="og:image" content="https://cdn.sinaimg.cn.52ecy.cn/large/005BYqpgly1g2zzieyoqgj31sq0u0doa.jpg">
-<meta property="og:updated_time" content="2019-05-23T01:56:29.080Z">
+<meta property="og:updated_time" content="2019-05-28T00:43:32.755Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="大数据从懵逼到入门">
-<meta name="twitter:description" content="《大数据从懵逼到入门》主要是对大数据相关技术进行介绍，并且完全基于大数据开发规范和工具完成一个简单的Demo，一起从懵逼到入门。 什么是大数据从字面意思上大数据是指海量数据，无法在一定时间内用常规软件工具对其内容进行抓取、管理和处理的数据集合。 其实大数据是一个概念也是一门技术，它包括了以Hadoop和Spark为代表的基础大数据框架，还包括MapReduce编程模型，离线数据处理；数据分析，数据">
-<meta name="twitter:image" content="https://hadoop.apache.org/docs/r1.0.4/cn/images/hdfsarchitecture.gif">
+<meta name="twitter:title" content="PHP中的反射机制">
+<meta name="twitter:description" content="反射机制简介在面向对象编程中，对象被系统赋予了自省的能力，而实现这个自省的过程就是反射。 ​反射，简单理解就是根据目标物，得到目标物所携带的属性、技能等。在PHP中，我们可以通过反射对象，提取关于类、方法、属性、参数、注释等的详细信息。这种动态获取信息以及动态调用对象方法的功能称为反射API。 反射是操纵面向对象范型中元模型的API，其功能十分强大，可帮助我们构建复杂，可扩展的应用。比如：自动加载">
   
     <link rel="alternative" href="/atom.xml" title="Meisha Bex" type="application/atom+xml">
   
@@ -160,21 +155,21 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-大数据从懵逼到入门-HDFS" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-PHP中的反射机制Reflection" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      大数据从懵逼到入门
+      PHP中的反射机制
     </h1>
   
 
-<br><small>by: johnson 王景山</small>
+<br><small>by: dylan 吴耿龙</small>
         
-        <a href="/2019/05/13/大数据从懵逼到入门-HDFS/" class="archive-article-date">
-  	<time datetime="2019-05-13T03:04:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-13</time>
+        <a href="/2019/05/17/PHP中的反射机制Reflection/" class="archive-article-date">
+  	<time datetime="2019-05-17T06:26:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-17</time>
 </a>
         
       </header>
@@ -184,66 +179,92 @@
       
           
           
-            <p>《大数据从懵逼到入门》主要是对大数据相关技术进行介绍，并且完全基于大数据开发规范和工具完成一个简单的Demo，一起从懵逼到入门。</p>
-<h2 id="什么是大数据"><a href="#什么是大数据" class="headerlink" title="什么是大数据"></a>什么是大数据</h2><p>从字面意思上大数据是指海量数据，无法在一定时间内用常规软件工具对其内容进行抓取、管理和处理的数据集合。</p>
-<p>其实大数据是<strong>一个概念</strong>也是<strong>一门技术</strong>，它包括了以Hadoop和Spark为代表的<strong>基础大数据框架</strong>，还包括<strong>MapReduce编程模型</strong>，<strong>离线数据处理</strong>；<strong>数据分析</strong>，<strong>数据挖掘</strong>，使用<strong>机器学习算法</strong>进行预测；<strong>分布式文件系统</strong>，<strong>分布式数据库</strong>等技术。</p>
-<p>其中有两个最关键的技术：</p>
+            <h2 id="反射机制简介"><a href="#反射机制简介" class="headerlink" title="反射机制简介"></a>反射机制简介</h2><p>在面向对象编程中，对象被系统赋予了自省的能力，而实现这个自省的过程就是反射。</p>
+<p>​反射，简单理解就是根据目标物，得到目标物所携带的属性、技能等。在PHP中，我们可以通过反射对象，提取关于类、方法、属性、参数、注释等的详细信息。这种动态获取信息以及动态调用对象方法的功能称为反射API。</p>
+<p>反射是操纵面向对象范型中元模型的API，其功能十分强大，可帮助我们构建复杂，可扩展的应用。比如：自动加载插件，自动生成文档，甚至可用来扩充PHP语言。</p>
+<p>通过ReflectionClass，我们可以得到某个类的如下信息：</p>
+<ol>
+<li>常量 Contants</li>
+<li>属性 Property</li>
+<li>方法 Method</li>
+<li>属性 Static Properties</li>
+<li>命名空间 Namespace</li>
+<li>类的修饰，是否为final或者abstract</li>
+</ol>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>假设我们现在有一个这样的类：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> $name;</span><br><span class="line">    <span class="keyword">protected</span> $age;</span><br><span class="line">    <span class="keyword">private</span> $sex;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($name, $age, $sex)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;setName($name);</span><br><span class="line">        <span class="keyword">$this</span>-&gt;setAge($age);</span><br><span class="line">        <span class="keyword">$this</span>-&gt;setSex($sex);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setName</span><span class="params">($name)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;name = $name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">setAge</span><span class="params">($age)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;age = $age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">setSex</span><span class="params">($sex)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;sex = $sex;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>调用反射导出接口：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\ReflectionClass::export(Student::class);</span><br></pre></td></tr></table></figure>
+<p>导出结果：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">Class</span> [ &lt;<span class="title">user</span>&gt; <span class="title">class</span> <span class="title">Student</span> ] </span>&#123;</span><br><span class="line">  @@ /path/reflection.php <span class="number">8</span><span class="number">-35</span></span><br><span class="line"></span><br><span class="line">  - Constants [<span class="number">0</span>] &#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  - <span class="keyword">Static</span> properties [<span class="number">0</span>] &#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  - <span class="keyword">Static</span> methods [<span class="number">0</span>] &#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  - Properties [<span class="number">3</span>] &#123;</span><br><span class="line">    Property [ &lt;<span class="keyword">default</span>&gt; <span class="keyword">public</span> $name ]</span><br><span class="line">    Property [ &lt;<span class="keyword">default</span>&gt; <span class="keyword">protected</span> $age ]</span><br><span class="line">    Property [ &lt;<span class="keyword">default</span>&gt; <span class="keyword">private</span> $sex ]</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  - Methods [<span class="number">4</span>] &#123;</span><br><span class="line">    Method [ &lt;user, ctor&gt; <span class="keyword">public</span> method __construct ] &#123;</span><br><span class="line">      @@ /path/reflection.php <span class="number">14</span> - <span class="number">19</span></span><br><span class="line"></span><br><span class="line">      - Parameters [<span class="number">3</span>] &#123;</span><br><span class="line">        Parameter <span class="comment">#0 [ &lt;required&gt; $name ]</span></span><br><span class="line">        Parameter <span class="comment">#1 [ &lt;required&gt; $age ]</span></span><br><span class="line">        Parameter <span class="comment">#2 [ &lt;required&gt; $sex ]</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Method [ &lt;user&gt; <span class="keyword">public</span> method setName ] &#123;</span><br><span class="line">      @@ /path/reflection.php <span class="number">21</span> - <span class="number">24</span></span><br><span class="line"></span><br><span class="line">      - Parameters [<span class="number">1</span>] &#123;</span><br><span class="line">        Parameter <span class="comment">#0 [ &lt;required&gt; $name ]</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Method [ &lt;user&gt; <span class="keyword">protected</span> method setAge ] &#123;</span><br><span class="line">      @@ /path/reflection.php <span class="number">26</span> - <span class="number">29</span></span><br><span class="line"></span><br><span class="line">      - Parameters [<span class="number">1</span>] &#123;</span><br><span class="line">        Parameter <span class="comment">#0 [ &lt;required&gt; $age ]</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Method [ &lt;user&gt; <span class="keyword">private</span> method setSex ] &#123;</span><br><span class="line">      @@ /path/reflection.php <span class="number">31</span> - <span class="number">34</span></span><br><span class="line"></span><br><span class="line">      - Parameters [<span class="number">1</span>] &#123;</span><br><span class="line">        Parameter <span class="comment">#0 [ &lt;required&gt; $sex ]</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="获取对象属性列表"><a href="#获取对象属性列表" class="headerlink" title="获取对象属性列表"></a>获取对象属性列表</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$student = <span class="keyword">new</span> Student(<span class="string">'woodylan'</span>, <span class="number">18</span>, <span class="number">1</span>);</span><br><span class="line">$reflect = <span class="keyword">new</span> ReflectionObject($student);</span><br><span class="line">$props = $reflect-&gt;getProperties();</span><br><span class="line"><span class="keyword">foreach</span> ($props <span class="keyword">as</span> $prop) &#123;</span><br><span class="line">    <span class="keyword">print</span> $prop-&gt;getName() . <span class="string">"\n"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">name</span><br><span class="line">age</span><br><span class="line">sex</span><br></pre></td></tr></table></figure>
+<h3 id="获取对象方法列表"><a href="#获取对象方法列表" class="headerlink" title="获取对象方法列表"></a>获取对象方法列表</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$methods = $reflect-&gt;getMethods();</span><br><span class="line"><span class="keyword">foreach</span> ($methods <span class="keyword">as</span> $prop) &#123;</span><br><span class="line">    <span class="keyword">print</span> $prop-&gt;getName() . <span class="string">"\n"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">__construct</span><br><span class="line">setName</span><br><span class="line">setAge</span><br><span class="line">setSex</span><br></pre></td></tr></table></figure>
+<h3 id="反射获取类的原型"><a href="#反射获取类的原型" class="headerlink" title="反射获取类的原型"></a>反射获取类的原型</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">$reflection = <span class="keyword">new</span> ReflectionClass(Student::class);</span><br><span class="line">$className = $reflection-&gt;getName();</span><br><span class="line">$methods = [];</span><br><span class="line">$properties = [];</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> ($reflection-&gt;getProperties() <span class="keyword">as</span> $value) &#123;</span><br><span class="line">    $properties[$value-&gt;getName()] = $value;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> ($reflection-&gt;getMethods() <span class="keyword">as</span> $value) &#123;</span><br><span class="line">    $methods[$value-&gt;getName()] = $value;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"class &#123;$className&#125;\n&#123;\n"</span>;</span><br><span class="line">is_array($properties) &amp;&amp; ksort($properties);</span><br><span class="line"><span class="keyword">foreach</span> ($properties <span class="keyword">as</span> $key =&gt; $value) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"\t"</span>;</span><br><span class="line">    <span class="keyword">echo</span> $value-&gt;isPublic() ? <span class="string">' public'</span> : <span class="string">''</span>, $value-&gt;isPrivate() ? <span class="string">' private'</span> : <span class="string">''</span>,</span><br><span class="line">    $value-&gt;isProtected() ? <span class="string">' protected'</span> : <span class="string">''</span>,</span><br><span class="line">    $value-&gt;isStatic() ? <span class="string">' static'</span> : <span class="string">''</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"\t&#123;$key&#125;\n"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"\n"</span>;</span><br><span class="line"><span class="keyword">if</span> (is_array($methods)) ksort($methods);</span><br><span class="line"><span class="keyword">foreach</span> ($methods <span class="keyword">as</span> $key =&gt; $value) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"\tfunction &#123;$key&#125;()&#123;&#125;\n"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"&#125;\n"</span>;</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">	<span class="keyword">protected</span>   age</span><br><span class="line">	<span class="keyword">public</span>		name</span><br><span class="line">	<span class="keyword">private</span>     sex</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">setAge</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">setName</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">setSex</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="其它API"><a href="#其它API" class="headerlink" title="其它API"></a>其它API</h3><p>反射不仅可以用于类和对象，还可以用于函数、扩展模块、异常等，官方提供了一系列的API方法，以下列举部分。</p>
+<p>文档地址：<a href="http://php.net/manual/zh/book.reflection.php" target="_blank" rel="noopener">http://php.net/manual/zh/book.reflection.php</a></p>
+<blockquote>
 <ul>
-<li>分布式文件系统：存储是大数据技术的基础</li>
-<li>MapReduce编程模型：分布式计算是大数据应用的解决方案</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.construct.php" target="_blank" rel="noopener">ReflectionClass::__construct</a> — 初始化 ReflectionClass 类</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.export.php" target="_blank" rel="noopener">ReflectionClass::export</a> — 导出一个类</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.getconstant.php" target="_blank" rel="noopener">ReflectionClass::getConstant</a> — 获取定义过的一个常量</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.getconstants.php" target="_blank" rel="noopener">ReflectionClass::getConstants</a> — 获取一组常量</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.getconstructor.php" target="_blank" rel="noopener">ReflectionClass::getConstructor</a> — 获取类的构造函数</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.getdefaultproperties.php" target="_blank" rel="noopener">ReflectionClass::getDefaultProperties</a> — 获取默认属性</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.getdoccomment.php" target="_blank" rel="noopener">ReflectionClass::getDocComment</a> — 获取文档注释</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.getendline.php" target="_blank" rel="noopener">ReflectionClass::getEndLine</a> — 获取最后一行的行数</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.getextension.php" target="_blank" rel="noopener">ReflectionClass::getExtension</a> — 根据已定义的类获取所在扩展的 ReflectionExtension 对象</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.getextensionname.php" target="_blank" rel="noopener">ReflectionClass::getExtensionName</a> — 获取定义的类所在的扩展的名称</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.getfilename.php" target="_blank" rel="noopener">ReflectionClass::getFileName</a> — 获取定义类的文件名</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.getinterfacenames.php" target="_blank" rel="noopener">ReflectionClass::getInterfaceNames</a> — 获取接口（interface）名称</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.getinterfaces.php" target="_blank" rel="noopener">ReflectionClass::getInterfaces</a> — 获取接口</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.getmethod.php" target="_blank" rel="noopener">ReflectionClass::getMethod</a> — 获取一个类方法的 ReflectionMethod。</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.getmethods.php" target="_blank" rel="noopener">ReflectionClass::getMethods</a> — 获取方法的数组</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.getmodifiers.php" target="_blank" rel="noopener">ReflectionClass::getModifiers</a> — 获取类的修饰符</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.getname.php" target="_blank" rel="noopener">ReflectionClass::getName</a> — 获取类名</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.getnamespacename.php" target="_blank" rel="noopener">ReflectionClass::getNamespaceName</a> — 获取命名空间的名称</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.getparentclass.php" target="_blank" rel="noopener">ReflectionClass::getParentClass</a> — 获取父类</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.getproperties.php" target="_blank" rel="noopener">ReflectionClass::getProperties</a> — 获取一组属性</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.getproperty.php" target="_blank" rel="noopener">ReflectionClass::getProperty</a> — 获取类的一个属性的 ReflectionProperty</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.getreflectionconstant.php" target="_blank" rel="noopener">ReflectionClass::getReflectionConstant</a> — Gets a ReflectionClassConstant for a class’s constant</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.getreflectionconstants.php" target="_blank" rel="noopener">ReflectionClass::getReflectionConstants</a> — Gets class constants</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.getshortname.php" target="_blank" rel="noopener">ReflectionClass::getShortName</a> — 获取短名</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.getstartline.php" target="_blank" rel="noopener">ReflectionClass::getStartLine</a> — 获取起始行号</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.getstaticproperties.php" target="_blank" rel="noopener">ReflectionClass::getStaticProperties</a> — 获取静态（static）属性</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.getstaticpropertyvalue.php" target="_blank" rel="noopener">ReflectionClass::getStaticPropertyValue</a> — 获取静态（static）属性的值</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.gettraitaliases.php" target="_blank" rel="noopener">ReflectionClass::getTraitAliases</a> — 返回 trait 别名的一个数组</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.gettraitnames.php" target="_blank" rel="noopener">ReflectionClass::getTraitNames</a> — 返回这个类所使用 traits 的名称的数组</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.gettraits.php" target="_blank" rel="noopener">ReflectionClass::getTraits</a> — 返回这个类所使用的 traits 数组</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.hasconstant.php" target="_blank" rel="noopener">ReflectionClass::hasConstant</a> — 检查常量是否已经定义</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.hasmethod.php" target="_blank" rel="noopener">ReflectionClass::hasMethod</a> — 检查方法是否已定义</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.hasproperty.php" target="_blank" rel="noopener">ReflectionClass::hasProperty</a> — 检查属性是否已定义</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.implementsinterface.php" target="_blank" rel="noopener">ReflectionClass::implementsInterface</a> — 接口的实现</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.innamespace.php" target="_blank" rel="noopener">ReflectionClass::inNamespace</a> — 检查是否位于命名空间中</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.isabstract.php" target="_blank" rel="noopener">ReflectionClass::isAbstract</a> — 检查类是否是抽象类（abstract）</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.isanonymous.php" target="_blank" rel="noopener">ReflectionClass::isAnonymous</a> — 检查类是否是匿名类</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.iscloneable.php" target="_blank" rel="noopener">ReflectionClass::isCloneable</a> — 返回了一个类是否可复制</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.isfinal.php" target="_blank" rel="noopener">ReflectionClass::isFinal</a> — 检查类是否声明为 final</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.isinstance.php" target="_blank" rel="noopener">ReflectionClass::isInstance</a> — 检查类的实例</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.isinstantiable.php" target="_blank" rel="noopener">ReflectionClass::isInstantiable</a> — 检查类是否可实例化</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.isinterface.php" target="_blank" rel="noopener">ReflectionClass::isInterface</a> — 检查类是否是一个接口（interface）</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.isinternal.php" target="_blank" rel="noopener">ReflectionClass::isInternal</a> — 检查类是否由扩展或核心在内部定义</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.isiterable.php" target="_blank" rel="noopener">ReflectionClass::isIterable</a> — Check whether this class is iterable</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.isiterateable.php" target="_blank" rel="noopener">ReflectionClass::isIterateable</a> — 检查是否可迭代（iterateable）</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.issubclassof.php" target="_blank" rel="noopener">ReflectionClass::isSubclassOf</a> — 检查是否为一个子类</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.istrait.php" target="_blank" rel="noopener">ReflectionClass::isTrait</a> — 返回了是否为一个 trait</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.isuserdefined.php" target="_blank" rel="noopener">ReflectionClass::isUserDefined</a> — 检查是否由用户定义的</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.newinstance.php" target="_blank" rel="noopener">ReflectionClass::newInstance</a> — 从指定的参数创建一个新的类实例</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.newinstanceargs.php" target="_blank" rel="noopener">ReflectionClass::newInstanceArgs</a> — 从给出的参数创建一个新的类实例。</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.newinstancewithoutconstructor.php" target="_blank" rel="noopener">ReflectionClass::newInstanceWithoutConstructor</a> — 创建一个新的类实例而不调用它的构造函数</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.setstaticpropertyvalue.php" target="_blank" rel="noopener">ReflectionClass::setStaticPropertyValue</a> — 设置静态属性的值</li>
+<li><a href="http://php.net/manual/zh/reflectionclass.tostring.php" target="_blank" rel="noopener">ReflectionClass::__toString</a> — 返回 ReflectionClass 对象字符串的表示形式。</li>
 </ul>
-<p>本期先对分布式文件系统HDFS进行介绍，接下来会介绍MapReduce与Hadoop。</p>
-<p>==========我是分割线==========</p>
-<p>不知道大家会不会有这么一个疑问：为什么要使用分布式文件系统？传统的文件系统不行吗？</p>
-<p>举个🌰：我想存储一个<strong>100M</strong>的文件，可以怎么做。</p>
-<p>一般大伙会觉得这有什么的，直接存就好了。</p>
-<p>那现在问题<strong>升级一下</strong>，假如我有一个<strong>100T</strong>的文件呢？<strong>100P</strong>呢？</p>
-<p>我们都知道，linux文件系统对单文件大小是有限制的，如果是ext3文件系统块大小是4K的话，那么最大可以支持的单文件尺寸是2T，而且有一块大于2T的存储硬件，显然无法满足我们的需求。此时分布式文件系统就可以发挥它的威力，分布式文件系统就是为了这样的海量数据存储而存在的。</p>
-<h2 id="分布式文件系统-HDFS"><a href="#分布式文件系统-HDFS" class="headerlink" title="分布式文件系统 HDFS"></a>分布式文件系统 HDFS</h2><p>HDFS是Hadoop分布式文件系统，它是一个高度容错性的系统，适合部署在成百上千台普通的机器上，能提供高吞吐量的数据访问，非常适合大规模数据集上的应用。</p>
-<p>从对HDFS的描述中不难发现有几个重点：高度容错性、高吞吐量和大规模数据集。</p>
-<p><strong>高度容错性</strong>：指的是硬件错误是个常态而不是异常。HDFS可能由成百上千的服务器所构成，每个服务器上存储着文件系统的部分数据，但是任意一个服务器都可能失效，所以需要保障当一部分机器出现问题时，集群依然能为外部提供正确的服务。因此错误检测和快速、自动的恢复是HDFS最核心的架构目标。</p>
-<p><strong>高吞吐量</strong>：运行在HDFS上的应用和普通的应用不同，需要流式访问它们的数据集。HDFS的设计中更多的考虑到了数据批处理，而不是用户交互处理。比之数据访问的低延迟问题，更关键的在于数据访问的高吞吐量。</p>
-<p><strong>大规模数据集</strong>：运行在HDFS上的应用具有很大的数据集。HDFS上的一个典型文件大小一般都在G字节至T字节。因此，HDFS被调节以支持大文件存储。它应该能提供整体上高的数据传输带宽，能在一个集群里扩展到数百个节点。一个单一的HDFS实例应该能支撑数以千万计的文件。</p>
-<p>为了满足大多数大文件的需求和大数据处理的特定场景，HDFS在设计时也做了一定取舍，当然也带来了很多不便：</p>
-<ul>
-<li>不适合大量小文件存储</li>
-<li>不适合并发写入</li>
-<li>不支持文件随机修改</li>
-<li>不支持随机读等低延迟的访问方式</li>
-</ul>
-<h2 id="Namenode与Datanode"><a href="#Namenode与Datanode" class="headerlink" title="Namenode与Datanode"></a>Namenode与Datanode</h2><p>HDFS采用master/slave架构。一个HDFS集群是由一个Namenode和一定数目的Datanodes组成。Namenode是一个中心服务器，负责管理文件系统的命名空间(namespace)以及客户端对文件的访问。集群中的Datanode一般是一个节点一个，负责管理它所在节点上的存储。HDFS对外仅暴漏文件名，用户能够以文件的形式在上面存储数据。从内部看，一个文件其实被分成一个或多个数据块，数据块存储在一组Datanode上。</p>
-<p>Namenode不仅负责执行文件系统的操作，比如打开、关闭、重命名文件或访问目录，它也负责确定数据块到具体Datanode节点的映射。</p>
-<p>Datanode负责处理文件系统客户端的具体读写请求。在Namenode的统一调度下进行数据块的创建、删除和复制。当客户端读取数据时，首先向Namenode请求到命名空间以及文件数据块所在多个Datanode的地址，再由客户端直接向Datanode发起数据读取请求，整个过程中Namenode都是没有元数据流通的。</p>
-<blockquote>
-<p>数据块是将一个文件根据固定大小分解成的小块，所以在HDFS中并不是将整个文件作为存储单元。数据块一般大小64MB，可以按需调节；同一个数据块一般也会设置多份副本，副本也会分布在不同的Datanode上以保证高度容错性。</p>
 </blockquote>
-<p><img src="https://hadoop.apache.org/docs/r1.0.4/cn/images/hdfsarchitecture.gif" alt="Namenode与Datanode"></p>
-<h2 id="数据复制"><a href="#数据复制" class="headerlink" title="数据复制"></a>数据复制</h2><p>HDFS在被设计能够在超大集群中存储超大文件的系统，并且在廉价机器上同样可以保证可靠。他将所有的文件都分解成一系列大小相同的小数据块，除了最后一个的数据块大小是余数。为了保证可靠，每一个数据块都会存在多个副本，开发者可以根据自己的需要在文件创建时，或者文件使用过程中设置需要副本的数量。</p>
-<p>HDFS通过规定所有的文件都要一次性写入，每个时刻都只能存在一名写入者保证了文件存储绝对可靠。</p>
-<p>数据块的复制也由Namenode管理，Namenode会轮询集群中的每一个Datanode，获取各个Datanode的心跳和节点中所有数据块状态。</p>
-<p><img src="https://hadoop.apache.org/docs/r1.0.4/cn/images/hdfsdatanodes.gif" alt="数据块副本"></p>
-<h2 id="启动HDFS"><a href="#启动HDFS" class="headerlink" title="启动HDFS"></a>启动HDFS</h2><p>HDFS搭建指南在网上有很多，这里就不再赘述，我在搭建的过程中遇到了一些问题，不过通过检查报错日志都一一解决了。</p>
-<blockquote>
-<p>折腾了一下午我的Namenode、Datanode都没起来，而且启动过程出错也没有抛出异常，注意到有日志后5分钟(手动笑脸)</p>
-</blockquote>
-<p>日志记录的还是很详细的，可以看到hadoop运行过程中各个组件的运行和报错的情况。</p>
-<h2 id="使用HDFS"><a href="#使用HDFS" class="headerlink" title="使用HDFS"></a>使用HDFS</h2><p>HDFS允许使用Web接口和Shell命令对HDFS直接操作。</p>
-<h4 id="Web接口"><a href="#Web接口" class="headerlink" title="Web接口"></a>Web接口</h4><p><strong>Web接口</strong>默认配置使用<code>http://localhost:9870/</code>访问本机Namenode，这个页面展示了集群中各个Datanode的情况，也可以用来浏览整个文件系统。</p>
-<p><strong>查看各个node状态</strong></p>
-<p><img src="https://cdn.sinaimg.cn.52ecy.cn/large/005BYqpgly1g2zzesaridj30z40u0ayh.jpg" alt="查看各个node状态"></p>
-<p><strong>查看文件系统内容</strong></p>
-<p><img src="https://cdn.sinaimg.cn.52ecy.cn/large/005BYqpgly1g2zzieyoqgj31sq0u0doa.jpg" alt="浏览文件系统"></p>
-<h4 id="Shell命令"><a href="#Shell命令" class="headerlink" title="Shell命令"></a>Shell命令</h4><p>HDFS的Shell命令使用起来跟linux文件系统命令基本上一致，多了HDFS独有的put和get命令，put是从本地文件系统上传文件到HDFS，get与put相反。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">查看目录内容</span><br><span class="line">hdfs dfs -ls</span><br><span class="line">Found 2 items</span><br><span class="line">-rw-r--r--   1 hadoop supergroup  345625475 2019-05-13 17:59 hadoop-3.2.0.tar.gz</span><br><span class="line">drwxr-xr-x   - hadoop supergroup          0 2019-05-13 17:45 input</span><br><span class="line"></span><br><span class="line">创建目录</span><br><span class="line">hdfs dfs -mkdir output/</span><br><span class="line"></span><br><span class="line">读取HDFS中文件内容</span><br><span class="line">hdfs dfs -cat input/LICENSE.txt</span><br><span class="line">Apache License</span><br><span class="line">Version 2.0, January 2004</span><br><span class="line">http://www.apache.org/licenses/</span><br><span class="line"></span><br><span class="line">其他命令使用方式也一样，hdfs dfs [generic options]</span><br><span class="line"></span><br><span class="line">注意：hdfs dfs &lt;=&gt; hadoop dfs 等价</span><br></pre></td></tr></table></figure>
-<h4 id="验证一下数据块"><a href="#验证一下数据块" class="headerlink" title="验证一下数据块"></a>验证一下数据块</h4><p>我使用put命令向HDFS中上传了<code>hadoop-3.2.0.tar.gz</code>大小是330MB，现在进入到Datanode的数据目录中看一下存储情况。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">我先前配置hdfs时指定了Datanode目录在/home/hadoop/dfs/data/</span><br><span class="line">$ <span class="built_in">cd</span> /home/hadoop/dfs/data/current/BP-1700441595-127.0.0.1-1557740453273/current/finalized/subdir0/subdir0</span><br><span class="line">$ ll -lh</span><br><span class="line"></span><br><span class="line">total 333M</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop 1.4K May 13 17:45 blk_1073741825</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop   19 May 13 17:45 blk_1073741825_1001.meta</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop 148K May 13 17:45 blk_1073741826</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop 1.2K May 13 17:45 blk_1073741826_1002.meta</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop  22K May 13 17:45 blk_1073741827</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop  183 May 13 17:45 blk_1073741827_1003.meta</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop 128M May 13 17:59 blk_1073741828</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop 1.1M May 13 17:59 blk_1073741828_1004.meta</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop 128M May 13 17:59 blk_1073741829</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop 1.1M May 13 17:59 blk_1073741829_1005.meta</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop  74M May 13 17:59 blk_1073741830</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop 589K May 13 17:59 blk_1073741830_1006.meta</span><br></pre></td></tr></table></figure>
-<p>可以看到我刚才上传的<code>hadoop-3.2.0.tar.gz</code>已经变成了三块数据<code>blk_1073741828、blk_1073741829、blk_1073741830</code>分别是两个128M，一个74M，检查一下hdfs的默认块大小</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.blocksize<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>134217728<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">final</span>&gt;</span>false<span class="tag">&lt;/<span class="name">final</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">source</span>&gt;</span>hdfs-default.xml<span class="tag">&lt;/<span class="name">source</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>的确是128M。</p>
-<blockquote>
-<p>hadoop官方文档中说”一个典型的数据块大小是64MB”，我使用的是hadoop3.2，这里默认数据块大小是128MB。实际上是因为hadoop1.x的HDFS默认块大小为64MB；hadoop2.x的默认块大小为128MB。</p>
-</blockquote>
-<h3 id="一句话总结"><a href="#一句话总结" class="headerlink" title="一句话总结"></a>一句话总结</h3><p>HDFS的出现解决了使用廉价机器建立集群存储海量数据的问题，可以说为大数据领域打开了一扇窗。</p>
 
           
       
@@ -284,31 +305,19 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">大数据</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">反射</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">大数据入门</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">php</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">分布式</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">底层</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MapReduce</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Spark</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">HDFS</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">reflection</a>
         		</li>
       		
 		</ul>
@@ -327,18 +336,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/05/17/PHP中的反射机制Reflection/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          PHP中的反射机制
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/04/22/lumen路由源码解析/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">lumen路由源码解析</div>
+    <a href="/2019/05/13/大数据从懵逼到入门-HDFS/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">大数据从懵逼到入门</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -365,7 +365,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是大数据"><span class="toc-number">1.</span> <span class="toc-text">什么是大数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分布式文件系统-HDFS"><span class="toc-number">2.</span> <span class="toc-text">分布式文件系统 HDFS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Namenode与Datanode"><span class="toc-number">3.</span> <span class="toc-text">Namenode与Datanode</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据复制"><span class="toc-number">4.</span> <span class="toc-text">数据复制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启动HDFS"><span class="toc-number">5.</span> <span class="toc-text">启动HDFS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用HDFS"><span class="toc-number">6.</span> <span class="toc-text">使用HDFS</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Web接口"><span class="toc-number">6.0.1.</span> <span class="toc-text">Web接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Shell命令"><span class="toc-number">6.0.2.</span> <span class="toc-text">Shell命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#验证一下数据块"><span class="toc-number">6.0.3.</span> <span class="toc-text">验证一下数据块</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一句话总结"><span class="toc-number">6.1.</span> <span class="toc-text">一句话总结</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#反射机制简介"><span class="toc-number">1.</span> <span class="toc-text">反射机制简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用"><span class="toc-number">2.</span> <span class="toc-text">使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#获取对象属性列表"><span class="toc-number">2.1.</span> <span class="toc-text">获取对象属性列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#获取对象方法列表"><span class="toc-number">2.2.</span> <span class="toc-text">获取对象方法列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#反射获取类的原型"><span class="toc-number">2.3.</span> <span class="toc-text">反射获取类的原型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其它API"><span class="toc-number">2.4.</span> <span class="toc-text">其它API</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -398,7 +398,7 @@
             repo: 'meishabex.github.io',
             owner: 'meishabex',
             admin: ['meishabex'],
-            id: 'Mon May 13 2019 11:04:49 GMT+0800',
+            id: 'Fri May 17 2019 14:26:54 GMT+0800',
             distractionFreeMode: 'false'
         })
         gitalk.render('gitalk-container')
