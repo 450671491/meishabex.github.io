@@ -7,19 +7,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://bex.meishakeji.com">
-  <title>Archives: 2019/3 | Meisha Bex</title>
+  <title>理解跳跃表 | Meisha Bex</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本博客代码及内容由深圳梅沙科技后端团队维护">
-<meta name="keywords" content="梅沙科技&#x2F;后端&#x2F;PHP&#x2F;Laravel">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Meisha Bex">
-<meta property="og:url" content="https://bex.meishakeji.com/archives/2019/03/index.html">
+  <meta name="description" content="理解跳跃表 概念跳跃表是一种数据结构。其允许快速查询一个有序连续元素的数据链表。而且跳跃列表的平均查找和插入时间复杂度都是O(log n)，比常用的线性结构链表，数组这类的时间复杂度O(n)要优秀很多。其结构如图所示：![image.png-61kB][1] 每个带有箭头的框表示一个指针, 而每行是一个稀疏子序列的链表；底部的编号框（黄色）表示有序的数据序列。查找从顶部最稀疏的子序列向下进行, 直">
+<meta name="keywords" content="数据结构与算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="理解跳跃表">
+<meta property="og:url" content="https://bex.meishakeji.com/2019/06/25/理解跳跃表/index.html">
 <meta property="og:site_name" content="Meisha Bex">
-<meta property="og:description" content="本博客代码及内容由深圳梅沙科技后端团队维护">
+<meta property="og:description" content="理解跳跃表 概念跳跃表是一种数据结构。其允许快速查询一个有序连续元素的数据链表。而且跳跃列表的平均查找和插入时间复杂度都是O(log n)，比常用的线性结构链表，数组这类的时间复杂度O(n)要优秀很多。其结构如图所示：![image.png-61kB][1] 每个带有箭头的框表示一个指针, 而每行是一个稀疏子序列的链表；底部的编号框（黄色）表示有序的数据序列。查找从顶部最稀疏的子序列向下进行, 直">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-06-25T02:04:49.231Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Meisha Bex">
-<meta name="twitter:description" content="本博客代码及内容由深圳梅沙科技后端团队维护">
+<meta name="twitter:title" content="理解跳跃表">
+<meta name="twitter:description" content="理解跳跃表 概念跳跃表是一种数据结构。其允许快速查询一个有序连续元素的数据链表。而且跳跃列表的平均查找和插入时间复杂度都是O(log n)，比常用的线性结构链表，数组这类的时间复杂度O(n)要优秀很多。其结构如图所示：![image.png-61kB][1] 每个带有箭头的框表示一个指针, 而每行是一个稀疏子序列的链表；底部的编号框（黄色）表示有序的数据序列。查找从顶部最稀疏的子序列向下进行, 直">
   
     <link rel="alternative" href="/atom.xml" title="Meisha Bex" type="application/atom+xml">
   
@@ -154,260 +155,176 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-理解跳跃表" class="article article-type-post " itemscope="" itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/30/PHP变量关键点总结与实际应用分析/" class="archive-article-date">
-  	<time datetime="2019-03-30T05:26:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-30</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/30/PHP变量关键点总结与实际应用分析/">PHP源码学习——变量与引用</a>
-    </h1>
-  
-
-<br><small>by: funco 林鸿钊</small>
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">php</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">优化</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">变量</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">引用</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">底层</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/24/容器深入/" class="archive-article-date">
-  	<time datetime="2019-03-24T05:55:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/24/容器深入/">Java容器深入</a>
+    <h1 class="article-title" itemprop="name">
+      理解跳跃表
     </h1>
   
 
 <br><small>by: teddy 李璠涛</small>
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">容器</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/17/带分数运算的24点算法-md/" class="archive-article-date">
-  	<time datetime="2019-03-17T10:49:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-17</time>
+        
+        <a href="/2019/06/25/理解跳跃表/" class="archive-article-date">
+  	<time datetime="2019-06-25T02:02:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-25</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/17/带分数运算的24点算法-md/">解算表达式字符串并保留分数结果（PHP描述）</a>
-    </h1>
-  
-
-<br><small>by: funco 林鸿钊</small>
-        <div class="article-info info-on-right">
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      <p><em><small>保护私人版权，尊重他人版权。转载请注明出处并附带页面链接</small></em></p>
+      
           
+          
+            <h1 id="理解跳跃表"><a href="#理解跳跃表" class="headerlink" title="理解跳跃表"></a>理解跳跃表</h1><hr>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>跳跃表是一种数据结构。其允许快速查询一个有序连续元素的数据链表。而且跳跃列表的平均查找和插入时间复杂度都是O(log n)，比常用的线性结构链表，数组这类的时间复杂度O(n)要优秀很多。<br>其结构如图所示：<br>![image.png-61kB][1]</p>
+<p><strong>每个带有箭头的框表示一个指针, 而每行是一个稀疏子序列的链表；底部的编号框（黄色）表示有序的数据序列。查找从顶部最稀疏的子序列向下进行, 直至需要查找的元素在该层两个相邻的元素中间。</strong></p>
+<p>##增加元素</p>
+<p>对于跳跃表来说，当向表中增加一个元素时其会通过最顶层的索引一层层往下找，由于建立索引的关键节点几乎是下一层的一半，所以在查找索引的过程需要比较的元素数目相比于直接去查找源链表一次会减少一半的查询次数，即总的时间复杂度会为O(log n)。<br>具体过程是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">st=&gt;start: 开始</span><br><span class="line">input=&gt;inputoutput: 待增加节点</span><br><span class="line">op1=&gt;operation: 查找第一层索引</span><br><span class="line">op2=&gt;operation: 查找到后继续下一层索引</span><br><span class="line">op3=&gt;operation: 直到找到相应位置</span><br><span class="line">op4=&gt;operation: 插入该节点，抛硬币决定该节点是否要提升一层索引</span><br><span class="line">ed=&gt;end: 结束</span><br><span class="line"></span><br><span class="line">st-&gt;input-&gt;op1-&gt;op2-&gt;op3-&gt;op4-&gt;ed</span><br></pre></td></tr></table></figure>
+<p>##删除元素</p>
+<p>跳跃表删除元素的操作是这样的，自上而下，查找第一次出现节点的索引，并逐层找到每一层对应的节点。删除每一层查找到的节点，如果该层只剩下1个节点，删除整个一层（原链表除外）。总体上，跳跃表删除操作的时间复杂度是O（logN）。<br>![image.png-79.1kB][2]</p>
+<p>5为需要删除的节点。</p>
+<p>##总结</p>
+<p>跳表的结构定义：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">ype head <span class="keyword">struct</span> &#123;</span><br><span class="line">		length <span class="keyword">int</span></span><br><span class="line">				next   *skipNode</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> skipNode <span class="keyword">struct</span> &#123;</span><br><span class="line">		value <span class="keyword">int</span></span><br><span class="line">				next  *skipNode</span><br><span class="line">					high  *skipNode</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> skipTable <span class="keyword">struct</span> &#123;</span><br><span class="line">		table []*head</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对于跳表其实可以使用一个指针数组保存每一级别的头节点，每个元素节点存在两个指针一个指向链表的下一个元素一个指向上级索引这种方式来实现。查找和修改的操作基本步骤和上面的删除添加差不多。我们日常熟悉的redis中也有对其使用，相比于平衡树其具有易于维护的特点。</p>
+<ol>
+<li><a href="http://static.zybuluo.com/yiranblade/f091k5dmlz778f01tu9ov96i/image.png" target="_blank" rel="noopener">http://static.zybuluo.com/yiranblade/f091k5dmlz778f01tu9ov96i/image.png</a></li>
+<li><a href="http://static.zybuluo.com/yiranblade/rrgrlex0unc20o563pgdmhki/image.png" target="_blank" rel="noopener">http://static.zybuluo.com/yiranblade/rrgrlex0unc20o563pgdmhki/image.png</a></li>
+</ol>
+
+          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              Sub
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>扫码关注微信公众号，随时随地，掌握最新技术资讯<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wechat_qrcode.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">php</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">分数运算</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">基本计算器</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构与算法</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/17/docker入门-md/" class="archive-article-date">
-  	<time datetime="2019-03-17T10:47:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-17</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/06/18/建造者模式/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">建造者模式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/17/docker入门-md/">docker入门.md</a>
-    </h1>
-  
-
-<br><small>by: kraus 廖俊</small>
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#理解跳跃表"><span class="toc-number">1.</span> <span class="toc-text">理解跳跃表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#概念"><span class="toc-number">1.1.</span> <span class="toc-text">概念</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/11/分析php的系统调用/" class="archive-article-date">
-  	<time datetime="2019-03-11T00:32:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/11/分析php的系统调用/">分析php的系统调用</a>
-    </h1>
+        
+    </div>
+</aside>
+
+
+
   
 
-<br><small>by: vito 梁钊</small>
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">php</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">优化</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2019/03/page/2/">2</a><a class="extend next" rel="next" href="/archives/2019/03/page/2/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
+  
+  <div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+
+    if(true){
+        var gitalk = new Gitalk({
+            clientID: '9cab3da944be2a1aefac',
+            clientSecret: '14f99d0f02aa648d17a952a4ded0a262efecb054',
+            repo: 'meishabex.github.io',
+            owner: 'meishabex',
+            admin: ['meishabex'],
+            id: 'Tue Jun 25 2019 10:02:31 GMT+0800',
+            distractionFreeMode: 'false'
+        })
+        gitalk.render('gitalk-container')
+    }
+</script>
+  
+
   
 
 
@@ -447,8 +364,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
