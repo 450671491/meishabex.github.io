@@ -7,19 +7,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://bex.meishakeji.com">
-  <title>Archives: 2019 | Meisha Bex</title>
+  <title>Meisha Bex</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本博客代码及内容由深圳梅沙科技后端团队维护">
+  <meta name="description" content="无服务器计算一、Serverless 定义：​        Serverless 架构是指大量依赖第三方服务（也叫做后端即服务，即“BaaS”）或暂存容器中运行的自定义代码（函数即服务，即“FaaS”）的应用程序，函数是无服务器架构中抽象语言运行时的最小单位。在这种架构中，我们并不看重运行一个函数需要多少 CPU 或 RAM 或任何其他资源，而是更看重运行函数所需的时间，我们也只为这些函数的运行">
 <meta name="keywords" content="梅沙科技&#x2F;后端&#x2F;PHP&#x2F;Laravel">
-<meta property="og:type" content="website">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Meisha Bex">
-<meta property="og:url" content="https://bex.meishakeji.com/archives/2019/index.html">
+<meta property="og:url" content="https://bex.meishakeji.com/2019/10/22/无服务器计算/index.html">
 <meta property="og:site_name" content="Meisha Bex">
-<meta property="og:description" content="本博客代码及内容由深圳梅沙科技后端团队维护">
+<meta property="og:description" content="无服务器计算一、Serverless 定义：​        Serverless 架构是指大量依赖第三方服务（也叫做后端即服务，即“BaaS”）或暂存容器中运行的自定义代码（函数即服务，即“FaaS”）的应用程序，函数是无服务器架构中抽象语言运行时的最小单位。在这种架构中，我们并不看重运行一个函数需要多少 CPU 或 RAM 或任何其他资源，而是更看重运行函数所需的时间，我们也只为这些函数的运行">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://bex.meishakeji.com/2019/10/22/无服务器计算/image-20191010105416083.png">
+<meta property="og:image" content="https://bex.meishakeji.com/2019/10/22/无服务器计算/image-20191010110328902.png">
+<meta property="og:image" content="https://bex.meishakeji.com/2019/10/22/无服务器计算/image-20191010112652194.png">
+<meta property="og:image" content="https://bex.meishakeji.com/2019/10/22/无服务器计算/TheProcedure.png">
+<meta property="og:updated_time" content="2019-10-22T01:01:59.329Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Meisha Bex">
-<meta name="twitter:description" content="本博客代码及内容由深圳梅沙科技后端团队维护">
+<meta name="twitter:description" content="无服务器计算一、Serverless 定义：​        Serverless 架构是指大量依赖第三方服务（也叫做后端即服务，即“BaaS”）或暂存容器中运行的自定义代码（函数即服务，即“FaaS”）的应用程序，函数是无服务器架构中抽象语言运行时的最小单位。在这种架构中，我们并不看重运行一个函数需要多少 CPU 或 RAM 或任何其他资源，而是更看重运行函数所需的时间，我们也只为这些函数的运行">
+<meta name="twitter:image" content="https://bex.meishakeji.com/2019/10/22/无服务器计算/image-20191010105416083.png">
   
     <link rel="alternative" href="/atom.xml" title="Meisha Bex" type="application/atom+xml">
   
@@ -154,227 +160,187 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-无服务器计算" class="article article-type-post " itemscope="" itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      <p><em><small>保护私人版权，尊重他人版权。转载请注明出处并附带页面链接</small></em></p>
+      
+          
+          
+            <h2 id="无服务器计算"><a href="#无服务器计算" class="headerlink" title="无服务器计算"></a>无服务器计算</h2><h3 id="一、Serverless"><a href="#一、Serverless" class="headerlink" title="一、Serverless"></a>一、Serverless</h3><ul>
+<li><h4 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h4><p>​        Serverless 架构是指大量依赖第三方服务（也叫做后端即服务，即“BaaS”）或暂存容器中运行的自定义代码（函数即服务，即“FaaS”）的应用程序，函数是无服务器架构中抽象语言运行时的最小单位。在这种架构中，我们并不看重运行一个函数需要多少 CPU 或 RAM 或任何其他资源，而是更看重运行函数所需的时间，我们也只为这些函数的运行时间付费。</p>
+</li>
+<li><h4 id="特点："><a href="#特点：" class="headerlink" title="特点："></a>特点：</h4><ol>
+<li><p>Serverless意味无维护，Serverless不代表完全去除服务器，而是代表去除有关对服务器运行状态的关心和担心，它们是否在工作，应用是否跑起来正常运行等等。Serverless代表的是你不要关心运营维护问题。有了Serverless，可以几乎无需Devops了。</p>
+</li>
+<li><p>Serverless不代表某个具体技术，有些人会给他们的语言框架取名为Serverless，Serverless其实去除维护的担心，如果你了解某个具体服务器技术当然有帮助，但不是必须的。</p>
+</li>
+</ol>
+</li>
+<li><h4 id="优势："><a href="#优势：" class="headerlink" title="优势："></a>优势：</h4><ol>
+<li>降低启动成本</li>
+<li>减少运营成本</li>
+<li>降低开发成本</li>
+<li>实现快速上线</li>
+<li>更快的部署流水线</li>
+<li>更快的开发速度</li>
+<li>系统安全性更高</li>
+<li>适应微服务架构</li>
+<li>自动扩展能力</li>
+</ol>
+</li>
+<li><h4 id="厂商产品"><a href="#厂商产品" class="headerlink" title="厂商产品"></a>厂商产品</h4><ul>
+<li><a href="https://aws.amazon.com/cn/lambda/?nc2=h_m1" target="_blank" rel="noopener">AWS Lambda</a></li>
+<li><a href="https://cloud.google.com/functions/?spm=a2c4e.11153940.blogcont574222.18.567c57c72UthnA" target="_blank" rel="noopener">Google Cloud Functions</a></li>
+<li><a href="https://azure.microsoft.com/en-us/services/functions/?spm=a2c4e.11153940.blogcont574222.19.567c57c72UthnA" target="_blank" rel="noopener"> Azure Funcions</a></li>
+<li><a href="https://www.ibm.com/cloud/functions?spm=a2c4e.11153940.blogcont574222.20.567c57c72UthnA" target="_blank" rel="noopener"> IBM OpenWhisk</a></li>
+<li><a href="https://help.aliyun.com/product/50980.html?spm=a2c4e.11153940.blogcont574222.21.567c57c72UthnA" target="_blank" rel="noopener">阿里云函数计算</a></li>
+<li><a href="https://cloud.tencent.com/document/product/583/9198?from=10680" target="_blank" rel="noopener">腾讯云服务器云函数</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="二、以阿里云的函数计算为例"><a href="#二、以阿里云的函数计算为例" class="headerlink" title="二、以阿里云的函数计算为例"></a>二、以阿里云的函数计算为例</h3><p>这个实例也是官网文档的实例 <a href="https://helpcdn.aliyun.com/document_detail/74761.html?spm=a2c4g.11186623.6.598.30d73364epRuqe" target="_blank" rel="noopener">使用案例</a>。</p>
+<p>有些时候，您不想通过直接调用的方式来执行函数，例如一个应用可能已经使用对象存储（Object Storage Service，简称 OSS）来存放用户上传的图片，可以实现一个函数去下载图片进行处理，并将结果存入 OSS 或者其他服务。如果 OSS 能够帮助我们关注新上传的图片，并且自动的去调用执行相应函数，您就不需要再去自己调用函数了，从而简化了开发和使用流程。</p>
+<p>为函数设置 OSS 触发器，OSS 就可以关注这些事件并且调用函数执行。</p>
+<p>在这个示例中，一个存入指定 OSS Bucket 的文件，如果它是以 <code>source/</code> 为前缀，那么就会自动触发 resize 函数执行，函数将图片缩放并将处理结果存放到同一 Bucket 的 <code>processed/</code> 目录下。例如 <code>source/serverless.png</code> 会被处理成 <code>processed/serverless.png</code>。</p>
+<h4 id="1-创建函数"><a href="#1-创建函数" class="headerlink" title="1. 创建函数"></a>1. 创建函数</h4><p><img src="/2019/10/22/无服务器计算/image-20191010105416083.png" alt="image-20191010105416083"></p>
+<p><strong>注意：修改函数入口</strong></p>
+<h4 id="2-编辑服务角色权限"><a href="#2-编辑服务角色权限" class="headerlink" title="2. 编辑服务角色权限"></a>2. 编辑服务角色权限</h4><p>在新建函数后，如果没有服务，会自动新建用户自己定义的服务名。</p>
+<p>在编辑服务中，配置权限</p>
+<p><img src="/2019/10/22/无服务器计算/image-20191010110328902.png" alt="image-20191010110328902"></p>
+<h4 id="3-编写函数代码"><a href="#3-编写函数代码" class="headerlink" title="3. 编写函数代码"></a>3. 编写函数代码</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">OSS</span>\<span class="title">OssClient</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">resize</span><span class="params">($event, $context)</span> </span>&#123;</span><br><span class="line">		$logger = $GLOBALS[<span class="string">'fcLogger'</span>];</span><br><span class="line"></span><br><span class="line">    $event           = json_decode($event, $assoc = <span class="keyword">true</span>);</span><br><span class="line">    $accessKeyId     = $context[<span class="string">"credentials"</span>][<span class="string">"accessKeyId"</span>];</span><br><span class="line">    $accessKeySecret = $context[<span class="string">"credentials"</span>][<span class="string">"accessKeySecret"</span>];</span><br><span class="line">    $securityToken   = $context[<span class="string">"credentials"</span>][<span class="string">"securityToken"</span>];</span><br><span class="line">    $evt        = $event[<span class="string">'events'</span>][<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">    $logger-&gt;info($evt[<span class="string">'eventName'</span>]); <span class="comment">// 打印</span></span><br><span class="line"></span><br><span class="line">    $bucketName = $evt[<span class="string">'oss'</span>][<span class="string">'bucket'</span>][<span class="string">'name'</span>];</span><br><span class="line">    $endpoint   = <span class="string">'oss-'</span> . $evt[<span class="string">'region'</span>] . <span class="string">'.aliyuncs.com'</span>;</span><br><span class="line">    $objectName = $evt[<span class="string">'oss'</span>][<span class="string">'object'</span>][<span class="string">'key'</span>];</span><br><span class="line">    $newKey = str_replace(<span class="string">"source/"</span>, <span class="string">"processed/"</span>, $objectName);</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        $ossClient = <span class="keyword">new</span> OssClient($accessKeyId, $accessKeySecret, $endpoint, <span class="keyword">false</span>, $securityToken);</span><br><span class="line">        $content = $ossClient-&gt;getObject($bucketName, $objectName);</span><br><span class="line">        <span class="keyword">if</span> ($content == <span class="keyword">null</span> || $content == <span class="string">""</span>) &#123;</span><br><span class="line">          <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        $imagick = <span class="keyword">new</span> Imagick();</span><br><span class="line">        $imagick-&gt;readImageBlob($content);</span><br><span class="line">        $imagick-&gt;resizeImage(<span class="number">128</span>, <span class="number">128</span>, Imagick::FILTER_LANCZOS, <span class="number">1</span>);</span><br><span class="line">        $ossClient-&gt;putObject($bucketName, $newKey, $imagick-&gt;getImageBlob());</span><br><span class="line">    &#125; <span class="keyword">catch</span> (OssException $e) &#123;</span><br><span class="line">      	<span class="keyword">print</span>($e-&gt;getMessage());</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>编写代码可以在线编辑，也可以以上传的方式。</p>
+<h4 id="4-测试函数"><a href="#4-测试函数" class="headerlink" title="4. 测试函数"></a>4. 测试函数</h4><p>这个过程是模拟 OSS bucket 中 source/ 目录下有对象被创建时，函数计算的执行过程。您可以通过这种方式进行调试和测试。</p>
+<p><strong>点击触发事件，选择OSS模板。</strong></p>
+<p>需要修改以下：</p>
+<p>​    角色Id：上面配置好的角色</p>
+<p>​    bucket Name：Oss中的bucket</p>
+<p>​    文件路径：因为是测试，所以需要已经存在于oss上面的文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;events&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;eventName&quot;: &quot;ObjectCreated:PutObject&quot;,</span><br><span class="line">      &quot;eventSource&quot;: &quot;acs:oss&quot;,</span><br><span class="line">      &quot;eventTime&quot;: &quot;2017-04-21T12:46:37.000Z&quot;,</span><br><span class="line">      &quot;eventVersion&quot;: &quot;1.0&quot;,</span><br><span class="line">      &quot;oss&quot;: &#123;</span><br><span class="line">        &quot;bucket&quot;: &#123;</span><br><span class="line">          &quot;arn&quot;: &quot;acs:oss:cn-shenzhen:角色Id:bucket Name&quot;,</span><br><span class="line">          &quot;name&quot;: &quot;bucket Name&quot;,</span><br><span class="line">          &quot;ownerIdentity&quot;: &quot;角色Id&quot;,</span><br><span class="line">          &quot;virtualBucket&quot;: &quot;&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;object&quot;: &#123;</span><br><span class="line">          &quot;deltaSize&quot;: 122539,</span><br><span class="line">          &quot;eTag&quot;: &quot;4876A2B74E13E1EFF067D3F007A67FE2&quot;,</span><br><span class="line">          &quot;key&quot;: &quot;文件路径&quot;,</span><br><span class="line">          &quot;size&quot;: 122539</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;ossSchemaVersion&quot;: &quot;1.0&quot;,</span><br><span class="line">        &quot;ruleId&quot;: &quot;9adac8e253828f4f7c0466d941fa3db81161e853&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;region&quot;: &quot;cn-shenzhen&quot;,</span><br><span class="line">      &quot;requestParameters&quot;: &#123;</span><br><span class="line">        &quot;sourceIPAddress&quot;: &quot;140.205.128.221&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;responseElements&quot;: &#123;</span><br><span class="line">        &quot;requestId&quot;: &quot;58F9FF2D3DF792092E12044C&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;userIdentity&quot;: &#123;</span><br><span class="line">        &quot;principalId&quot;: &quot;262561392693583141&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试通过后，会发现 processed 目录中会有新生成的文件 。</p>
+<h4 id="5-设置OSS触发器"><a href="#5-设置OSS触发器" class="headerlink" title="5.  设置OSS触发器"></a>5.  设置OSS触发器</h4><p><img src="/2019/10/22/无服务器计算/image-20191010112652194.png" alt="image-20191010112652194"></p>
+<h3 id="三、工作流程"><a href="#三、工作流程" class="headerlink" title="三、工作流程"></a>三、工作流程</h3><p>其实各种产品的工作流程，大致的流程也是会如下：</p>
+<p><img src="/2019/10/22/无服务器计算/TheProcedure.png" alt="TheProcedure.png"></p>
+<h3 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h3><p> 无服务器计算对于开发人员最大的好处，简单来说，就是使得开发人员可以更多的关注与应用程序功能本身，而无需关心例如虚拟机调配这样的配置方面的工作，将服务器的管理从开发者日常工作中解耦。此外，由于程序可以随时运行和终止，因此带来了操作简单性和成本节省。重要的是，它可以提高产品生命周期的效率并降低管理费用。</p>
+
+          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              Sub
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>扫码关注微信公众号，随时随地，掌握最新技术资讯<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wechat_qrcode.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/22/无服务器计算/" class="archive-article-date">
-  	<time datetime="2019-10-22T01:01:59.328Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-22</time>
-</a>
-        </div>
-    	 
-<br><small>by: </small>
-        <div class="article-info info-on-right">
-          
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/19/mysql嵌套事务问题/" class="archive-article-date">
-  	<time datetime="2019-08-19T01:12:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-19</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/08/19/mysql嵌套事务问题/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">mysql嵌套事务问题</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/19/mysql嵌套事务问题/">mysql嵌套事务问题</a>
-    </h1>
-  
-
-<br><small>by: casey 张凯华</small>
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">事务</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#无服务器计算"><span class="toc-number">1.</span> <span class="toc-text">无服务器计算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、Serverless"><span class="toc-number">1.1.</span> <span class="toc-text">一、Serverless</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#定义："><span class="toc-number">1.1.1.</span> <span class="toc-text">定义：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#特点："><span class="toc-number">1.1.2.</span> <span class="toc-text">特点：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#优势："><span class="toc-number">1.1.3.</span> <span class="toc-text">优势：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#厂商产品"><span class="toc-number">1.1.4.</span> <span class="toc-text">厂商产品</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、以阿里云的函数计算为例"><span class="toc-number">1.2.</span> <span class="toc-text">二、以阿里云的函数计算为例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-创建函数"><span class="toc-number">1.2.1.</span> <span class="toc-text">1. 创建函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-编辑服务角色权限"><span class="toc-number">1.2.2.</span> <span class="toc-text">2. 编辑服务角色权限</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-编写函数代码"><span class="toc-number">1.2.3.</span> <span class="toc-text">3. 编写函数代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-测试函数"><span class="toc-number">1.2.4.</span> <span class="toc-text">4. 测试函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-设置OSS触发器"><span class="toc-number">1.2.5.</span> <span class="toc-text">5.  设置OSS触发器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、工作流程"><span class="toc-number">1.3.</span> <span class="toc-text">三、工作流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、总结"><span class="toc-number">1.4.</span> <span class="toc-text">四、总结</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/19/nginx平滑重启原理/" class="archive-article-date">
-  	<time datetime="2019-08-19T01:11:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/19/nginx平滑重启原理/">nginx平滑重启原理</a>
-    </h1>
+        
+    </div>
+</aside>
+
+
+
   
 
-<br><small>by: wendy 彭舒婷</small>
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">php</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">nginx</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">服务器</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/29/mysql-enum-枚举类型的使用及局限/" class="archive-article-date">
-  	<time datetime="2019-07-29T03:27:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/29/mysql-enum-枚举类型的使用及局限/">mysql_enum_枚举类型的使用及局限</a>
-    </h1>
   
 
-<br><small>by: dylan 吴耿龙</small>
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/29/php协程/" class="archive-article-date">
-  	<time datetime="2019-07-29T03:26:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/29/php协程/">php协程</a>
-    </h1>
   
 
-<br><small>by: nestor 邵泰深</small>
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">php</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">协程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2019/page/2/">2</a><a class="page-number" href="/archives/2019/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2019/page/6/">6</a><a class="extend next" rel="next" href="/archives/2019/page/2/">Next &raquo;</a>
-    </nav>
+  
+  <div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+
+    if(true){
+        var gitalk = new Gitalk({
+            clientID: '9cab3da944be2a1aefac',
+            clientSecret: '14f99d0f02aa648d17a952a4ded0a262efecb054',
+            repo: 'meishabex.github.io',
+            owner: 'meishabex',
+            admin: ['meishabex'],
+            id: 'Tue Oct 22 2019 09:01:59 GMT+0800',
+            distractionFreeMode: 'false'
+        })
+        gitalk.render('gitalk-container')
+    }
+</script>
+  
+
   
 
 
@@ -414,8 +380,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
