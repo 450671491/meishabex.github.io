@@ -7,19 +7,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://bex.meishakeji.com">
-  <title>Archives | Meisha Bex</title>
+  <title>Laradock | Meisha Bex</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本博客代码及内容由深圳梅沙科技后端团队维护">
-<meta name="keywords" content="梅沙科技&#x2F;后端&#x2F;PHP&#x2F;Laravel">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Meisha Bex">
-<meta property="og:url" content="https://bex.meishakeji.com/archives/page/2/index.html">
+  <meta name="description" content="Laradock上手介绍Laradock 努力简化创建开发环境过程。 它包含预包装Docker 镜像，提供一个美妙的开发环境而不需要安装 PHP, NGINX, MySQL 和其他任何软件在本地机器上。 使用概览：让我们了解使用它安装 NGINX, PHP, Composer, MySQL 和 Redis，然后运行 Laravel 1.将 Laradock 放到你的 Laravel 项目中：1gi">
+<meta name="keywords" content="laradock,docker,php">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Laradock">
+<meta property="og:url" content="https://bex.meishakeji.com/2019/11/01/Laradock/index.html">
 <meta property="og:site_name" content="Meisha Bex">
-<meta property="og:description" content="本博客代码及内容由深圳梅沙科技后端团队维护">
+<meta property="og:description" content="Laradock上手介绍Laradock 努力简化创建开发环境过程。 它包含预包装Docker 镜像，提供一个美妙的开发环境而不需要安装 PHP, NGINX, MySQL 和其他任何软件在本地机器上。 使用概览：让我们了解使用它安装 NGINX, PHP, Composer, MySQL 和 Redis，然后运行 Laravel 1.将 Laradock 放到你的 Laravel 项目中：1gi">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-11-01T06:39:18.549Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Meisha Bex">
-<meta name="twitter:description" content="本博客代码及内容由深圳梅沙科技后端团队维护">
+<meta name="twitter:title" content="Laradock">
+<meta name="twitter:description" content="Laradock上手介绍Laradock 努力简化创建开发环境过程。 它包含预包装Docker 镜像，提供一个美妙的开发环境而不需要安装 PHP, NGINX, MySQL 和其他任何软件在本地机器上。 使用概览：让我们了解使用它安装 NGINX, PHP, Composer, MySQL 和 Redis，然后运行 Laravel 1.将 Laradock 放到你的 Laravel 项目中：1gi">
   
     <link rel="alternative" href="/atom.xml" title="Meisha Bex" type="application/atom+xml">
   
@@ -154,272 +155,183 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Laradock" class="article article-type-post " itemscope="" itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Laradock
+    </h1>
+  
+
+<br><small>by: kraus 廖俊</small>
+        
+        <a href="/2019/11/01/Laradock/" class="archive-article-date">
+  	<time datetime="2019-11-01T06:37:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-01</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      <p><em><small>保护私人版权，尊重他人版权。转载请注明出处并附带页面链接</small></em></p>
+      
+          
+          
+            <h2 id="Laradock上手"><a href="#Laradock上手" class="headerlink" title="Laradock上手"></a>Laradock上手</h2><h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><p>Laradock 努力简化创建开发环境过程。 它包含预包装Docker 镜像，提供一个美妙的开发环境而不需要安装 PHP, NGINX, MySQL 和其他任何软件在本地机器上。</p>
+<p>使用概览：<br>让我们了解使用它安装 NGINX, PHP, Composer, MySQL 和 Redis，然后运行 Laravel</p>
+<p>1.将 Laradock 放到你的 Laravel 项目中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/laradock/laradock.git</span><br></pre></td></tr></table></figure></p>
+<p>2.进入 Laradock 目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp env-example .env</span><br></pre></td></tr></table></figure></p>
+<p>3.运行这些容器。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d nginx mysql redis</span><br></pre></td></tr></table></figure></p>
+<p>4.打开Laravel 项目的 .env 文件，然后设置 mysql 的 DB_HOST 和 redis 的REDIS_HOST。</p>
+<p>5.打开浏览器，访问 localhost：</p>
+<h3 id="laradock工作区容器简介"><a href="#laradock工作区容器简介" class="headerlink" title="laradock工作区容器简介"></a>laradock工作区容器简介</h3><p>laradock使用了一个叫Workspace容器，来作为所有项目的公共操作区。这个工作区容器，封装了web开发的绝大多数命令行工具。项目只要在工作区目录下，那么可以公用这些命令行工具。这真是解决了很大的烦恼啊，不用每个项目单独封装工具了。目前，主要包括了php的composer，laravel的artisan工具，还包括了nodejs的npm，vue-cli。还有一些工具是默认不安全，但是可以通过修改env开启的，比如说swoole扩展，python的命令行工具，以及symfony。</p>
+<p>laradock进工作区容器执行各种命令行操作的方法</p>
+<p>第一步：</p>
+<p>使用git把仓库下载后，通过docker-compose up -d  workspace命令启动这个工作区镜像。</p>
+<p>第二步：</p>
+<p>进入docker-compose.yml所在的目录下，执行以下命令进入工作区镜像，然后打开一个bash的操作界面。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose exec workspace bash</span><br></pre></td></tr></table></figure></p>
+<p>这里有一个小提示，这个命令默认是用root用户执行的。如果你使用composer的时候，那行黄色的小字就会提醒你，不建议用root用户执行composer。所以，我们应该指定一个用户，去启动工作区镜像的bash。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose exec --user=laradock workspace bash</span><br></pre></td></tr></table></figure></p>
+<p>所以，完整的正确的命令行，实际上就是上面这个啦。有了这个bash环境，可以随意的进入哪个项目目录，执行各种命令行的操作啦。</p>
+<p>特别提醒：<br>在执行各种命令行工具之前，先记得添加各种中国区的镜像啊。比如composer全局添加中国区镜像地址的命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer config -g repo.packagist composer https://packagist.phpcomposer.com</span><br></pre></td></tr></table></figure></p>
+
+          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              Sub
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>扫码关注微信公众号，随时随地，掌握最新技术资讯<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wechat_qrcode.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/29/mysql-enum-枚举类型的使用及局限/" class="archive-article-date">
-  	<time datetime="2019-07-29T03:27:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/29/mysql-enum-枚举类型的使用及局限/">mysql_enum_枚举类型的使用及局限</a>
-    </h1>
-  
-
-<br><small>by: dylan 吴耿龙</small>
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">laradock</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
         		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/29/php协程/" class="archive-article-date">
-  	<time datetime="2019-07-29T03:26:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/29/php协程/">php协程</a>
-    </h1>
-  
-
-<br><small>by: nestor 邵泰深</small>
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
+      		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">php</a>
         		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">协程</a>
-        		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/17/composer-dev/" class="archive-article-date">
-  	<time datetime="2019-07-17T05:50:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-17</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/10/22/hmm-viterbi-cut/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">HMM、Viterbi与中文分词应用</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/17/composer-dev/">如何进行composer包开发</a>
-    </h1>
-  
-
-<br><small>by: lumen 陆贤芳</small>
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">php</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">composer</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">扩展</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Laradock上手"><span class="toc-number">1.</span> <span class="toc-text">Laradock上手</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#介绍"><span class="toc-number">1.0.1.</span> <span class="toc-text">介绍</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#laradock工作区容器简介"><span class="toc-number">1.1.</span> <span class="toc-text">laradock工作区容器简介</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/11/leetcode208/" class="archive-article-date">
-  	<time datetime="2019-07-11T00:43:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/11/leetcode208/">leetcode208</a>
-    </h1>
+        
+    </div>
+</aside>
+
+
+
   
 
-<br><small>by: dick 林敏悦</small>
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">acm</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">树</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">字典树</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">前缀树</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/02/设计模式学习和实践反思/" class="archive-article-date">
-  	<time datetime="2019-07-02T09:47:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/02/设计模式学习和实践反思/">设计模式学习和实践反思——《learning PHP设计模式读书笔记》</a>
-    </h1>
   
 
-<br><small>by: funco 林鸿钊</small>
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">php</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">OOP</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">POP</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">面向对象</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/6/">6</a><a class="extend next" rel="next" href="/archives/page/3/">Next &raquo;</a>
-    </nav>
+  
+
+  
+  <div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+
+    if(true){
+        var gitalk = new Gitalk({
+            clientID: '9cab3da944be2a1aefac',
+            clientSecret: '14f99d0f02aa648d17a952a4ded0a262efecb054',
+            repo: 'meishabex.github.io',
+            owner: 'meishabex',
+            admin: ['meishabex'],
+            id: 'Fri Nov 01 2019 14:37:38 GMT+0800',
+            distractionFreeMode: 'false'
+        })
+        gitalk.render('gitalk-container')
+    }
+</script>
+  
+
   
 
 
@@ -467,8 +379,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
