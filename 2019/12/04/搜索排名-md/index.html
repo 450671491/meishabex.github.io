@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Meisha Bex">
 <meta property="og:description" content="从函数模型推导到搜索排名——从搜索排名需求中，公式完善过程，理解程序开发中的数学建模。 这里以内容质量评分与搜索排名为例，从最基础的线性函数出发，按照提出问题；解决问题的基本方式，逐步完善评分函数。从而为大家关于数学在我们项目研发实践中的应用提供借鉴，也期待大家能由此提高大家对数学的敏感度，将数学思维应用于项目研发的各个阶段，从而提高产品研发质量和用户体验。  文中基本方法灵感来自《推荐系统原理与">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-04T00:22:58.729Z">
+<meta property="og:updated_time" content="2019-12-04T00:25:36.126Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="搜索排名.md">
 <meta name="twitter:description" content="从函数模型推导到搜索排名——从搜索排名需求中，公式完善过程，理解程序开发中的数学建模。 这里以内容质量评分与搜索排名为例，从最基础的线性函数出发，按照提出问题；解决问题的基本方式，逐步完善评分函数。从而为大家关于数学在我们项目研发实践中的应用提供借鉴，也期待大家能由此提高大家对数学的敏感度，将数学思维应用于项目研发的各个阶段，从而提高产品研发质量和用户体验。  文中基本方法灵感来自《推荐系统原理与">
@@ -197,7 +197,7 @@
 <li>设计总评分关于质量评分和匹配度评分的函数，最终搜索结果按照总评分排序。</li>
 </ol>
 <p>思路很简单，实现也很简单，关键点仅在于<strong>如何设计总评分关于质量评分和匹配度评分的函数</strong>。这个过程与数学建模的思维方式、推荐系统的设计思路以及机器学习的建模中部分过程十分相似，因此，这里以该需求为例，从最基础的线性函数出发，按照提出问题；分解问题；解决问题的基本方式，逐步完善评分函数。从而为大家关于数学在我们项目研发实践中的应用提供借鉴，也期待大家能由此提高大家对数学的敏感度，将数学思维应用于项目研发的各个阶段，从而提高产品研发质量和用户体验。</p>
-<h2 id="数学模型推导与搜索排名实现"><a href="#数学模型推导与搜索排名实现" class="headerlink" title="数学模型推导与搜索排名实现"></a>数学模型推导与搜索排名实现</h2><p>假设，最终用于对搜索结果排序的字段是<strong>总评分 $\boldsymbol{S}$（Score）</strong>，我们主动对题目质量作出的评分是<strong>质量评分 $\boldsymbol{QS}$（Quality Score）</strong>，用户按照筛选项或不同关键字模糊搜索时，由搜索引擎基于某种算法计算的筛选结果关于筛选项产生的评分是<strong>匹配度评分 $\boldsymbol{MS}$（Match Score）</strong>。这时，一种比较简单的提高某个题目搜索排名的方法是关于$MS$和$QS$求和，如 <strong>公式 1</strong> 所示。然后，我们逐步推荐问题，再解决，以此完善这一模型。<br>$$\begin{equation}<br>S = F(QS, MS) = QS + MS\ (QS \in N, MS \in R^+, S \in R^+)<br>\end{equation}$$</p>
+<h2 id="数学模型推导与搜索排名实现"><a href="#数学模型推导与搜索排名实现" class="headerlink" title="数学模型推导与搜索排名实现"></a>数学模型推导与搜索排名实现</h2><p>假设，最终用于对搜索结果排序的字段是<strong>总评分 $\boldsymbol{S}$（Score）</strong>，我们主动对数据质量作出的评分是<strong>质量评分 $\boldsymbol{QS}$（Quality Score）</strong>，用户按照筛选项或不同关键字模糊搜索时，由搜索引擎基于某种算法计算的筛选结果关于筛选项产生的评分是<strong>匹配度评分 $\boldsymbol{MS}$（Match Score）</strong>。这时，一种比较简单的提高某个数据搜索排名的方法是关于$MS$和$QS$求和，如 <strong>公式 1</strong> 所示。然后，我们逐步推荐问题，再解决，以此完善这一模型。<br>$$\begin{equation}<br>S = F(QS, MS) = QS + MS\ (QS \in N, MS \in R^+, S \in R^+)<br>\end{equation}$$</p>
 <p><strong>Q: 实际应用中$\boldsymbol{QS}$ 与 $\boldsymbol{MS}$ 对于总评分的影响权值不一定是相等的</strong></p>
 <p>一种很简单的思路，引入效用函数。如 <strong>公式 2</strong> 所示。其中的权值$w_1$、$w_2$可以是经验估计值，也可以是基于某种统计方法或其它算法求得的值。<br>$$\begin{equation}<br>S = F(QS, MS) = w_1QS + w_2MS\  \<br>(QS \in N,\ MS \in R^+, \ S \in R^+,\ w_1 \in R^+,\ w_2 \in R^+,\ w_1 + w_2 = 1)<br>\end{equation}$$</p>
 <p><strong>Q: 可能某一数据与搜索项匹配度不高（$MS$较低），但由于QS较高，导致该数据在搜索结果中过度靠前</strong></p>
