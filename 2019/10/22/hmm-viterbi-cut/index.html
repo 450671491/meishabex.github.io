@@ -184,7 +184,7 @@
 <p>​    同时，希望数学不好的同学对此也不必有恐惧心理。因为作者也不是对此特别熟悉，会结合个人的学习过程和实例，尽可能简单的介绍HMM、Viterbi，以及它们与中文分词三者之间的关系。</p>
 <p>同时，希望数学不好的同学对此也不必有恐惧心理。因为作者也不是对此特别熟悉，会结合个人的学习过程和实例，尽可能简单的介绍HMM、Viterbi，以及它们与中文分词三者之间的关系。</p>
 <h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>在正式介绍HMM之前，我们有必要先了解马尔可夫过程和马尔可夫链。</p>
-<h2 id="Markov-process-马尔可夫过程"><a href="#Markov-process-马尔可夫过程" class="headerlink" title="Markov process(马尔可夫过程)"></a>Markov process(马尔可夫过程)</h2><p><strong>一个性质：</strong>当一个<a href="https://zh.wikipedia.org/wiki/随机过程">随机过程</a>在给定现在状态及所有过去状态情况下，其未来状态的条件<a href="https://zh.wikipedia.org/wiki/概率分布">概率分布</a>仅依赖于当前状态；换句话说，在给定现在状态时，它与过去状态（即该过程的历史路径）是<a href="https://zh.wikipedia.org/wiki/条件独立">条件独立</a>的，那么此<a href="https://zh.wikipedia.org/wiki/随机过程">随机过程</a>即具有<strong>马尔可夫性质</strong></p>
+<h2 id="Markov-process-马尔可夫过程"><a href="#Markov-process-马尔可夫过程" class="headerlink" title="Markov process(马尔可夫过程)"></a>Markov process(马尔可夫过程)</h2><p><strong>一个性质：</strong>当一个<a href="https://zh.wikipedia.org/wiki/随机过程" target="_blank" rel="noopener">随机过程</a>在给定现在状态及所有过去状态情况下，其未来状态的条件<a href="https://zh.wikipedia.org/wiki/概率分布" target="_blank" rel="noopener">概率分布</a>仅依赖于当前状态；换句话说，在给定现在状态时，它与过去状态（即该过程的历史路径）是<a href="https://zh.wikipedia.org/wiki/条件独立" target="_blank" rel="noopener">条件独立</a>的，那么此<a href="https://zh.wikipedia.org/wiki/随机过程" target="_blank" rel="noopener">随机过程</a>即具有<strong>马尔可夫性质</strong></p>
 <p><strong>一个定义：</strong>满足马尔可夫性质的过程称为马尔可夫过程</p>
 <h2 id="DTMC-离散马尔可夫链"><a href="#DTMC-离散马尔可夫链" class="headerlink" title="DTMC(离散马尔可夫链)"></a>DTMC(离散马尔可夫链)</h2><p><strong>一个定义：</strong>时间和状态都是离散的马尔可夫过程。</p>
 <p><strong>一个重要特性：</strong>已知系统当前状态，则未来的演变不依赖于过去的演变。</p>
@@ -305,7 +305,7 @@ as --> mb</pre>
 <p>  <strong>关于Viterbi算法</strong></p>
 <p>  很多人都用隐马尔科夫模型来回答viterbi算法，其实<strong>viterbi算法只是解决隐马第三个问题</strong>（求观察序列的最可能的标注序列）的一种实现方式。这个问题可以用于viterbi算法实现，<strong>也可以用其他方式实现</strong>（如穷举法）；而viterbi算法可以用于解决隐马第三问题，也可以用于解决其他问题。所以千万<strong>不要把viterbi算法和隐马尔科夫模型等价</strong>了。</p>
 <p>  viterbi算法其实就是<strong>多步骤每步多选择模型的最优选择</strong>问题，其在每一步的所有选择都保存了前续所有步骤到当前步骤当前选择的最小总代价（或者最大价值）以及当前代价的情况下前继步骤的选择。依次计算完所有步骤后，通过回溯的方法找到最优选择路径。<strong>符合这个模型的都可以用viterbi算法解决，隐马模型的第三问题刚好符合这个模型，所以才采用了viterbi算法</strong>。</p>
-<p>  ——引用<a href="https://www.zhihu.com/question/20136144">知乎回答[4]</a></p>
+<p>  ——引用<a href="https://www.zhihu.com/question/20136144" target="_blank" rel="noopener">知乎回答[4]</a></p>
 </blockquote>
 <blockquote>
 <p>  <strong>为什么是Viterbi而不是拓扑排序？</strong></p>
@@ -316,14 +316,14 @@ as --> mb</pre>
 <p>关于这个基本过程，其实结巴分词的README文件中有描述。但对于不了解HMM的同学而言，看到『对于未登录词，采用了基于汉字成词能力的 HMM 模型，使用了 Viterbi 算法』这句话可能会比较懵逼。结合上文所述，再回归到结巴分词的README文件中关于算法的说明及其具体代码中，思路可能会清晰很多。</p>
 <p>此外，结巴分词关于<strong>DAG采用十字链表法</strong>（将每个词看做一条弧，词的<strong>起始字的位置为弧尾，结束字位置为弧头</strong>）。在结巴分词中，可以找到getDAG方法，尝试打印其返回值有助于更深刻了解这一存储结构和后续遍历过程。</p>
 <blockquote>
-<p>  引用<a href="https://github.com/fxsjy/jieba/blob/master/README.md#算法">https://github.com/fxsjy/jieba/blob/master/README.md#算法</a></p>
+<p>  引用<a href="https://github.com/fxsjy/jieba/blob/master/README.md#算法" target="_blank" rel="noopener">https://github.com/fxsjy/jieba/blob/master/README.md#算法</a></p>
 <ul>
 <li>基于前缀词典实现高效的词图扫描，生成句子中汉字所有可能成词情况所构成的有向无环图 (DAG)</li>
 <li>采用了动态规划查找最大概率路径, 找出基于词频的最大切分组合</li>
 <li>对于未登录词，采用了基于汉字成词能力的 HMM 模型，使用了 Viterbi 算法</li>
 </ul>
 </blockquote>
-<p>在上文，我们提及，关于隐含状态、隐含状态概率矩阵已经通过统计得到。实际上，除此之外，还有很多参数都是如此。具体可以参见<a href="https://github.com/fxsjy/jieba/issues/7">结巴分词 issue#7 数据是如何生成的</a>。需要注意的是，该issue的回答是2012年。于2013年(latest update)，作者还更新出了big版词典。即目前数据来源比 issue #7 中作者回复的数据来源更全面。</p>
+<p>在上文，我们提及，关于隐含状态、隐含状态概率矩阵已经通过统计得到。实际上，除此之外，还有很多参数都是如此。具体可以参见<a href="https://github.com/fxsjy/jieba/issues/7" target="_blank" rel="noopener">结巴分词 issue#7 数据是如何生成的</a>。需要注意的是，该issue的回答是2012年。于2013年(latest update)，作者还更新出了big版词典。即目前数据来源比 issue #7 中作者回复的数据来源更全面。</p>
 <h3 id="垂直领域优化"><a href="#垂直领域优化" class="headerlink" title="垂直领域优化"></a>垂直领域优化</h3><p>在了解了HMM和结巴分词的基本过程后，我们可以明白，尽管结巴分词提供了HMM算法的实现，用于实现对未登录词的解析，但为了在生产环境中实现更高的Precision和Recall，我们有必要获取垂直领域的词库，并统计相应词频，并修改分词规则。以期提高对垂直领域（尤其是仅该领域特有的文本特性，如数学、物理、计算机编程等）文本处理的精确度。</p>
 <h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>对于HMM在分词中的应用，个人理解为这是从概率统计的思路，简化中文分词问题。在学习过程中，我们不能认为是无理由或随机选择了HMM实现对中文未登录词的处理，这很容易导致后续学习的思路混乱。更合理的，可能是因为中文文本的特性与HMM的三个假设恰好符合，因此，选择了HMM。也即，是否有其他方法解决呢？也有，比如LSTM[1]。</p>
 <p>通过了解历史，我们可以知道，最初的自然语言处理是基于语法规则的（这也是为什么最早的时候，我们使用翻译工具都十分不通顺，几乎是简单地词到词的映射），随着计算机性能的提升和相关技术发展，基于概率统计的系统性能更理想。但我们不能因为『实践证明基于手工规则的分词系统在评测中不敌基于统计学习的分词系统』，就认为基于语法规则的系统是毫无前途的。实际上，目前有许多文献资料都有提及，未来如果要实现更精确的自然语言处理，<strong>基于语法规则与基于概率统计的方法相结合是必然的趋势</strong>（虽然没有具体样例，但是个人有印象，有系统使用语法规则对基于概率统计的分析结果做进一步纠错的处理方式，有兴趣的同学可以做进一步了解）。同时，个人建议感兴趣的同学，了解基本语言发展历史和中文分词的发展历程，有助于加深关于分词系统或其它NLP系统的原理和发展趋势，具体可以参见[2-3]。</p>
@@ -332,10 +332,10 @@ as --> mb</pre>
 <li>基于LSTM网络的序列标注中文分词法[J]. 计算机应用研究, 2017(5).</li>
 <li>郑捷. nlp汉语自然语言处理原理与实践[M]. 北京: 电子工业出版社, 2017.1</li>
 <li>黄昌宁, 赵海. 中文分词十年回顾[J]. 中文信息学报, 2007, 21(3):8-19.</li>
-<li><a href="https://www.zhihu.com/question/20136144">https://www.zhihu.com/question/20136144</a></li>
-<li><a href="https://github.com/fxsjy/jieba">https://github.com/fxsjy/jieba</a></li>
-<li><a href="http://www.52nlp.cn/hmm">http://www.52nlp.cn/hmm</a></li>
-<li><a href="https://www.cnblogs.com/zhbzz2007/p/6092313.html">https://www.cnblogs.com/zhbzz2007/p/6092313.html</a></li>
+<li><a href="https://www.zhihu.com/question/20136144" target="_blank" rel="noopener">https://www.zhihu.com/question/20136144</a></li>
+<li><a href="https://github.com/fxsjy/jieba" target="_blank" rel="noopener">https://github.com/fxsjy/jieba</a></li>
+<li><a href="http://www.52nlp.cn/hmm" target="_blank" rel="noopener">http://www.52nlp.cn/hmm</a></li>
+<li><a href="https://www.cnblogs.com/zhbzz2007/p/6092313.html" target="_blank" rel="noopener">https://www.cnblogs.com/zhbzz2007/p/6092313.html</a></li>
 </ol>
 
           
@@ -716,6 +716,18 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">变量</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">引用</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">优化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">go</a>
               </li>
              
@@ -732,15 +744,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">变量</a>
+                <a href="javascript:void(0)" class="js-tag color4">acm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">引用</a>
+                <a href="javascript:void(0)" class="js-tag color2">树</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">优化</a>
+                <a href="javascript:void(0)" class="js-tag color4">字典树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">前缀树</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -776,27 +792,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">acm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">树</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">字典树</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">前缀树</a>
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">事务</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -828,6 +828,42 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">容器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">大数据</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">大数据入门</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HDFS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">分数运算</a>
               </li>
              
@@ -836,11 +872,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color1">Serverless</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">容器</a>
+                <a href="javascript:void(0)" class="js-tag color4">云计算</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -876,15 +912,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Serverless</a>
+                <a href="javascript:void(0)" class="js-tag color4">二进制</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">云计算</a>
+                <a href="javascript:void(0)" class="js-tag color4">位运算</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">链表</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -897,38 +937,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">面向对象</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">大数据入门</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">MapReduce</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Hadoop</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HDFS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">链表</a>
               </li>
              
               <li class="article-tag-list-item">
