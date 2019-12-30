@@ -7,19 +7,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://bex.meishakeji.com">
-  <title>Archives: 2019/10 | Meisha Bex</title>
+  <title>分布式唯一ID的几种实现 | Meisha Bex</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本博客代码及内容由深圳梅沙科技后端团队维护">
-<meta name="keywords" content="梅沙科技&#x2F;后端&#x2F;PHP&#x2F;Laravel">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Meisha Bex">
-<meta property="og:url" content="https://bex.meishakeji.com/archives/2019/10/index.html">
+  <meta name="description" content="什么是分布式唯一ID这是一个老生常谈的话题了，随着业务系统的发展，数据日渐增长，我们需要对数据库进行分库分表，并逐渐形成分布式系统，这时就需要有一个全局唯一的ID来满足我们的需求。 对于这个ID我们有以下要求：  全局唯一性：不能生成重复的ID，这是最基本的要求 趋势递增：由于在MySQL InnoDB引擎中使用的是聚集索引（cluster index），所以尽量使用有序的主键可以保证写入性能 信">
+<meta name="keywords" content="分布式,UUID,Redis,MySQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分布式唯一ID的几种实现">
+<meta property="og:url" content="https://bex.meishakeji.com/2019/12/29/分布式唯一ID的几种实现/index.html">
 <meta property="og:site_name" content="Meisha Bex">
-<meta property="og:description" content="本博客代码及内容由深圳梅沙科技后端团队维护">
+<meta property="og:description" content="什么是分布式唯一ID这是一个老生常谈的话题了，随着业务系统的发展，数据日渐增长，我们需要对数据库进行分库分表，并逐渐形成分布式系统，这时就需要有一个全局唯一的ID来满足我们的需求。 对于这个ID我们有以下要求：  全局唯一性：不能生成重复的ID，这是最基本的要求 趋势递增：由于在MySQL InnoDB引擎中使用的是聚集索引（cluster index），所以尽量使用有序的主键可以保证写入性能 信">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/006tNbRwgy1gadv5uk4cfj30wq09ujtz.jpg">
+<meta property="og:updated_time" content="2019-12-30T00:14:36.715Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Meisha Bex">
-<meta name="twitter:description" content="本博客代码及内容由深圳梅沙科技后端团队维护">
+<meta name="twitter:title" content="分布式唯一ID的几种实现">
+<meta name="twitter:description" content="什么是分布式唯一ID这是一个老生常谈的话题了，随着业务系统的发展，数据日渐增长，我们需要对数据库进行分库分表，并逐渐形成分布式系统，这时就需要有一个全局唯一的ID来满足我们的需求。 对于这个ID我们有以下要求：  全局唯一性：不能生成重复的ID，这是最基本的要求 趋势递增：由于在MySQL InnoDB引擎中使用的是聚集索引（cluster index），所以尽量使用有序的主键可以保证写入性能 信">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/006tNbRwgy1gadv5uk4cfj30wq09ujtz.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Meisha Bex" type="application/atom+xml">
   
@@ -154,136 +157,222 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-分布式唯一ID的几种实现" class="article article-type-post " itemscope="" itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/22/hmm-viterbi-cut/" class="archive-article-date">
-  	<time datetime="2019-10-22T07:38:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-22</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/22/hmm-viterbi-cut/">HMM、Viterbi与中文分词应用</a>
+    <h1 class="article-title" itemprop="name">
+      分布式唯一ID的几种实现
     </h1>
   
 
-<br><small>by: funco 林鸿钊</small>
-        <div class="article-info info-on-right">
+<br><small>by: lumen 陆贤芳</small>
+        
+        <a href="/2019/12/29/分布式唯一ID的几种实现/" class="archive-article-date">
+  	<time datetime="2019-12-29T05:14:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      <p><em><small>保护私人版权，尊重他人版权。转载请注明出处并附带页面链接</small></em></p>
+      
           
+          
+            <h2 id="什么是分布式唯一ID"><a href="#什么是分布式唯一ID" class="headerlink" title="什么是分布式唯一ID"></a>什么是分布式唯一ID</h2><p>这是一个老生常谈的话题了，随着业务系统的发展，数据日渐增长，我们需要对数据库进行分库分表，并逐渐形成分布式系统，这时就需要有一个全局唯一的ID来满足我们的需求。</p>
+<p>对于这个ID我们有以下要求：</p>
+<ul>
+<li>全局唯一性：不能生成重复的ID，这是最基本的要求</li>
+<li>趋势递增：由于在MySQL InnoDB引擎中使用的是聚集索引（cluster index），所以尽量使用有序的主键可以保证写入性能</li>
+<li>信息安全：不能轻易被人按照ID去遍历数据，或者根据ID猜出业务 </li>
+</ul>
+<h2 id="UUID"><a href="#UUID" class="headerlink" title="UUID"></a>UUID</h2><p>UUID(Universally Unique Identifier)的 16 个 8 位字节表示为 32 个十六进制（基数16）数字，显示在由连字符分隔 ‘-‘ 的五个组中，格式为”8-4-4-4-12”，总共 36 个字符</p>
+<p>示例：123e4567-e89b-12d3-a456-426655440000，到目前为止业界一共有5种方式生成UUID，详情可见IETF发布的UUID规范</p>
+<p><strong>优点：</strong></p>
+<ul>
+<li>性能非常高，本地生成ID，不需要进行远程调用</li>
+</ul>
+<p><strong>缺点：</strong></p>
+<ul>
+<li><p>不易于存储，36位字符串过长，常见优化方案为转化为两个uint64整数存储或者截取部分字符串进行存储，后者无法保证唯一性</p>
+</li>
+<li><p>无法保证趋势递增</p>
+</li>
+</ul>
+<h2 id="Redis生成ID"><a href="#Redis生成ID" class="headerlink" title="Redis生成ID"></a>Redis生成ID</h2><p>Redis是单线程的，可以用来生成全局唯一ID，主要通过原子操作 INCR 和 INCRBY 来实现</p>
+<p>比如说生成每天从0开始的流水号，流水号格式为日期+当日增长号，我们通过每天在Redis中生成一个key，使用INCR去累加就可以很方便的实现这个需求</p>
+<p><strong>优点：</strong></p>
+<ul>
+<li><p>不依赖于数据库，灵活方便，且性能优于数据库</p>
+</li>
+<li><p>可以保证趋势递增</p>
+</li>
+</ul>
+<p><strong>缺点：</strong></p>
+<ul>
+<li>需要对Redis的数据持久化处理，否则挂了就有可能生成重复ID</li>
+</ul>
+<h2 id="Twitter-开源的-Snowflake-算法"><a href="#Twitter-开源的-Snowflake-算法" class="headerlink" title="Twitter 开源的 Snowflake 算法"></a>Twitter 开源的 Snowflake 算法</h2><p>这种方案的核心思想是通过划分命名空间把一个long型的数来生成全局唯一ID，如下图把64 bit分别划分成多段，分开来标示机器、时间等：</p>
+<p><img src="https://tva1.sinaimg.cn/large/006tNbRwgy1gadv5uk4cfj30wq09ujtz.jpg" alt="image-20191229202624027"></p>
+<p>41bit作为毫秒数，可以表示69年的时间</p>
+<p>10 bit作为机器编号，5 bit数据中心ID，5 bit机器ID，相当于最多支持部署1024个节点</p>
+<p>12 bit作为毫秒内序列号，相当于支持每个节点每毫秒生成4096个序列号</p>
+<p><strong>优点：</strong></p>
+<ul>
+<li>可以保证趋势递增</li>
+<li>灵活，可以根据自身业务需求分配bit含义</li>
+<li>不依赖数据库等第三方系统，以服务的方式部署，稳定性更高，生成ID的性能也是非常高的。</li>
+</ul>
+<p><strong>缺点：</strong></p>
+<ul>
+<li>强依赖机器时钟，如果机器上时钟回拨，可能会导致ID重复</li>
+</ul>
+<p>下面是PHP简单实现Snowflake：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class Snowflake</span><br><span class="line">&#123;</span><br><span class="line">    const EPOCH = 1543223810238;    // 起始时间戳，毫秒</span><br><span class="line"></span><br><span class="line">    const SEQUENCE_BITS = 12;   //序号部分12位</span><br><span class="line">    const SEQUENCE_MAX = -1 ^ (-1 &lt;&lt; self::SEQUENCE_BITS);  // 序号最大值</span><br><span class="line"></span><br><span class="line">    const WORKER_BITS = 10; // 节点部分10位</span><br><span class="line">    const WORKER_MAX = -1 ^ (-1 &lt;&lt; self::WORKER_BITS);  // 节点最大数值</span><br><span class="line"></span><br><span class="line">    const TIME_SHIFT = self::WORKER_BITS + self::SEQUENCE_BITS; // 时间戳部分左偏移量</span><br><span class="line">    const WORKER_SHIFT = self::SEQUENCE_BITS;   // 节点部分左偏移量</span><br><span class="line"></span><br><span class="line">    protected $timestamp;   // 上次ID生成时间戳</span><br><span class="line">    protected $workerId;    // 节点ID</span><br><span class="line">    protected $sequence;    // 序号</span><br><span class="line"></span><br><span class="line">    public function __construct($workerId)</span><br><span class="line">    &#123;</span><br><span class="line">        if ($workerId &lt; 0 || $workerId &gt; self::WORKER_MAX) &#123;</span><br><span class="line">            trigger_error(&quot;Worker ID 超出范围&quot;);</span><br><span class="line">            exit(0);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        $this-&gt;timestamp = 0;</span><br><span class="line">        $this-&gt;workerId = $workerId;</span><br><span class="line">        $this-&gt;sequence = 0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 生成ID</span><br><span class="line">     *</span><br><span class="line">     * @return int</span><br><span class="line">     */</span><br><span class="line">    public function getId()</span><br><span class="line">    &#123;</span><br><span class="line">        $now = $this-&gt;now();</span><br><span class="line">        if ($this-&gt;timestamp == $now) &#123;</span><br><span class="line">            $this-&gt;sequence++;</span><br><span class="line"></span><br><span class="line">            if ($this-&gt;sequence &gt; self::SEQUENCE_MAX) &#123;</span><br><span class="line">                // 当前毫秒内生成的序号已经超出最大范围，等待下一毫秒重新生成</span><br><span class="line">                while ($now &lt;= $this-&gt;timestamp) &#123;</span><br><span class="line">                    $now = $this-&gt;now();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            $this-&gt;sequence = 0;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        $this-&gt;timestamp = $now;    // 更新ID生时间戳</span><br><span class="line"></span><br><span class="line">        $id = (($now - self::EPOCH) &lt;&lt; self::TIME_SHIFT) | ($this-&gt;workerId &lt;&lt; self::WORKER_SHIFT) | $this-&gt;sequence;</span><br><span class="line"></span><br><span class="line">        return $id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 获取当前毫秒</span><br><span class="line">     *</span><br><span class="line">     * @return string</span><br><span class="line">     */</span><br><span class="line">    public function now()</span><br><span class="line">    &#123;</span><br><span class="line">        return sprintf(&quot;%.0f&quot;, microtime(true) * 1000);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              Sub
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>扫码关注微信公众号，随时随地，掌握最新技术资讯<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wechat_qrcode.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HMM</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">分布式</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">马尔可夫</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">UUID</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Viterbi</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Redis</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">中文分词</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">自然语言处理</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">nlp</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">概率论</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/22/无服务器计算/" class="archive-article-date">
-  	<time datetime="2019-10-22T02:02:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-22</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/12/22/Redis 小知识/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Redis小知识</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/22/无服务器计算/">无服务器计算</a>
-    </h1>
-  
-
-<br><small>by: vito 梁钊</small>
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">php</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Serverless</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">云计算</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是分布式唯一ID"><span class="toc-number">1.</span> <span class="toc-text">什么是分布式唯一ID</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UUID"><span class="toc-number">2.</span> <span class="toc-text">UUID</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis生成ID"><span class="toc-number">3.</span> <span class="toc-text">Redis生成ID</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Twitter-开源的-Snowflake-算法"><span class="toc-number">4.</span> <span class="toc-text">Twitter 开源的 Snowflake 算法</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
+        
+    </div>
+</aside>
+
+
+
   
 
-    
+  
+
+  
+
+  
+
+  
+  <div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+
+    if(true){
+        var gitalk = new Gitalk({
+            clientID: '9cab3da944be2a1aefac',
+            clientSecret: '14f99d0f02aa648d17a952a4ded0a262efecb054',
+            repo: 'meishabex.github.io',
+            owner: 'meishabex',
+            admin: ['meishabex'],
+            id: 'Sun Dec 29 2019 13:14:54 GMT+0800',
+            distractionFreeMode: 'false'
+        })
+        gitalk.render('gitalk-container')
+    }
+</script>
+  
+
+  
 
 
           </div>
@@ -330,8 +419,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
