@@ -9,18 +9,18 @@
   <link rel="dns-prefetch" href="https://bex.meishakeji.com">
   <title>Laravel Model利用macro方法扩展功能 | Meisha Bex</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="marco是什么Laravel利用php的特性，实现了一套Macroable的Traits，因此引用了Macroable的类都可以用这个方法来扩展，如Response、Request、Collection。 ###项目背景 本文针对的是使用php的laravel框架。 实际遇到的问题因业务抽离的原因，拆分了数据库实例，原先项目里一些多对多查询的查询因跨了实例无法用laravel的多对多relati">
+  <meta name="description" content="marco是什么Laravel利用php的特性，实现了一套Macroable的Traits，因此引用了Macroable的类都可以用这个方法来扩展，如Response、Request、Collection。 项目背景本文针对的是使用php的laravel框架。 实际遇到的问题因业务抽离的原因，拆分了数据库实例，原先项目里一些多对多查询的查询因跨了实例无法用laravel的多对多relation实现">
 <meta name="keywords" content="php,mysql,laravel,数据库,macro,model">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Laravel Model利用macro方法扩展功能">
 <meta property="og:url" content="https://bex.meishakeji.com/2020/01/14/laravel-model-macro/index.html">
 <meta property="og:site_name" content="Meisha Bex">
-<meta property="og:description" content="marco是什么Laravel利用php的特性，实现了一套Macroable的Traits，因此引用了Macroable的类都可以用这个方法来扩展，如Response、Request、Collection。 ###项目背景 本文针对的是使用php的laravel框架。 实际遇到的问题因业务抽离的原因，拆分了数据库实例，原先项目里一些多对多查询的查询因跨了实例无法用laravel的多对多relati">
+<meta property="og:description" content="marco是什么Laravel利用php的特性，实现了一套Macroable的Traits，因此引用了Macroable的类都可以用这个方法来扩展，如Response、Request、Collection。 项目背景本文针对的是使用php的laravel框架。 实际遇到的问题因业务抽离的原因，拆分了数据库实例，原先项目里一些多对多查询的查询因跨了实例无法用laravel的多对多relation实现">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-01-14T01:55:49.161Z">
+<meta property="og:updated_time" content="2020-01-14T02:29:01.974Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Laravel Model利用macro方法扩展功能">
-<meta name="twitter:description" content="marco是什么Laravel利用php的特性，实现了一套Macroable的Traits，因此引用了Macroable的类都可以用这个方法来扩展，如Response、Request、Collection。 ###项目背景 本文针对的是使用php的laravel框架。 实际遇到的问题因业务抽离的原因，拆分了数据库实例，原先项目里一些多对多查询的查询因跨了实例无法用laravel的多对多relati">
+<meta name="twitter:description" content="marco是什么Laravel利用php的特性，实现了一套Macroable的Traits，因此引用了Macroable的类都可以用这个方法来扩展，如Response、Request、Collection。 项目背景本文针对的是使用php的laravel框架。 实际遇到的问题因业务抽离的原因，拆分了数据库实例，原先项目里一些多对多查询的查询因跨了实例无法用laravel的多对多relation实现">
   
     <link rel="alternative" href="/atom.xml" title="Meisha Bex" type="application/atom+xml">
   
@@ -180,8 +180,7 @@
           
           
             <h2 id="marco是什么"><a href="#marco是什么" class="headerlink" title="marco是什么"></a>marco是什么</h2><p>Laravel利用php的特性，实现了一套Macroable的Traits，因此引用了Macroable的类都可以用这个方法来扩展，如Response、Request、Collection。</p>
-<p>###项目背景</p>
-<p>本文针对的是使用php的laravel框架。</p>
+<h3 id="项目背景"><a href="#项目背景" class="headerlink" title="项目背景"></a>项目背景</h3><p>本文针对的是使用php的laravel框架。</p>
 <h3 id="实际遇到的问题"><a href="#实际遇到的问题" class="headerlink" title="实际遇到的问题"></a>实际遇到的问题</h3><p>因业务抽离的原因，拆分了数据库实例，原先项目里一些多对多查询的查询因跨了实例无法用laravel的多对多relation实现。项目中model上层的调用处极多，需求要求短时间内改完。</p>
 <h3 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h3><p>保持model上层调用的地方不变，在model层方法动手。把不能跨实例的多对多方法查询降级为框架支持的一对多或多对一的支持跨实例的查询。Laravel框架用的Eloquent ORM的get方法返回类型是Collection，想办法扩展Collection的功能。</p>
 <p>简单的写法如下：</p>
@@ -300,7 +299,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#marco是什么"><span class="toc-number">1.</span> <span class="toc-text">marco是什么</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#实际遇到的问题"><span class="toc-number">1.1.</span> <span class="toc-text">实际遇到的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决思路"><span class="toc-number">1.2.</span> <span class="toc-text">解决思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#反思"><span class="toc-number">1.3.</span> <span class="toc-text">反思</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#marco是什么"><span class="toc-number">1.</span> <span class="toc-text">marco是什么</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#项目背景"><span class="toc-number">1.1.</span> <span class="toc-text">项目背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实际遇到的问题"><span class="toc-number">1.2.</span> <span class="toc-text">实际遇到的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决思路"><span class="toc-number">1.3.</span> <span class="toc-text">解决思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#反思"><span class="toc-number">1.4.</span> <span class="toc-text">反思</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
