@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Meisha Bex">
 <meta property="og:description" content="缓存穿透定义缓存穿透，是指查询一个数据库一定不存在的数据。 正常的使用缓存流程大致是，数据查询先进行缓存查询，当key不存在或者key已经过期，再对数据库进行查询，并把查询到的数据放进缓存。如果数据库查不到数据则不写入缓存，这将导致这个不存在的数据每次请求都要到数据库去查询，造成缓存穿透。 解决 对查询结果为空的情况也进行缓存，缓存时间设置短一点， 注意：该key对应的数据insert了之后清理缓">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-02-11T06:19:49.470Z">
+<meta property="og:updated_time" content="2020-02-11T06:24:28.574Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="缓存穿透、雪崩、击穿">
 <meta name="twitter:description" content="缓存穿透定义缓存穿透，是指查询一个数据库一定不存在的数据。 正常的使用缓存流程大致是，数据查询先进行缓存查询，当key不存在或者key已经过期，再对数据库进行查询，并把查询到的数据放进缓存。如果数据库查不到数据则不写入缓存，这将导致这个不存在的数据每次请求都要到数据库去查询，造成缓存穿透。 解决 对查询结果为空的情况也进行缓存，缓存时间设置短一点， 注意：该key对应的数据insert了之后清理缓">
@@ -199,8 +199,7 @@
 <p><strong>注意：主要是通过避免缓存同时失效并结合锁机制实现。 A2缓存中可能会存在脏数据，需要业务能够容忍这种短时间的不一致。而且，这种方案可能会造成额外的缓存空间浪费。</strong></p>
 </li>
 </ol>
-<h2 id="缓存击穿"><a href="#缓存击穿" class="headerlink" title="缓存击穿"></a>缓存击穿</h2><p>###定义</p>
-<p>由于缓存是不命中时需要从数据库查询，查不到数据则不写入缓存，这将导致这个不存在的数据每次请求都要到数据库去查询，造成缓存穿透</p>
+<h2 id="缓存击穿"><a href="#缓存击穿" class="headerlink" title="缓存击穿"></a>缓存击穿</h2><h3 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h3><p>由于缓存是不命中时需要从数据库查询，查不到数据则不写入缓存，这将导致这个不存在的数据每次请求都要到数据库去查询，造成缓存穿透</p>
 <p>是指一个key非常热点，在不停的扛着大并发，大并发集中对这一个点进行访问，当这个key在失效的瞬间，持续的大并发就穿破缓存，直接请求数据库可能瞬间压垮DB。</p>
 <p><strong>和缓存雪崩的区别</strong>：缓存击穿针对某一key缓存，缓存雪崩则是很多key</p>
 <h3 id="解决-2"><a href="#解决-2" class="headerlink" title="解决"></a>解决</h3><ol>
@@ -319,7 +318,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#缓存穿透"><span class="toc-number">1.</span> <span class="toc-text">缓存穿透</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义"><span class="toc-number">1.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决"><span class="toc-number">1.2.</span> <span class="toc-text">解决</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#缓存雪崩"><span class="toc-number">2.</span> <span class="toc-text">缓存雪崩</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义-1"><span class="toc-number">2.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决-1"><span class="toc-number">2.2.</span> <span class="toc-text">解决</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#缓存击穿"><span class="toc-number">3.</span> <span class="toc-text">缓存击穿</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#解决-2"><span class="toc-number">3.1.</span> <span class="toc-text">解决</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#缓存穿透"><span class="toc-number">1.</span> <span class="toc-text">缓存穿透</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义"><span class="toc-number">1.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决"><span class="toc-number">1.2.</span> <span class="toc-text">解决</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#缓存雪崩"><span class="toc-number">2.</span> <span class="toc-text">缓存雪崩</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义-1"><span class="toc-number">2.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决-1"><span class="toc-number">2.2.</span> <span class="toc-text">解决</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#缓存击穿"><span class="toc-number">3.</span> <span class="toc-text">缓存击穿</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义-2"><span class="toc-number">3.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决-2"><span class="toc-number">3.2.</span> <span class="toc-text">解决</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
