@@ -7,21 +7,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://bex.meishakeji.com">
-  <title>nginx平滑重启原理 | Meisha Bex</title>
+  <title>nginx日志分割 | Meisha Bex</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="随着每时每刻用户都在访问，Nginx会不断地增长。然后Nginx不会自动切割日志，当日志文件越来越大当时候，不仅浪费磁盘空间，nginx的性能也会降低。   日志分割有两个方法，一：用脚本去做处理。二：用linux系统的logrotate来处理。   现在，要介绍的是用Logrotate分割。 一、Logrotate说明   logrotate 程序是一个日志文件管理工具。用来把旧的日志文件">
 <meta name="keywords" content="服务器,nginx,Linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="nginx平滑重启原理">
+<meta property="og:title" content="nginx日志分割">
 <meta property="og:url" content="https://bex.meishakeji.com/2020/02/20/Nginx日志分割/index.html">
 <meta property="og:site_name" content="Meisha Bex">
 <meta property="og:description" content="随着每时每刻用户都在访问，Nginx会不断地增长。然后Nginx不会自动切割日志，当日志文件越来越大当时候，不仅浪费磁盘空间，nginx的性能也会降低。   日志分割有两个方法，一：用脚本去做处理。二：用linux系统的logrotate来处理。   现在，要介绍的是用Logrotate分割。 一、Logrotate说明   logrotate 程序是一个日志文件管理工具。用来把旧的日志文件">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://bex.meishakeji.com/2020/02/20/Nginx日志分割/5E4BB2F8-8F49-44FD-8F4D-8E73AD10D3A0.png">
 <meta property="og:image" content="https://bex.meishakeji.com/2020/02/20/Nginx日志分割/453005D1-4BC2-4C6E-B55E-4280A18E6AA5.png">
-<meta property="og:updated_time" content="2020-02-20T10:28:18.992Z">
+<meta property="og:updated_time" content="2020-02-20T11:28:08.602Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="nginx平滑重启原理">
+<meta name="twitter:title" content="nginx日志分割">
 <meta name="twitter:description" content="随着每时每刻用户都在访问，Nginx会不断地增长。然后Nginx不会自动切割日志，当日志文件越来越大当时候，不仅浪费磁盘空间，nginx的性能也会降低。   日志分割有两个方法，一：用脚本去做处理。二：用linux系统的logrotate来处理。   现在，要介绍的是用Logrotate分割。 一、Logrotate说明   logrotate 程序是一个日志文件管理工具。用来把旧的日志文件">
 <meta name="twitter:image" content="https://bex.meishakeji.com/2020/02/20/Nginx日志分割/5E4BB2F8-8F49-44FD-8F4D-8E73AD10D3A0.png">
   
@@ -165,7 +165,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      nginx平滑重启原理
+      nginx日志分割
     </h1>
   
 
