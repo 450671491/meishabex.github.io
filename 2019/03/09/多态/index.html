@@ -7,19 +7,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://bex.meishakeji.com">
-  <title>Archives | Meisha Bex</title>
+  <title>多态 | Meisha Bex</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本博客代码及内容由深圳梅沙科技后端团队维护">
-<meta name="keywords" content="梅沙科技&#x2F;后端&#x2F;PHP&#x2F;Laravel">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Meisha Bex">
-<meta property="og:url" content="https://bex.meishakeji.com/archives/page/8/index.html">
+  <meta name="description" content="在面向对象的语言中，多态是继数据抽象和继承之后的第三种基本特征。What is polymorphic？多态（Polymorphism）按字面的意思就是“多种状态”。在面向对象语言中，接口的多种不同的实现方式即为多态。 在向上转型中，可能会缩小接口，但不会比其基类接口更窄。如何理解多态的作用是消除类型间的耦和关系？例如有这样一行代码:Apple apple=new Apple（），等号左右两边必须">
+<meta name="keywords" content="java,多态">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多态">
+<meta property="og:url" content="https://bex.meishakeji.com/2019/03/09/多态/index.html">
 <meta property="og:site_name" content="Meisha Bex">
-<meta property="og:description" content="本博客代码及内容由深圳梅沙科技后端团队维护">
+<meta property="og:description" content="在面向对象的语言中，多态是继数据抽象和继承之后的第三种基本特征。What is polymorphic？多态（Polymorphism）按字面的意思就是“多种状态”。在面向对象语言中，接口的多种不同的实现方式即为多态。 在向上转型中，可能会缩小接口，但不会比其基类接口更窄。如何理解多态的作用是消除类型间的耦和关系？例如有这样一行代码:Apple apple=new Apple（），等号左右两边必须">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-04-08T02:23:39.557Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Meisha Bex">
-<meta name="twitter:description" content="本博客代码及内容由深圳梅沙科技后端团队维护">
+<meta name="twitter:title" content="多态">
+<meta name="twitter:description" content="在面向对象的语言中，多态是继数据抽象和继承之后的第三种基本特征。What is polymorphic？多态（Polymorphism）按字面的意思就是“多种状态”。在面向对象语言中，接口的多种不同的实现方式即为多态。 在向上转型中，可能会缩小接口，但不会比其基类接口更窄。如何理解多态的作用是消除类型间的耦和关系？例如有这样一行代码:Apple apple=new Apple（），等号左右两边必须">
   
     <link rel="alternative" href="/atom.xml" title="Meisha Bex" type="application/atom+xml">
   
@@ -154,37 +155,101 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-多态" class="article article-type-post " itemscope="" itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/09/多态/" class="archive-article-date">
-  	<time datetime="2019-03-09T10:28:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-09</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/09/多态/">多态</a>
+    <h1 class="article-title" itemprop="name">
+      多态
     </h1>
   
 
 <br><small>by: teddy 李璠涛</small>
-        <div class="article-info info-on-right">
+        
+        <a href="/2019/03/09/多态/" class="archive-article-date">
+  	<time datetime="2019-03-09T10:28:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      <p><em><small>保护私人版权，尊重他人版权。转载请注明出处并附带页面链接</small></em></p>
+      
           
+          
+            <p>在面向对象的语言中，多态是继数据抽象和继承之后的第三种基本特征。What is polymorphic？多态（Polymorphism）按字面的意思就是“多种状态”。在面向对象语言中，接口的多种不同的实现方式即为多态。</p>
+<p>在向上转型中，可能会缩小接口，但不会比其基类接口更窄。<br>如何理解多态的作用是消除类型间的耦和关系？<br>例如有这样一行代码:Apple apple=new Apple（），<br>等号左右两边必须为相同类型，即一边必须依赖于另外一边，这就叫这个类型间的耦合，而多态的话，假设有一个fruit类型，apple可以赋给它，orange也可以，右边不在依赖于左边，fruit类型知道会有赋值但具体赋什么值和它没有关系，这就叫解耦合，故这就是我所理解的多态消除类型间的耦合关系。</p>
+<p>##方法调用绑定</p>
+<p>将一个方法调用同一个方法主体关联起来被称作绑定。若在程序执行前进行绑定。叫做前期绑定。<br>解决多态问题的方法为后期绑定，它的含义就在于运行时根据对象的类型进行绑定。后期绑定也成为动态绑定或运行时绑定。如果一种语言想实现后期绑定，就必须有某种机制。以便运行时能判断对象的类型，从而调用的恰当的方法。即，编译器一直不知道对象的类型，但是方法调用机制能找到正确的方法体，并加以利用。<br>java中除static方法和final方法之外（private方法属于static方法），其他所有的方法都是后期绑定。<br>final可以有效关闭动态绑定，但最好还是应该根据设计是否使用final。</p>
+<p>##正确的行为</p>
+<p>由于java中所有方法为动态绑定，故我们可以编写只与基类打交道的代码，并且代码对所有导出类都可以正确运行。发送消息给对象，让对象自己去判断该做什么。</p>
+<p>##多态的缺陷</p>
+<ul>
+<li>只有非private方法才可以被覆盖；我们需要密切注意覆盖private方法的现象，这时虽然编译器不会报错，但是也不会按照我们所期望的来执行。确切来说，在导出类中，对于基类中的private方法，最好采用不同的名字。</li>
+<li>只有普通的方法调用可以是多态的。如果直接访问某个域，这个访问就会在编译期进行解析。</li>
+</ul>
+<p>##构造器与多态</p>
+<p>构造器实际上是static方法，只不过该static声明是隐式的。<br>基类的构造器总是在导出类的构造过程中被调用，而且按照继承层次逐渐向上链接，以使每个基类的构造器都能被调用。这样做是有意义的，因为构造器具有一项特殊任务：检查对象是否被正确的构造。导出类一般只能访问自己的成员，不能访问基类的成员（基类成员通常是private类型）。只有基类的构造器才具有恰当的知识和权限来对自己的元素进行初始化。因此，必须令所有的构造器都得到调用，否则就不可能正确构造完整对象。这正是编译器为什么要强制每个导出类部分都必须调用构造器的原因。在导出类的构造器主体中，如果没有明确指定调用某个基类构造器，它就会“默默”地调用默认构造器。如果不存在默认构造器，编译器会报错（一般编译器会自动合成一个默认构造器）。<br>调用构造器遵照的顺序:</p>
+<ol>
+<li>调用基类构造器。这个步骤会不断地反复递归下去，首先是构造这种层次的根，然后是下一层导出类，等等，直到最低层的导出类。</li>
+<li>按声明顺序调用成员的初始化方法。</li>
+<li>调用导出类的构造器主体。</li>
+</ol>
+<p>##继承与清理</p>
+<p>通过组合和继承的方法来创建新类时，永远不必担心对象的清理问题，子对象通常都会留给垃圾回收器进行处理。</p>
+<p>##构造器内部的多态方法的行为</p>
+<p>初始化实际过程：</p>
+<ol>
+<li>在其他任何事物发生之前，将分配给对象的存储空间初始化成二进制的零。</li>
+<li>如前所述那样调用基类构造器。</li>
+<li>按照声明的顺序调用成员的初始化方法。</li>
+<li>调用导出类的构造器实体。</li>
+</ol>
+<p>##协变返回类型</p>
+<p>Java SE5中添加了协变返回类型，它表示在导出类中的被覆盖方法可以返回基类方法的返回类型的某种导出类型。<br>协变返回类型允许返回更具体的类型。</p>
+<p>##用继承进行设计</p>
+<p>一条通用准则：“用继承表达行为间的差异，并用字段表达状态上的变化”。设计方式应优先选择组合。</p>
+<p>##向下转型与运行时类型识别</p>
+<p>由于向上转型会丢失具体的类型信息，所以我们就想，通过向下转型-<br>也就是在继承层次中向下移动-应该能够获取类型信息。<br>在Java语言中，所有的转型都会得到检查！所以即使我们只是进行一次普通的加括弧形式的类型转换，在进入运行期时仍然会对其进行检查，以便保证它的确是我们希望的那种类型。若不是则会抛出，ClassCastException(类转型异常)。这种在运行期间对类型进行检查的行为称作”运行时类型识别”(RTTI)。</p>
+<p>##In a word</p>
+<p>多态意味着不同的状态，不同的形式。在面向对象的程序设计中，我们持有从基类继承而来的相同接口，以及使用借口的不同形式与方法：不同版本的动态绑定。</p>
+
+          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              Sub
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>扫码关注微信公众号，随时随地，掌握最新技术资讯<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wechat_qrcode.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -200,214 +265,98 @@
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/08/php-performance-optimization/" class="archive-article-date">
-  	<time datetime="2019-03-08T02:46:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-08</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2019/03/11/分析php的系统调用/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          分析php的系统调用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/03/08/php-performance-optimization/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">php_performance_optimization</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/08/php-performance-optimization/">php_performance_optimization</a>
-    </h1>
-  
-
-<br><small>by: funco 林鸿钊</small>
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">php</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">优化</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    目录？不存在的…
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/04/SmallEdit/" class="archive-article-date">
-  	<time datetime="2019-03-04T01:44:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/04/SmallEdit/">最小编辑距离</a>
-    </h1>
+        
+    </div>
+</aside>
+
+
+
   
 
-<br><small>by: funco 林鸿钊</small>
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">动态规划</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">最小编辑距离</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/02/24/go反射机制初探-md/" class="archive-article-date">
-  	<time datetime="2019-02-24T10:28:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/02/24/go反射机制初探-md/">go反射机制初探.md</a>
-    </h1>
   
 
-<br><small>by: teddy 李璠涛</small>
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">go</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">反射</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/02/24/countSmaller-md/" class="archive-article-date">
-  	<time datetime="2019-02-24T10:08:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/02/24/countSmaller-md/">困难-线段树-计算右侧小于当前元素的个数</a>
-    </h1>
   
 
-<br><small>by: funco 林鸿钊</small>
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">线段树</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/page/7/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/6/">6</a><a class="page-number" href="/archives/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/archives/page/9/">9</a><a class="extend next" rel="next" href="/archives/page/9/">Next &raquo;</a>
-    </nav>
+  
+  <div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+
+    if(true){
+        var gitalk = new Gitalk({
+            clientID: '9cab3da944be2a1aefac',
+            clientSecret: '14f99d0f02aa648d17a952a4ded0a262efecb054',
+            repo: 'meishabex.github.io',
+            owner: 'meishabex',
+            admin: ['meishabex'],
+            id: 'Sat Mar 09 2019 18:28:03 GMT+0800',
+            distractionFreeMode: 'false'
+        })
+        gitalk.render('gitalk-container')
+    }
+</script>
+  
+
   
 
 
@@ -455,8 +404,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
