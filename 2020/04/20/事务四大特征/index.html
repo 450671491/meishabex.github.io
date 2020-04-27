@@ -9,18 +9,18 @@
   <link rel="dns-prefetch" href="https://bex.meishakeji.com">
   <title>事务四大特征 | Meisha Bex</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="###事务四大特征(ACID)  原子性(A)：事务是最小单位，不可再分, 要么都做要么都不做=&amp;gt; 通过undo log保证  一致性(C)：指的是逻辑上的一致性，当事务完成时，必须使所有数据都具有一致的状态。相当于能量守恒定律。  隔离性(I) ：事务A和事务B之间不可见。为了有效保证并发读取数据的正确性  持久性(D)：是事务的保证，事务终结的标志(内存的数据持久到硬盘文件中) =&amp;gt">
+  <meta name="description" content="事务四大特征(ACID) 原子性(A)：事务是最小单位，不可再分, 要么都做要么都不做=&amp;gt; 通过undo log保证  一致性(C)：指的是逻辑上的一致性，当事务完成时，必须使所有数据都具有一致的状态。相当于能量守恒定律。  隔离性(I) ：事务A和事务B之间不可见。为了有效保证并发读取数据的正确性  持久性(D)：是事务的保证，事务终结的标志(内存的数据持久到硬盘文件中) =&amp;gt; re">
 <meta name="keywords" content="mysql,数据库,事务,ACID">
 <meta property="og:type" content="article">
 <meta property="og:title" content="事务四大特征">
 <meta property="og:url" content="https://bex.meishakeji.com/2020/04/20/事务四大特征/index.html">
 <meta property="og:site_name" content="Meisha Bex">
-<meta property="og:description" content="###事务四大特征(ACID)  原子性(A)：事务是最小单位，不可再分, 要么都做要么都不做=&amp;gt; 通过undo log保证  一致性(C)：指的是逻辑上的一致性，当事务完成时，必须使所有数据都具有一致的状态。相当于能量守恒定律。  隔离性(I) ：事务A和事务B之间不可见。为了有效保证并发读取数据的正确性  持久性(D)：是事务的保证，事务终结的标志(内存的数据持久到硬盘文件中) =&amp;gt">
+<meta property="og:description" content="事务四大特征(ACID) 原子性(A)：事务是最小单位，不可再分, 要么都做要么都不做=&amp;gt; 通过undo log保证  一致性(C)：指的是逻辑上的一致性，当事务完成时，必须使所有数据都具有一致的状态。相当于能量守恒定律。  隔离性(I) ：事务A和事务B之间不可见。为了有效保证并发读取数据的正确性  持久性(D)：是事务的保证，事务终结的标志(内存的数据持久到硬盘文件中) =&amp;gt; re">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-04-27T02:45:51.054Z">
+<meta property="og:updated_time" content="2020-04-27T03:30:58.588Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="事务四大特征">
-<meta name="twitter:description" content="###事务四大特征(ACID)  原子性(A)：事务是最小单位，不可再分, 要么都做要么都不做=&amp;gt; 通过undo log保证  一致性(C)：指的是逻辑上的一致性，当事务完成时，必须使所有数据都具有一致的状态。相当于能量守恒定律。  隔离性(I) ：事务A和事务B之间不可见。为了有效保证并发读取数据的正确性  持久性(D)：是事务的保证，事务终结的标志(内存的数据持久到硬盘文件中) =&amp;gt">
+<meta name="twitter:description" content="事务四大特征(ACID) 原子性(A)：事务是最小单位，不可再分, 要么都做要么都不做=&amp;gt; 通过undo log保证  一致性(C)：指的是逻辑上的一致性，当事务完成时，必须使所有数据都具有一致的状态。相当于能量守恒定律。  隔离性(I) ：事务A和事务B之间不可见。为了有效保证并发读取数据的正确性  持久性(D)：是事务的保证，事务终结的标志(内存的数据持久到硬盘文件中) =&amp;gt; re">
   
     <link rel="alternative" href="/atom.xml" title="Meisha Bex" type="application/atom+xml">
   
@@ -179,8 +179,7 @@
       
           
           
-            <p>###事务四大特征(ACID)</p>
-<ol>
+            <h3 id="事务四大特征-ACID"><a href="#事务四大特征-ACID" class="headerlink" title="事务四大特征(ACID)"></a>事务四大特征(ACID)</h3><ol>
 <li><p>原子性(A)：事务是最小单位，不可再分, 要么都做要么都不做=&gt; 通过undo log保证</p>
 </li>
 <li><p>一致性(C)：指的是逻辑上的一致性，当事务完成时，必须使所有数据都具有一致的状态。相当于能量守恒定律。</p>
@@ -190,8 +189,7 @@
 <li><p>持久性(D)：是事务的保证，事务终结的标志(内存的数据持久到硬盘文件中) =&gt; redo log保证</p>
 </li>
 </ol>
-<p>###事务四大特性之一————隔离性(isolation)</p>
-<p><strong>一、隔离级别(4个)</strong></p>
+<h3 id="事务四大特性之一————隔离性-isolation"><a href="#事务四大特性之一————隔离性-isolation" class="headerlink" title="事务四大特性之一————隔离性(isolation)"></a>事务四大特性之一————隔离性(isolation)</h3><p><strong>一、隔离级别(4个)</strong></p>
 <ol>
 <li>读未提交(read uncommitted )： 事务A能读到事务B未提交的数据。不会采用任何锁。</li>
 <li>读已提交(read committed)：事务A能读到事务B提交的数据。读不加锁，数据的增删改加锁，避免脏读</li>
@@ -334,11 +332,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/04/26/composer自动加载机制/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/04/27/composer自动加载机制/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          composer自动加载机制
+          (no title)
         
       </div>
     </a>
@@ -372,7 +370,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录？不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#事务四大特征-ACID"><span class="toc-number">1.</span> <span class="toc-text">事务四大特征(ACID)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事务四大特性之一————隔离性-isolation"><span class="toc-number">2.</span> <span class="toc-text">事务四大特性之一————隔离性(isolation)</span></a></li></ol>
                     </div>
                 </span>
             </div>
